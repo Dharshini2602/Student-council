@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, Calendar, Clock, MapPin, ExternalLink, CheckCircle2, User, Sparkles } from 'lucide-react';
+import { ArrowLeft, Calendar, Clock, MapPin, ExternalLink, User, Sparkles } from 'lucide-react';
 import { Container } from '../components/common/Container';
 import { Button } from '../components/common/Button';
 import { PageTransition } from '../components/common/PageTransition';
@@ -10,26 +10,24 @@ import { formatDate } from '../lib/utils';
 export const EventDetailsPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
 
-  // Find event by slug
   const event = EVENTS_DATA.find((e) => e.slug === slug);
 
-  // If unknown slug or event is draft, show dedicated not-found state
   if (!event || event.status === 'draft') {
     return (
       <PageTransition>
-        <div className="min-h-[70vh] pt-36 pb-20 flex items-center justify-center bg-light-bg text-center px-4">
-          <Container className="max-w-md">
-            <div className="w-16 h-16 rounded-full bg-red-100 text-red-600 flex items-center justify-center mx-auto mb-4">
+        <div className="min-h-[70vh] pt-36 pb-20 flex items-center justify-center bg-surface text-center px-4">
+          <Container className="max-w-[720px]">
+            <div className="w-16 h-16 rounded-sm bg-primary-100 text-primary-700 flex items-center justify-center mx-auto mb-4">
               <Calendar className="w-8 h-8" />
             </div>
-            <h1 className="text-3xl font-heading text-navy uppercase mb-2">
-              Event Not Found
+            <h1 className="font-display-md text-primary-700 mb-2">
+              EVENT NOT FOUND
             </h1>
-            <p className="text-sm text-muted-text mb-6">
+            <p className="font-body text-text-muted mb-6">
               The event you are looking for does not exist or may have been unlisted.
             </p>
             <Button to="/events" variant="primary">
-              <ArrowLeft className="w-4 h-4 mr-2 inline" />
+              <ArrowLeft className="w-4 h-4 mr-2" />
               BACK TO ALL EVENTS
             </Button>
           </Container>
@@ -38,50 +36,57 @@ export const EventDetailsPage: React.FC = () => {
     );
   }
 
+  const isCompleted = event.status === 'completed';
+
   return (
     <PageTransition>
-      {/* Page Header Banner */}
-      <section className="pt-32 pb-14 bg-navy text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-dot-pattern opacity-10 pointer-events-none" />
+      {/* 320px tall navy band Page Hero with breadcrumb, back link, and title */}
+      <section className="relative min-h-[320px] flex items-center bg-primary-900 text-white pt-24 pb-12 overflow-hidden">
+        <div className="absolute inset-0 bg-dot-texture pointer-events-none" aria-hidden="true" />
+
         <Container className="relative z-10">
-          <Link
-            to="/events"
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-secondary-light hover:text-white transition-colors mb-6"
-          >
-            <ArrowLeft className="w-4 h-4" />
-            <span>BACK TO EVENTS CALENDAR</span>
-          </Link>
+          <div className="max-w-4xl">
+            {/* Back link above title */}
+            <Link
+              to="/events"
+              className="inline-flex items-center gap-2 font-label text-xs text-accent-600 hover:text-white transition-colors mb-4 focus:outline-none focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-white rounded-sm"
+            >
+              <ArrowLeft className="w-4 h-4" />
+              <span>BACK TO ALL EVENTS</span>
+            </Link>
 
-          <div className="flex flex-wrap items-center gap-3 mb-4">
-            <span className="px-3 py-1 rounded bg-secondary text-white text-xs font-bold tracking-wider uppercase">
-              {event.category}
-            </span>
-            {event.status === 'completed' ? (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded bg-gray-800 text-gray-200 text-xs font-medium">
-                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400" />
-                Completed Event
+            <div className="flex flex-wrap items-center gap-3 mb-3">
+              <span className="font-label text-xs bg-primary-700 text-white px-3 py-1 rounded-sm shadow-1">
+                {event.category}
               </span>
-            ) : (
-              <span className="px-3 py-1 rounded bg-white/10 text-white text-xs font-medium border border-white/20">
-                Official Upcoming Event
-              </span>
-            )}
+              {isCompleted ? (
+                <span className="font-label text-xs bg-primary-900/90 text-text-on-dark-muted px-2.5 py-1 rounded-sm flex items-center gap-1.5 border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-text-muted" aria-hidden="true" />
+                  <span>COMPLETED EVENT</span>
+                </span>
+              ) : (
+                <span className="font-label text-xs bg-primary-900/90 text-white px-2.5 py-1 rounded-sm flex items-center gap-1.5 border border-white/10">
+                  <span className="w-1.5 h-1.5 rounded-full bg-accent-600 animate-pulse" aria-hidden="true" />
+                  <span>UPCOMING EVENT</span>
+                </span>
+              )}
+            </div>
+
+            <h1 className="font-display-lg text-white">
+              {event.title}
+            </h1>
           </div>
-
-          <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-heading text-white uppercase tracking-wide leading-tight max-w-4xl">
-            {event.title}
-          </h1>
         </Container>
       </section>
 
-      {/* Main Content Layout */}
-      <section className="py-16 bg-white border-b border-gray-200">
+      {/* Main Content: 7/5 Asymmetric Split (Content left 7, Sticky Meta right 5) */}
+      <section className="py-16 bg-white border-b border-border">
         <Container>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-            {/* Left Column: Image & Details */}
-            <div className="lg:col-span-8 space-y-8">
-              {/* Event Poster / Visual */}
-              <div className="relative aspect-[16/9] w-full bg-navy rounded-xl overflow-hidden shadow-md">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+            {/* Left 7 Columns: Image & Narrative */}
+            <div className="lg:col-span-7 space-y-8">
+              {/* 4:3 or 16:9 Event Imagery */}
+              <div className="relative aspect-[16/10] w-full bg-primary-900 rounded-md overflow-hidden border border-border">
                 {event.image ? (
                   <img
                     src={event.image}
@@ -93,41 +98,36 @@ export const EventDetailsPage: React.FC = () => {
                   />
                 ) : null}
 
-                {/* Aesthetic Collegiate Fallback */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-navy via-primary/80 to-navy flex items-center justify-center p-8 text-center pointer-events-none">
-                  <div>
-                    <span className="text-secondary-light text-xs font-mono tracking-widest uppercase block mb-2">
-                      PPGIT STUDENT COUNCIL EVENT
-                    </span>
-                    <h2 className="text-2xl sm:text-3xl font-heading text-white uppercase max-w-lg">
-                      {event.title}
-                    </h2>
-                  </div>
+                {/* Typographic fallback */}
+                <div className="absolute inset-0 flex items-center justify-center p-8 text-center pointer-events-none select-none">
+                  <span className="font-display-lg text-white/15 text-8xl uppercase">
+                    {event.title.charAt(0)}
+                  </span>
                 </div>
               </div>
 
-              {/* Comprehensive Description */}
-              <div className="prose max-w-none text-body-text">
-                <h3 className="font-heading text-2xl text-navy uppercase border-b border-gray-100 pb-3">
-                  About the Event
-                </h3>
-                <p className="mt-4 text-base leading-relaxed text-gray-700">
+              {/* Event Description */}
+              <div className="space-y-4">
+                <h2 className="font-display-sm text-primary-700 border-b border-border pb-3">
+                  ABOUT THE EVENT
+                </h2>
+                <p className="font-body text-text-base leading-relaxed">
                   {event.longDescription || event.description}
                 </p>
               </div>
 
-              {/* Event Highlights */}
+              {/* Program Highlights */}
               {event.highlights && event.highlights.length > 0 && (
-                <div className="bg-light-bg rounded-xl p-6 sm:p-8 border border-gray-200">
-                  <h4 className="font-heading text-xl text-navy uppercase mb-4 flex items-center gap-2">
-                    <Sparkles className="w-5 h-5 text-secondary" />
-                    <span>Program Highlights & Agenda</span>
-                  </h4>
-                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3.5 text-sm text-gray-700">
+                <div className="bg-surface rounded-md p-6 sm:p-8 border border-border">
+                  <h3 className="font-display-sm text-primary-700 mb-4 flex items-center gap-2">
+                    <Sparkles className="w-5 h-5 text-accent-700" />
+                    <span>PROGRAM HIGHLIGHTS & AGENDA</span>
+                  </h3>
+                  <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 font-body-sm text-text-base">
                     {event.highlights.map((highlight, i) => (
                       <li key={i} className="flex items-start gap-2.5">
-                        <div className="w-2 h-2 rounded-full bg-primary mt-1.5 shrink-0" />
-                        <span className="leading-snug">{highlight}</span>
+                        <div className="w-1.5 h-1.5 rounded-full bg-accent-700 mt-2 shrink-0" aria-hidden="true" />
+                        <span>{highlight}</span>
                       </li>
                     ))}
                   </ul>
@@ -135,78 +135,60 @@ export const EventDetailsPage: React.FC = () => {
               )}
             </div>
 
-            {/* Right Column: Metadata Card & Registration Action */}
-            <div className="lg:col-span-4">
-              <div className="sticky top-28 bg-light-bg rounded-xl p-6 sm:p-8 border border-gray-200 shadow-sm space-y-6">
-                <h3 className="font-heading text-xl text-navy uppercase border-b border-gray-200 pb-3">
-                  Event Information
+            {/* Right 5 Columns: Sticky Meta Panel */}
+            <div className="lg:col-span-5">
+              <div className="sticky top-28 bg-surface rounded-md p-6 sm:p-8 border border-border space-y-6">
+                <h3 className="font-display-sm text-primary-700 border-b border-border pb-3">
+                  EVENT DETAILS
                 </h3>
 
-                <div className="space-y-4 text-sm">
+                <div className="space-y-4 font-body-sm">
                   {event.date && (
                     <div className="flex items-start gap-3">
-                      <div className="p-2 rounded bg-primary/10 text-primary shrink-0">
-                        <Calendar className="w-5 h-5" />
+                      <div className="p-2.5 rounded-sm bg-primary-100 text-primary-700 shrink-0">
+                        <Calendar className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="block text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Date
-                        </span>
-                        <span className="font-semibold text-navy">
-                          {formatDate(event.date)}
-                        </span>
+                        <span className="font-label text-xs text-text-muted block">DATE</span>
+                        <span className="font-semibold text-text-base">{formatDate(event.date)}</span>
                       </div>
                     </div>
                   )}
 
                   {event.time && (
                     <div className="flex items-start gap-3">
-                      <div className="p-2 rounded bg-primary/10 text-primary shrink-0">
-                        <Clock className="w-5 h-5" />
+                      <div className="p-2.5 rounded-sm bg-primary-100 text-primary-700 shrink-0">
+                        <Clock className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="block text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Schedule
-                        </span>
-                        <span className="font-semibold text-navy">
-                          {event.time}
-                        </span>
+                        <span className="font-label text-xs text-text-muted block">SCHEDULE</span>
+                        <span className="font-semibold text-text-base">{event.time}</span>
                       </div>
                     </div>
                   )}
 
                   {event.venue && (
                     <div className="flex items-start gap-3">
-                      <div className="p-2 rounded bg-primary/10 text-primary shrink-0">
-                        <MapPin className="w-5 h-5" />
+                      <div className="p-2.5 rounded-sm bg-primary-100 text-primary-700 shrink-0">
+                        <MapPin className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="block text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Venue
-                        </span>
-                        <span className="font-semibold text-navy">
-                          {event.venue}
-                        </span>
+                        <span className="font-label text-xs text-text-muted block">VENUE</span>
+                        <span className="font-semibold text-text-base">{event.venue}</span>
                       </div>
                     </div>
                   )}
 
                   {event.coordinator && (
-                    <div className="flex items-start gap-3 pt-2 border-t border-gray-200">
-                      <div className="p-2 rounded bg-secondary/10 text-secondary shrink-0">
-                        <User className="w-5 h-5" />
+                    <div className="flex items-start gap-3 pt-3 border-t border-border">
+                      <div className="p-2.5 rounded-sm bg-accent-100 text-accent-700 shrink-0">
+                        <User className="w-4 h-4" />
                       </div>
                       <div>
-                        <span className="block text-xs font-bold text-gray-500 uppercase tracking-wider">
-                          Coordinated By
-                        </span>
-                        <span className="font-semibold text-navy block">
-                          {event.coordinator.name}
-                        </span>
+                        <span className="font-label text-xs text-text-muted block">COORDINATION</span>
+                        <span className="font-semibold text-text-base block">{event.coordinator.name}</span>
                         {event.coordinator.contact && (
-                          <span className="text-xs text-muted-text">
-                            {event.coordinator.contact}
-                          </span>
+                          <span className="text-xs text-text-muted block mt-0.5">{event.coordinator.contact}</span>
                         )}
                       </div>
                     </div>
@@ -214,30 +196,47 @@ export const EventDetailsPage: React.FC = () => {
                 </div>
 
                 {/* Registration Action */}
-                <div className="pt-4 border-t border-gray-200">
-                  {event.status === 'upcoming' && event.registrationUrl ? (
+                <div className="pt-4 border-t border-border">
+                  {event.status === 'upcoming' ? (
                     <Button
-                      href={event.registrationUrl}
+                      href={event.registrationUrl || 'https://docs.google.com/forms/d/e/1FAIpQLSc5LM9rNzLYIzT1X6MZlDJyNxnj22alGPjTI4ATwhxXjBI2lQ/viewform?usp=publish-editor'}
                       isExternal
                       variant="primary"
-                      className="w-full flex items-center justify-center gap-2 py-3"
+                      size="lg"
+                      className="w-full flex items-center justify-center"
                     >
                       <span>REGISTER NOW</span>
-                      <ExternalLink className="w-4 h-4" />
+                      <ExternalLink className="w-4 h-4 ml-2" />
                     </Button>
-                  ) : event.status === 'completed' ? (
-                    <div className="p-3 bg-gray-100 rounded text-center text-xs font-semibold text-gray-600">
-                      This event has successfully concluded.
+                  ) : isCompleted ? (
+                    <div className="p-3 bg-white rounded-sm border border-border text-center font-label text-xs text-text-muted">
+                      EVENT HAS CONCLUDED
                     </div>
                   ) : (
-                    <div className="p-3 bg-light-blue rounded text-center text-xs font-medium text-navy">
-                      Registration opens closer to event date.
+                    <div className="p-3 bg-primary-100 rounded-sm border border-primary-600/20 text-center font-body-sm text-xs text-primary-900">
+                      Registration opens closer to date.
                     </div>
                   )}
                 </div>
               </div>
             </div>
           </div>
+        </Container>
+      </section>
+
+      {/* Closing CTA Band */}
+      <section className="py-16 bg-primary-900 text-white text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-dot-texture pointer-events-none" aria-hidden="true" />
+        <Container className="relative z-10 max-w-[720px] mx-auto">
+          <h3 className="font-display-md text-white mb-3">
+            EXPLORE MORE CAMPUS ACTIVITIES
+          </h3>
+          <p className="font-body text-text-on-dark-muted mb-8">
+            View the full student calendar for upcoming hackathons, athletic meets, and festival dates.
+          </p>
+          <Button to="/events" variant="primary-on-dark" size="md" withArrow>
+            VIEW ALL EVENTS
+          </Button>
         </Container>
       </section>
     </PageTransition>

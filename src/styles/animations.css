@@ -1,7 +1,8 @@
-@keyframes fadeIn {
+/* Motion System Easing: cubic-bezier(0.22, 1, 0.36, 1) */
+@keyframes entranceFadeRise {
   from {
     opacity: 0;
-    transform: translateY(10px);
+    transform: translateY(24px);
   }
   to {
     opacity: 1;
@@ -9,21 +10,28 @@
   }
 }
 
-@keyframes pulseSlow {
-  0%, 100% {
+@keyframes entranceFadeSimple {
+  from {
+    opacity: 0;
+  }
+  to {
     opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.85;
-    transform: scale(1.02);
   }
 }
 
-.animate-fade-in {
-  animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+.animate-entrance {
+  animation: entranceFadeRise 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.animate-pulse-slow {
-  animation: pulseSlow 4s ease-in-out infinite;
+.animate-entrance-simple {
+  animation: entranceFadeSimple 250ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-entrance,
+  .animate-entrance-simple {
+    animation-duration: 150ms !important;
+    animation-name: entranceFadeSimple !important;
+    transform: none !important;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Send, CheckCircle2, AlertCircle, Info, Lock, EyeOff } from 'lucide-react';
+import { Send, CheckCircle2, AlertCircle, Info, Loader2, EyeOff } from 'lucide-react';
 import { FeedbackCategory, FeedbackSubmission, FeedbackState } from '../../types/feedback';
 import { FeedbackCategories } from './FeedbackCategories';
 import { Button } from '../common/Button';
@@ -23,11 +23,14 @@ export const FeedbackForm: React.FC = () => {
   const MAX_SUBJECT = 120;
   const MAX_MESSAGE = 1000;
 
+  const apiUrl = import.meta.env.VITE_FEEDBACK_API_URL;
+  const isDemoMode = !apiUrl;
+
   const validate = (): boolean => {
     const newErrors: { subject?: string; message?: string; email?: string } = {};
 
     if (!subject.trim()) {
-      newErrors.subject = 'Please provide a brief subject for your suggestion.';
+      newErrors.subject = 'Please provide a subject for your suggestion.';
     } else if (subject.trim().length < 5) {
       newErrors.subject = 'Subject should be at least 5 characters long.';
     }
@@ -35,13 +38,13 @@ export const FeedbackForm: React.FC = () => {
     if (!message.trim()) {
       newErrors.message = 'Please provide details of your suggestion or concern.';
     } else if (message.trim().length < 20) {
-      newErrors.message = 'Message should be at least 20 characters to help us understand.';
+      newErrors.message = 'Message should be at least 20 characters to provide sufficient context.';
     }
 
     if (!isAnonymous && email.trim()) {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       if (!emailRegex.test(email.trim())) {
-        newErrors.email = 'Please provide a valid email address (e.g., student@ppg.edu.in).';
+        newErrors.email = 'Please provide a valid college email address (e.g. student@ppg.edu.in).';
       }
     }
 
@@ -65,12 +68,8 @@ export const FeedbackForm: React.FC = () => {
       email: isAnonymous ? undefined : email.trim() || undefined,
     };
 
-    // Check if an external API URL is provided via environment variables
-    const apiUrl = import.meta.env.VITE_FEEDBACK_API_URL;
-
     try {
       if (apiUrl) {
-        // Send to verified institutional backend
         const response = await fetch(apiUrl, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -81,7 +80,7 @@ export const FeedbackForm: React.FC = () => {
           throw new Error('Server responded with an error');
         }
       } else {
-        // Controlled client simulation: generate an institutional reference number
+        // Controlled client simulation: 800ms delay
         await new Promise((resolve) => setTimeout(resolve, 800));
       }
 
@@ -92,12 +91,12 @@ export const FeedbackForm: React.FC = () => {
         referenceId: generatedRef,
       });
 
-      // Reset form
+      // Reset fields
       setSubject('');
       setMessage('');
       setName('');
       setEmail('');
-    } catch (err) {
+    } catch {
       setSubmissionState({
         status: 'error',
         errorMessage: 'Unable to deliver your feedback at this moment. Please try again or email studentcouncil@ppg.edu.in directly.',
@@ -110,40 +109,47 @@ export const FeedbackForm: React.FC = () => {
   };
 
   return (
-    <div className="bg-white rounded-xl border border-gray-200 shadow-sm p-6 sm:p-8 lg:p-10">
+    <div className="bg-white rounded-md border border-border p-6 sm:p-8 lg:p-10">
+      {/* Success State Full-width Inline Banner */}
       {submissionState.status === 'success' ? (
-        <div className="py-8 text-center max-w-lg mx-auto space-y-5 animate-fade-in">
-          <div className="w-16 h-16 bg-secondary/10 text-secondary rounded-full flex items-center justify-center mx-auto">
-            <CheckCircle2 className="w-10 h-10" />
+        <div className="p-6 rounded-sm bg-accent-100 border border-accent-600 space-y-4" role="alert">
+          <div className="flex items-start gap-3">
+            <CheckCircle2 className="w-6 h-6 text-accent-700 shrink-0 mt-0.5" />
+            <div>
+              <h3 className="font-display-sm text-primary-700">
+                SUGGESTION RECEIVED
+              </h3>
+              <p className="mt-1 font-body text-text-base leading-relaxed">
+                Thank you for helping improve our campus community. Your submission has been catalogued for review by the PPGIT Student Council.
+              </p>
+              <div className="mt-3 p-3 bg-white rounded-sm border border-border font-mono text-sm">
+                <span className="font-label text-xs text-text-muted block">Tracking Reference:</span>
+                <span className="font-bold text-primary-700">{submissionState.referenceId}</span>
+              </div>
+            </div>
           </div>
 
-          <h3 className="font-heading text-2xl sm:text-3xl text-navy uppercase">
-            Suggestion Received
-          </h3>
-
-          <p className="text-sm text-muted-text leading-relaxed">
-            Thank you for helping improve our campus community. Your submission has been catalogued for review by the PPGIT Student Council.
-          </p>
-
-          <div className="p-4 rounded-lg bg-light-blue border border-primary/20 text-xs">
-            <span className="text-muted-text block uppercase font-medium">Tracking Reference</span>
-            <span className="font-mono text-base font-bold text-primary mt-1 block">
-              {submissionState.referenceId}
-            </span>
-          </div>
-
-          <div className="pt-4">
-            <Button variant="primary" onClick={handleReset}>
+          <div className="pt-2">
+            <Button variant="primary" size="md" onClick={handleReset}>
               SUBMIT ANOTHER SUGGESTION
             </Button>
           </div>
         </div>
       ) : (
         <form onSubmit={handleSubmit} noValidate className="space-y-6">
+          {/* Failure State Full-width Inline Banner */}
+          {submissionState.status === 'error' && (
+            <div className="p-4 rounded-sm bg-feedback-error/10 border border-feedback-error text-feedback-error flex items-start gap-3" role="alert">
+              <AlertCircle className="w-5 h-5 shrink-0 mt-0.5" />
+              <p className="font-body-sm leading-relaxed">{submissionState.errorMessage}</p>
+            </div>
+          )}
+
           {/* Category Selection */}
           <div>
-            <label className="block text-xs font-bold uppercase tracking-wider text-navy mb-2">
-              Select Category <span className="text-red-500">*</span>
+            <label className="block font-body-sm font-semibold text-text-base mb-2">
+              Category <span className="text-accent-700" aria-hidden="true">*</span>
+              <span className="sr-only"> (required)</span>
             </label>
             <FeedbackCategories
               selectedCategory={category}
@@ -151,29 +157,35 @@ export const FeedbackForm: React.FC = () => {
             />
           </div>
 
-          {/* Subject */}
+          {/* Subject Field */}
           <div>
             <div className="flex justify-between items-center mb-1.5">
-              <label htmlFor="subject" className="block text-xs font-bold uppercase tracking-wider text-navy">
-                Subject / Title <span className="text-red-500">*</span>
+              <label htmlFor="feedback-subject" className="block font-body-sm font-semibold text-text-base">
+                Subject <span className="text-accent-700" aria-hidden="true">*</span>
+                <span className="sr-only"> (required)</span>
               </label>
-              <span className="text-[11px] text-gray-400">
+              <span
+                className={`font-body-sm text-xs ${
+                  subject.length >= MAX_SUBJECT * 0.9 ? 'text-feedback-warning font-semibold' : 'text-text-muted'
+                }`}
+              >
                 {subject.length}/{MAX_SUBJECT}
               </span>
             </div>
             <input
-              id="subject"
+              id="feedback-subject"
               type="text"
               maxLength={MAX_SUBJECT}
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              placeholder="e.g., Extended Library Hours during Examination Weeks"
-              className={`w-full px-4 py-2.5 rounded-lg text-sm bg-white border ${
-                errors.subject ? 'border-red-500 focus:ring-red-400' : 'border-gray-200 focus:border-primary focus:ring-primary'
-              } focus:outline-none focus:ring-1 transition-all`}
+              aria-describedby={errors.subject ? 'subject-error' : undefined}
+              placeholder="e.g. Extended Library Hours during Examination Weeks"
+              className={`w-full h-[48px] px-4 rounded-sm bg-white border ${
+                errors.subject ? 'border-feedback-error' : 'border-border-strong'
+              } text-text-base font-body-sm focus:outline-none focus:border-primary-700 focus:ring-3 focus:ring-accent-600/30 transition-all`}
             />
             {errors.subject && (
-              <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+              <p id="subject-error" className="mt-1.5 font-body-sm text-xs text-feedback-error flex items-center gap-1.5" role="alert">
                 <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                 <span>{errors.subject}</span>
               </p>
@@ -183,26 +195,32 @@ export const FeedbackForm: React.FC = () => {
           {/* Message Description */}
           <div>
             <div className="flex justify-between items-center mb-1.5">
-              <label htmlFor="message" className="block text-xs font-bold uppercase tracking-wider text-navy">
-                Detailed Suggestion or Concern <span className="text-red-500">*</span>
+              <label htmlFor="feedback-message" className="block font-body-sm font-semibold text-text-base">
+                Message <span className="text-accent-700" aria-hidden="true">*</span>
+                <span className="sr-only"> (required)</span>
               </label>
-              <span className="text-[11px] text-gray-400">
+              <span
+                className={`font-body-sm text-xs ${
+                  message.length >= MAX_MESSAGE * 0.9 ? 'text-feedback-warning font-semibold' : 'text-text-muted'
+                }`}
+              >
                 {message.length}/{MAX_MESSAGE}
               </span>
             </div>
             <textarea
-              id="message"
+              id="feedback-message"
               rows={5}
               maxLength={MAX_MESSAGE}
               value={message}
               onChange={(e) => setMessage(e.target.value)}
-              placeholder="Provide specific observations, the department/area affected, and practical ideas for enhancement..."
-              className={`w-full px-4 py-3 rounded-lg text-sm bg-white border ${
-                errors.message ? 'border-red-500 focus:ring-red-400' : 'border-gray-200 focus:border-primary focus:ring-primary'
-              } focus:outline-none focus:ring-1 transition-all resize-y`}
+              aria-describedby={errors.message ? 'message-error' : undefined}
+              placeholder="Provide specific observations, the department or facility affected, and practical ideas for enhancement..."
+              className={`w-full p-4 rounded-sm bg-white border ${
+                errors.message ? 'border-feedback-error' : 'border-border-strong'
+              } text-text-base font-body-sm focus:outline-none focus:border-primary-700 focus:ring-3 focus:ring-accent-600/30 transition-all resize-y`}
             />
             {errors.message && (
-              <p className="mt-1.5 text-xs text-red-600 flex items-center gap-1">
+              <p id="message-error" className="mt-1.5 font-body-sm text-xs text-feedback-error flex items-center gap-1.5" role="alert">
                 <AlertCircle className="w-3.5 h-3.5 shrink-0" />
                 <span>{errors.message}</span>
               </p>
@@ -210,85 +228,71 @@ export const FeedbackForm: React.FC = () => {
           </div>
 
           {/* Anonymous Option */}
-          <div className="pt-2 pb-1">
+          <div className="pt-1">
             <label className="flex items-start gap-3 cursor-pointer select-none">
               <input
                 type="checkbox"
                 checked={isAnonymous}
                 onChange={(e) => setIsAnonymous(e.target.checked)}
-                className="mt-0.5 h-4 w-4 rounded border-gray-300 text-primary focus:ring-primary"
+                className="mt-1 h-4 w-4 rounded-sm border-border-strong text-primary-700 focus:ring-accent-600"
               />
               <div>
-                <span className="text-sm font-semibold text-navy flex items-center gap-1.5">
-                  <EyeOff className="w-4 h-4 text-secondary" />
+                <span className="font-body-sm font-semibold text-text-base flex items-center gap-1.5">
+                  <EyeOff className="w-4 h-4 text-accent-700" />
                   Submit Anonymously
                 </span>
-                <span className="block text-xs text-muted-text mt-0.5">
-                  Your identity will not be attached to this submission.
+                <span className="block font-body-sm text-xs text-text-muted mt-0.5">
+                  Your identity will not be attached to this suggestion.
                 </span>
               </div>
             </label>
           </div>
 
-          {/* Contact Details (Disabled if Anonymous) */}
+          {/* Contact Details (Optional if not anonymous) */}
           {!isAnonymous && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-lg bg-gray-50 border border-gray-100 animate-fade-in">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 rounded-sm bg-surface border border-border">
               <div>
-                <label htmlFor="name" className="block text-xs font-semibold text-navy uppercase tracking-wider mb-1">
+                <label htmlFor="feedback-name" className="block font-body-sm font-semibold text-text-base mb-1">
                   Full Name (Optional)
                 </label>
                 <input
-                  id="name"
+                  id="feedback-name"
                   type="text"
                   value={name}
                   onChange={(e) => setName(e.target.value)}
-                  placeholder="e.g., Student Representative"
-                  className="w-full px-3.5 py-2 text-sm bg-white border border-gray-200 rounded focus:outline-none focus:border-primary"
+                  placeholder="e.g. Student Name"
+                  className="w-full h-[48px] px-3.5 rounded-sm bg-white border border-border-strong font-body-sm focus:outline-none focus:border-primary-700 focus:ring-3 focus:ring-accent-600/30"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs font-semibold text-navy uppercase tracking-wider mb-1">
+                <label htmlFor="feedback-email" className="block font-body-sm font-semibold text-text-base mb-1">
                   College Email (Optional for updates)
                 </label>
                 <input
-                  id="email"
+                  id="feedback-email"
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="name@ppg.edu.in"
-                  className={`w-full px-3.5 py-2 text-sm bg-white border ${
-                    errors.email ? 'border-red-500' : 'border-gray-200'
-                  } rounded focus:outline-none focus:border-primary`}
+                  aria-describedby={errors.email ? 'email-error' : undefined}
+                  placeholder="student@ppg.edu.in"
+                  className={`w-full h-[48px] px-3.5 rounded-sm bg-white border ${
+                    errors.email ? 'border-feedback-error' : 'border-border-strong'
+                  } font-body-sm focus:outline-none focus:border-primary-700 focus:ring-3 focus:ring-accent-600/30`}
                 />
                 {errors.email && (
-                  <p className="mt-1 text-xs text-red-600">{errors.email}</p>
+                  <p id="email-error" className="mt-1 font-body-sm text-xs text-feedback-error" role="alert">
+                    {errors.email}
+                  </p>
                 )}
               </div>
             </div>
           )}
 
-          {/* Privacy & Safeguard Notice */}
-          <div className="flex items-start gap-2.5 p-3.5 rounded bg-light-blue/60 border border-primary/10 text-xs text-navy/90">
-            <Lock className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-            <p className="leading-relaxed">
-              <strong>Institutional Privacy:</strong> Submissions are treated with discretion by designated Student Council representatives. Feedback regarding sensitive personal well-being or safety is directed to authorized college counseling officers.
-            </p>
-          </div>
-
-          {/* Error Banner */}
-          {submissionState.status === 'error' && (
-            <div className="p-3.5 rounded bg-red-50 border border-red-200 text-xs text-red-700 flex items-center gap-2">
-              <AlertCircle className="w-4 h-4 shrink-0" />
-              <span>{submissionState.errorMessage}</span>
-            </div>
-          )}
-
           {/* Submit Action */}
-          <div className="pt-2 flex flex-col sm:flex-row items-center justify-between gap-4">
-            <p className="text-xs text-muted-text">
-              <Info className="w-3.5 h-3.5 inline mr-1 text-gray-400" />
-              All constructive proposals are reviewed during monthly council sessions.
+          <div className="pt-4 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="font-body-sm text-xs text-text-muted">
+              Submissions are reviewed monthly by the council secretariat.
             </p>
 
             <Button
@@ -296,13 +300,16 @@ export const FeedbackForm: React.FC = () => {
               variant="primary"
               size="lg"
               disabled={submissionState.status === 'submitting'}
-              className="w-full sm:w-auto flex items-center justify-center gap-2"
+              className="w-full sm:w-auto"
             >
               {submissionState.status === 'submitting' ? (
-                <span>SUBMITTING...</span>
+                <>
+                  <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                  <span>SENDING...</span>
+                </>
               ) : (
                 <>
-                  <Send className="w-4 h-4" />
+                  <Send className="w-4 h-4 mr-2" />
                   <span>SUBMIT SUGGESTION</span>
                 </>
               )}

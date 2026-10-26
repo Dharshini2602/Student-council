@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDown, Users, Calendar, Sparkles } from 'lucide-react';
+import { Users, Calendar } from 'lucide-react';
 import { Container } from '../common/Container';
 import { Button } from '../common/Button';
 import { useReducedMotion } from '../../hooks/useReducedMotion';
@@ -15,144 +15,139 @@ export const HeroSection: React.FC = () => {
     }
   };
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: prefersReduced ? 0 : 0.15,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: prefersReduced ? 0 : 25 },
-    visible: {
+  const lineVariants = {
+    hidden: { opacity: 0, y: prefersReduced ? 0 : 30 },
+    visible: (custom: number) => ({
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: [0.16, 1, 0.3, 1] },
-    },
+      transition: {
+        duration: prefersReduced ? 0.15 : 0.8,
+        delay: prefersReduced ? 0 : custom * 0.12,
+        ease: [0.22, 1, 0.36, 1],
+      },
+    }),
   };
 
   return (
-    <section className="relative min-h-screen flex flex-col justify-between bg-navy text-white pt-28 pb-12 overflow-hidden">
-      {/* Background Subtle Dot Pattern & Academic Gradients */}
-      <div className="absolute inset-0 bg-dot-pattern opacity-15 pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-96 h-96 bg-primary/25 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-10 left-10 w-80 h-80 bg-secondary/15 rounded-full blur-3xl pointer-events-none" />
+    <section className="relative min-h-[100svh] flex flex-col justify-between bg-primary-900 text-white pt-28 pb-8 overflow-hidden">
+      {/* Background Dot Texture */}
+      <div className="absolute inset-0 bg-dot-texture pointer-events-none" aria-hidden="true" />
+
+      {/* Oversized Outlined Anton Letterforms in Background */}
+      <div
+        className="absolute right-0 top-1/2 -translate-y-1/2 select-none pointer-events-none hidden lg:block"
+        aria-hidden="true"
+      >
+        <span className="text-outline-decorative text-[18vw] leading-none block mr-[-2vw]">
+          PPGIT
+        </span>
+      </div>
 
       {/* Main Hero Content */}
-      <Container className="relative my-auto py-10 z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-          className="max-w-4xl"
-        >
-          {/* Eyebrow & College Emblem Badge */}
-          <motion.div variants={itemVariants} className="flex items-center gap-3 mb-6">
-            <span className="w-8 h-[3px] bg-secondary inline-block" />
-            <span className="text-xs sm:text-sm font-semibold tracking-widest uppercase text-secondary-light">
+      <Container className="relative my-auto py-8 sm:py-12 z-10">
+        <div className="max-w-4xl">
+          {/* Eyebrow */}
+          <motion.div
+            custom={0}
+            variants={lineVariants}
+            initial="hidden"
+            animate="visible"
+            className="flex items-center gap-3 mb-4"
+          >
+            <span className="w-6 h-[2px] bg-accent-600 inline-block shrink-0" aria-hidden="true" />
+            <span className="font-label text-accent-600">
               PPG INSTITUTE OF TECHNOLOGY
-            </span>
-            <span className="hidden sm:inline-block text-xs px-2.5 py-0.5 rounded bg-white/10 text-gray-300 tracking-wider uppercase font-medium">
-              EST. STUDENT GOVERNANCE
             </span>
           </motion.div>
 
-          {/* Main Hero Heading */}
-          <motion.h1
-            variants={itemVariants}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-heading text-white tracking-wide uppercase leading-[0.95]"
-          >
-            YOUR VOICE. <br />
-            <span className="text-secondary-light">OUR RESPONSIBILITY.</span>
-          </motion.h1>
+          {/* Headline (Anton, display-xl, white first line, accent-600 second line) */}
+          <div className="overflow-hidden">
+            <motion.h1
+              custom={1}
+              variants={lineVariants}
+              initial="hidden"
+              animate="visible"
+              className="font-display-xl text-white"
+            >
+              YOUR VOICE.
+            </motion.h1>
+          </div>
+          <div className="overflow-hidden">
+            <motion.div
+              custom={2}
+              variants={lineVariants}
+              initial="hidden"
+              animate="visible"
+              className="font-display-xl text-accent-600"
+            >
+              OUR RESPONSIBILITY.
+            </motion.div>
+          </div>
 
-          {/* Institutional Description */}
+          {/* Body-lg Description in text-on-dark-muted */}
           <motion.p
-            variants={itemVariants}
-            className="mt-6 sm:mt-8 text-base sm:text-xl text-gray-300 max-w-2xl leading-relaxed font-normal font-sans"
+            custom={3}
+            variants={lineVariants}
+            initial="hidden"
+            animate="visible"
+            className="mt-6 font-body-lg text-text-on-dark-muted max-w-[68ch]"
           >
             A student-led community committed to representation, leadership, campus engagement, and creating meaningful experiences for every student.
           </motion.p>
 
           {/* Action CTAs */}
           <motion.div
-            variants={itemVariants}
+            custom={4}
+            variants={lineVariants}
+            initial="hidden"
+            animate="visible"
             className="mt-8 sm:mt-10 flex flex-wrap items-center gap-4"
           >
             <Button
               to="/council"
-              variant="secondary"
+              variant="primary-on-dark"
               size="lg"
-              className="group flex items-center gap-2"
             >
-              <Users className="w-4 h-4" />
-              <span>EXPLORE THE COUNCIL</span>
+              <Users className="w-4 h-4 mr-2" />
+              EXPLORE THE COUNCIL
             </Button>
 
             <Button
               to="/events"
-              variant="outline"
+              variant="secondary-on-dark"
               size="lg"
-              className="text-white border-white/40 hover:bg-white hover:text-navy flex items-center gap-2"
             >
-              <Calendar className="w-4 h-4" />
-              <span>UPCOMING EVENTS</span>
+              <Calendar className="w-4 h-4 mr-2" />
+              UPCOMING EVENTS
             </Button>
           </motion.div>
-
-          {/* Key Quick Stats Pillars */}
-          <motion.div
-            variants={itemVariants}
-            className="mt-12 sm:mt-16 pt-8 border-t border-white/10 grid grid-cols-2 sm:grid-cols-3 gap-6 max-w-2xl"
-          >
-            <div>
-              <span className="font-heading text-2xl sm:text-3xl text-white block">
-                100%
-              </span>
-              <span className="text-xs text-gray-400 font-medium uppercase tracking-wider mt-0.5 block">
-                Student Representation
-              </span>
-            </div>
-
-            <div>
-              <span className="font-heading text-2xl sm:text-3xl text-secondary-light block">
-                6+
-              </span>
-              <span className="text-xs text-gray-400 font-medium uppercase tracking-wider mt-0.5 block">
-                Departments Unified
-              </span>
-            </div>
-
-            <div className="col-span-2 sm:col-span-1">
-              <span className="font-heading text-2xl sm:text-3xl text-white block">
-                24/7
-              </span>
-              <span className="text-xs text-gray-400 font-medium uppercase tracking-wider mt-0.5 block">
-                Voice & Feedback Portal
-              </span>
-            </div>
-          </motion.div>
-        </motion.div>
+        </div>
       </Container>
 
-      {/* Bottom Scroll Indicator */}
-      <Container className="relative z-10 flex items-center justify-between text-xs text-gray-400 pt-6 border-t border-white/5">
-        <div className="flex items-center gap-2 font-mono tracking-wider">
-          <Sparkles className="w-3.5 h-3.5 text-secondary" />
-          <span>LEAD. REPRESENT. INSPIRE.</span>
-        </div>
+      {/* Bottom Scroll Cue */}
+      <Container className="relative z-10 flex items-center justify-between pt-4 border-t border-white/[0.08]">
+        <span className="font-label text-xs text-text-on-dark-muted tracking-widest">
+          LEAD. REPRESENT. INSPIRE.
+        </span>
 
+        {/* Scroll cue with 1px line and 6px dot moving down */}
         <button
           onClick={handleScrollDown}
-          className="flex items-center gap-1.5 hover:text-white transition-colors uppercase tracking-widest text-[11px] font-semibold py-1 focus:outline-none focus-visible:ring-1 focus-visible:ring-secondary"
-          aria-label="Scroll down to about section"
+          className="flex items-center gap-3 text-text-on-dark-muted hover:text-white transition-colors py-2 group focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-white"
+          aria-label="Scroll to about section"
         >
-          <span>DISCOVER</span>
-          <ArrowDown className="w-3.5 h-3.5 animate-bounce text-secondary" />
+          <span className="font-label text-[11px]">SCROLL</span>
+          {!prefersReduced ? (
+            <div className="relative w-[1px] h-8 bg-white/20 overflow-hidden">
+              <motion.div
+                className="w-1.5 h-1.5 rounded-full bg-accent-600 absolute -left-[2.5px]"
+                animate={{ y: [0, 24, 0] }}
+                transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
+          ) : (
+            <div className="w-[1px] h-6 bg-accent-600" />
+          )}
         </button>
       </Container>
     </section>

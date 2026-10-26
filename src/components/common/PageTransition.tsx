@@ -11,7 +11,17 @@ export const PageTransition: React.FC<PageTransitionProps> = ({ children, classN
   const prefersReduced = useReducedMotion();
 
   if (prefersReduced) {
-    return <div className={className}>{children}</div>;
+    return (
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.15 }}
+        className={className}
+      >
+        {children}
+      </motion.div>
+    );
   }
 
   return (
@@ -19,7 +29,7 @@ export const PageTransition: React.FC<PageTransitionProps> = ({ children, classN
       initial={{ opacity: 0, y: 8 }}
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, y: -8 }}
-      transition={{ duration: 0.28, ease: [0.16, 1, 0.3, 1] }}
+      transition={{ duration: 0.25, ease: [0.22, 1, 0.36, 1] }}
       className={className}
     >
       {children}

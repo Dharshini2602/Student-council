@@ -1,13 +1,47 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" width="100" height="100">
   <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" style="stop-color:#173A7A;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#0B1730;stop-opacity:1" />
+    <!-- Royal Blue Gradient -->
+    <linearGradient id="ppgBlue" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#1E4B9C" />
+      <stop offset="100%" stop-color="#0F2C6B" />
+    </linearGradient>
+    <!-- Leaf Green Gradient -->
+    <linearGradient id="ppgGreen" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#56A842" />
+      <stop offset="100%" stop-color="#3A7A2D" />
     </linearGradient>
   </defs>
-  <!-- Shield Badge Background -->
-  <path d="M32 4 L56 12 V32 C56 46 45 56 32 60 C19 56 8 46 8 32 V12 Z" fill="url(#grad1)" stroke="#4C963B" stroke-width="2.5" />
-  <!-- Lettering S.C. or Torch -->
-  <path d="M32 16 L34 26 L42 27 L35 32 L38 41 L32 35 L26 41 L29 32 L22 27 L30 26 Z" fill="#4C963B" />
-  <circle cx="32" cy="46" r="3" fill="#FFFFFF" />
+
+  <!-- Green Leaves Arc (9 leaves) -->
+  <!-- Top Center Leaf -->
+  <path d="M50 4 C48 10 50 14 50 14 C50 14 52 10 50 4 Z" fill="url(#ppgGreen)" />
+  <!-- Left Side Leaves -->
+  <path d="M33 9 C35 15 39 18 39 18 C39 18 39 13 33 9 Z" fill="url(#ppgGreen)" />
+  <path d="M19 21 C23 26 28 27 28 27 C28 27 27 22 19 21 Z" fill="url(#ppgGreen)" />
+  <path d="M10 37 C15 40 20 39 20 39 C20 39 17 35 10 37 Z" fill="url(#ppgGreen)" />
+  <path d="M6 52 C11 53 15 50 15 50 C15 50 12 47 6 52 Z" fill="url(#ppgGreen)" />
+  <!-- Right Side Leaves -->
+  <path d="M67 9 C65 15 61 18 61 18 C61 18 61 13 67 9 Z" fill="url(#ppgGreen)" />
+  <path d="M81 21 C77 26 72 27 72 27 C72 27 73 22 81 21 Z" fill="url(#ppgGreen)" />
+  <path d="M90 37 C85 40 80 39 80 39 C80 39 83 35 90 37 Z" fill="url(#ppgGreen)" />
+  <path d="M94 52 C89 53 85 50 85 50 C85 50 88 47 94 52 Z" fill="url(#ppgGreen)" />
+
+  <!-- Student Head (Blue Circle) -->
+  <circle cx="50" cy="32" r="6" fill="url(#ppgBlue)" />
+
+  <!-- Student Body / Reaching Arms (V-Shape) -->
+  <path d="M26 31 C38 42 47 56 50 67 C53 56 62 42 74 31 C63 43 54 58 50 78 C46 58 37 43 26 31 Z" fill="url(#ppgBlue)" />
+
+  <!-- Open Book Pages (Left Wings) -->
+  <path d="M19 52 C31 58 42 67 48 76 C41 71 30 64 15 62 L19 52 Z" fill="url(#ppgBlue)" />
+  <path d="M11 60 C26 64 38 72 45 80 C37 75 24 70 8 67 L11 60 Z" fill="url(#ppgBlue)" />
+  <path d="M5 66 C21 68 34 76 42 84 C33 79 19 75 5 73 L5 66 Z" fill="url(#ppgBlue)" />
+
+  <!-- Open Book Pages (Right Wings) -->
+  <path d="M81 52 C69 58 58 67 52 76 C59 71 70 64 85 62 L81 52 Z" fill="url(#ppgBlue)" />
+  <path d="M89 60 C74 64 62 72 55 80 C63 75 76 70 92 67 L89 60 Z" fill="url(#ppgBlue)" />
+  <path d="M95 66 C79 68 66 76 58 84 C67 79 81 75 95 73 L95 66 Z" fill="url(#ppgBlue)" />
+
+  <!-- Bottom Heart / Shield Curve -->
+  <path d="M26 73 C34 85 45 93 50 97 C55 93 66 85 74 73 C66 82 56 89 50 91 C44 89 34 82 26 73 Z" fill="url(#ppgBlue)" />
 </svg>

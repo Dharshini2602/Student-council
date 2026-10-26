@@ -1,104 +1,95 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Calendar, MapPin, ArrowRight, CheckCircle2 } from 'lucide-react';
+import { Calendar, ArrowRight } from 'lucide-react';
 import { Event } from '../../types/event';
 import { formatDate } from '../../lib/utils';
-import { Button } from '../common/Button';
 
 interface EventCardProps {
   event: Event;
-  featured?: boolean;
 }
 
-export const EventCard: React.FC<EventCardProps> = ({ event, featured = false }) => {
+export const EventCard: React.FC<EventCardProps> = ({ event }) => {
+  // Never render drafts publicly
+  if (event.status === 'draft') return null;
+
+  const isCompleted = event.status === 'completed';
+
   return (
-    <div className="group flex flex-col bg-white border border-gray-200/90 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-      {/* Event Image Banner / Visual Placeholder */}
-      <div className="relative aspect-[16/10] w-full bg-navy/90 overflow-hidden">
+    <Link
+      to={`/events/${event.slug}`}
+      className="group block bg-white border border-border rounded-md overflow-hidden transition-all duration-200 ease-out hover:-translate-y-1 hover:border-primary-600 hover:shadow-2 focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent-600"
+    >
+      {/* 4:3 image on top or navy block with Anton initial */}
+      <div className="relative aspect-[4/3] w-full bg-primary-900 overflow-hidden">
         {event.image ? (
           <img
             src={event.image}
             alt={event.title}
-            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+            className="w-full h-full object-cover grayscale-[10%] group-hover:grayscale-0 transition-all duration-300"
             onError={(e) => {
-              // Graceful collegiate gradient placeholder
               (e.target as HTMLElement).style.display = 'none';
             }}
           />
         ) : null}
 
-        {/* Fallback pattern overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-navy/95 via-navy/50 to-transparent flex flex-col justify-between p-4 pointer-events-none">
-          <div className="flex items-center justify-between gap-2">
-            <span className="inline-flex items-center px-2.5 py-1 rounded bg-secondary text-white text-[10px] font-bold tracking-wider uppercase">
-              {event.category}
+        {/* Fallback Initial letterform if no photo */}
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none">
+          <span className="font-display-lg text-white/15 text-7xl uppercase">
+            {event.title.charAt(0)}
+          </span>
+        </div>
+
+        {/* Category chip overlapping bottom-left */}
+        <div className="absolute bottom-3 left-3 z-10">
+          <span className="font-label text-[11px] bg-primary-700 text-white px-2.5 py-1 rounded-sm shadow-1">
+            {event.category}
+          </span>
+        </div>
+
+        {/* Status indicator top-right */}
+        <div className="absolute top-3 right-3 z-10">
+          {isCompleted ? (
+            <span className="font-label text-[10px] bg-primary-900/90 text-text-on-dark-muted px-2 py-0.5 rounded-sm flex items-center gap-1.5 border border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-text-muted" aria-hidden="true" />
+              <span>COMPLETED</span>
             </span>
+          ) : (
+            <span className="font-label text-[10px] bg-primary-900/90 text-white px-2 py-0.5 rounded-sm flex items-center gap-1.5 border border-white/10">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent-600 animate-pulse" aria-hidden="true" />
+              <span>UPCOMING</span>
+            </span>
+          )}
+        </div>
+      </div>
 
-            {event.status === 'completed' ? (
-              <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded bg-gray-900/80 text-gray-200 text-[10px] font-medium tracking-wide">
-                <CheckCircle2 className="w-3 h-3 text-emerald-400" />
-                Completed
-              </span>
-            ) : (
-              <span className="inline-flex items-center px-2 py-0.5 rounded bg-white/20 backdrop-blur-sm text-white text-[10px] font-medium tracking-wide border border-white/20">
-                Upcoming
-              </span>
-            )}
-          </div>
-
-          {event.date && (
-            <div className="flex items-center gap-1.5 text-xs font-semibold text-white/90">
-              <Calendar className="w-3.5 h-3.5 text-secondary" />
+      {/* Card Content (24px padding) */}
+      <div className="p-6 flex flex-col justify-between">
+        <div>
+          {/* Date Row (only when verified) */}
+          {event.date && event.isVerified && (
+            <div className="flex items-center gap-2 font-body-sm text-text-muted mb-2">
+              <Calendar className="w-4 h-4 text-accent-700 shrink-0" />
               <span>{formatDate(event.date)}</span>
             </div>
           )}
-        </div>
-      </div>
 
-      {/* Content */}
-      <div className="flex-1 p-5 sm:p-6 flex flex-col justify-between">
-        <div>
-          <h3 className="font-heading text-xl sm:text-2xl text-navy uppercase leading-snug group-hover:text-primary transition-colors">
-            <Link to={`/events/${event.slug}`} className="focus:outline-none">
-              {event.title}
-            </Link>
+          {/* Title in display-sm */}
+          <h3 className="font-display-sm text-primary-700 leading-snug group-hover:text-primary-800 transition-colors">
+            {event.title}
           </h3>
 
-          <p className="mt-2.5 text-sm text-muted-text line-clamp-3 leading-relaxed">
+          {/* Two-line clamped description */}
+          <p className="mt-2 font-body-sm text-text-muted line-clamp-2 leading-relaxed">
             {event.description}
           </p>
-
-          {event.venue && (
-            <div className="mt-3 flex items-center gap-1.5 text-xs text-gray-500 font-medium">
-              <MapPin className="w-3.5 h-3.5 text-primary shrink-0" />
-              <span className="truncate">{event.venue}</span>
-            </div>
-          )}
         </div>
 
-        {/* Footer Actions */}
-        <div className="mt-6 pt-4 border-t border-gray-100 flex items-center justify-between gap-2">
-          <Link
-            to={`/events/${event.slug}`}
-            className="inline-flex items-center gap-1.5 text-xs font-bold tracking-wider uppercase text-primary hover:text-secondary transition-colors"
-          >
-            <span>VIEW DETAILS</span>
-            <ArrowRight className="w-3.5 h-3.5 transition-transform group-hover:translate-x-1" />
-          </Link>
-
-          {event.registrationUrl && event.status === 'upcoming' && (
-            <Button
-              href={event.registrationUrl}
-              isExternal
-              variant="outline"
-              size="sm"
-              className="text-[11px] py-1 px-3"
-            >
-              REGISTER
-            </Button>
-          )}
+        {/* Text link "Details" with arrow slide */}
+        <div className="mt-6 pt-4 border-t border-border flex items-center text-primary-700 font-button text-xs group-hover:text-accent-700 transition-colors">
+          <span>DETAILS</span>
+          <ArrowRight className="w-4 h-4 ml-1.5 transition-transform duration-150 ease-out group-hover:translate-x-1" />
         </div>
       </div>
-    </div>
+    </Link>
   );
 };

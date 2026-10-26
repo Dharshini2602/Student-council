@@ -8,43 +8,56 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#173A7A',
-          dark: '#0f2753',
-          light: '#2352a8',
+          900: 'var(--color-primary-900)',
+          800: 'var(--color-primary-800)',
+          700: 'var(--color-primary-700)',
+          600: 'var(--color-primary-600)',
+          100: 'var(--color-primary-100)',
+          50:  'var(--color-primary-50)',
+          DEFAULT: 'var(--color-primary-700)',
         },
-        secondary: {
-          DEFAULT: '#4C963B',
-          dark: '#3c792e',
-          light: '#5cb347',
+        accent: {
+          700: 'var(--color-accent-700)',
+          600: 'var(--color-accent-600)',
+          100: 'var(--color-accent-100)',
+          DEFAULT: 'var(--color-accent-600)',
         },
-        navy: {
-          DEFAULT: '#0B1730',
-          dark: '#060d1b',
-          light: '#132448',
+        surface: 'var(--color-surface)',
+        border: {
+          DEFAULT: 'var(--color-border)',
+          strong: 'var(--color-border-strong)',
         },
-        'light-bg': '#F7F9FC',
-        'light-blue': '#EAF0FA',
-        'body-text': '#1F2937',
-        'muted-text': '#6B7280',
+        'text-base': 'var(--color-text)',
+        'text-muted': 'var(--color-text-muted)',
+        'text-on-dark': 'var(--color-text-on-dark)',
+        'text-on-dark-muted': 'var(--color-text-on-dark-muted)',
+        feedback: {
+          success: 'var(--color-success)',
+          warning: 'var(--color-warning)',
+          error: 'var(--color-error)',
+          info: 'var(--color-info)',
+        },
       },
       fontFamily: {
         sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
-        heading: ['Anton', 'sans-serif'],
         display: ['Anton', 'sans-serif'],
+        heading: ['Anton', 'sans-serif'],
       },
-      letterSpacing: {
-        tighter: '-0.04em',
-        tight: '-0.02em',
-        wide: '0.04em',
-        wider: '0.08em',
-        widest: '0.15em',
+      borderRadius: {
+        sm: 'var(--radius-sm)',
+        md: 'var(--radius-md)',
+        lg: 'var(--radius-lg)',
       },
-      backgroundImage: {
-        'dot-texture': 'radial-gradient(circle, rgba(255, 255, 255, 0.12) 1px, transparent 1px)',
-        'dot-texture-dark': 'radial-gradient(circle, rgba(23, 58, 122, 0.15) 1px, transparent 1px)',
+      boxShadow: {
+        '1': 'var(--shadow-1)',
+        '2': 'var(--shadow-2)',
       },
-      backgroundSize: {
-        'dot-size': '24px 24px',
+      spacing: {
+        '4.5': '1.125rem',
+      },
+      maxWidth: {
+        'reading': '720px',
+        '7xl': '1280px',
       },
     },
   },

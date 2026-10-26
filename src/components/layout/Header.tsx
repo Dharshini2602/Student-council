@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { Menu, MessageSquarePlus } from 'lucide-react';
+import { Menu } from 'lucide-react';
 import { NAV_ITEMS } from '../../data/navigation';
 import { Container } from '../common/Container';
 import { Button } from '../common/Button';
@@ -15,7 +15,7 @@ export const Header: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 40) {
+      if (window.scrollY > 24) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -28,17 +28,17 @@ export const Header: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Transparent on hero only when at top of homepage; on other pages or scrolled, solid navy or white
   const isTransparent = isHomePage && !isScrolled;
 
   return (
     <>
       <header
         className={cn(
-          'fixed top-0 left-0 right-0 z-40 transition-all duration-300',
+          'fixed top-0 left-0 right-0 z-40 transition-all duration-250 ease-out flex items-center',
+          isScrolled ? 'h-16' : 'h-20',
           isTransparent
-            ? 'bg-transparent text-white py-4 md:py-6'
-            : 'bg-navy/95 backdrop-blur-md text-white py-3 md:py-4 shadow-lg border-b border-white/10'
+            ? 'bg-transparent text-white'
+            : 'bg-primary-900/95 backdrop-blur-md text-white border-b border-white/[0.08] shadow-1'
         )}
       >
         <Container>
@@ -46,46 +46,33 @@ export const Header: React.FC = () => {
             {/* Left: Official College Logo & Name */}
             <Link
               to="/"
-              className="flex items-center gap-3.5 group focus:outline-none"
+              className="flex items-center gap-3.5 group focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent-600 rounded-sm"
               aria-label="PPG Institute of Technology Student Council Homepage"
             >
-              <div className="relative flex items-center justify-center h-11 w-11 rounded bg-white p-1 shadow-sm border border-white/20 transition-transform group-hover:scale-105">
+              <div className="relative flex items-center justify-center h-10 w-10 sm:h-11 sm:w-11 rounded-sm bg-white p-1 border border-border shrink-0">
                 <img
                   src="/assets/logo/ppgit-student-council.png"
                   alt="PPGIT Crest"
                   className="h-full w-full object-contain"
                   onError={(e) => {
-                    // Fallback to stylized SVG shield if png is still generating
-                    const target = e.target as HTMLElement;
-                    target.style.display = 'none';
-                    if (target.parentElement) {
-                      target.parentElement.innerHTML = `
-                        <svg viewBox="0 0 40 40" class="w-8 h-8 text-primary" fill="currentColor">
-                          <path d="M20 2L36 7v13c0 10.5-6.8 16.5-16 19C10.8 36.5 4 30.5 4 20V7l16-5z" fill="#173A7A"/>
-                          <path d="M20 10l2 6h6l-5 4 2 6-5-4-5 4 2-6-5-4h6l2-6z" fill="#4C963B"/>
-                        </svg>
-                      `;
-                    }
+                    (e.target as HTMLElement).style.display = 'none';
                   }}
                 />
               </div>
 
               <div className="flex flex-col">
-                <span className="font-heading text-lg sm:text-xl tracking-wider text-white leading-none">
+                <span className="font-display-sm text-lg sm:text-xl text-white leading-none">
                   PPGIT
                 </span>
-                <span className="text-[11px] sm:text-xs font-semibold text-secondary tracking-widest uppercase leading-snug">
+                <span className="font-label text-[10px] sm:text-[11px] text-accent-600 tracking-wider mt-0.5 leading-none">
                   STUDENT COUNCIL
-                </span>
-                <span className="hidden xl:block text-[9px] text-gray-300 font-medium tracking-widest uppercase mt-0.5 opacity-80">
-                  LEAD. REPRESENT. INSPIRE.
                 </span>
               </div>
             </Link>
 
             {/* Centre: Desktop Navigation Links */}
             <nav
-              className="hidden lg:flex items-center gap-1 xl:gap-2"
+              className="hidden lg:flex items-center gap-6 xl:gap-8"
               aria-label="Main Navigation"
             >
               {NAV_ITEMS.map((item) => (
@@ -95,33 +82,42 @@ export const Header: React.FC = () => {
                   end={item.path === '/'}
                   className={({ isActive }) =>
                     cn(
-                      'px-3 py-1.5 rounded text-xs xl:text-sm font-semibold tracking-wider uppercase transition-colors',
+                      'font-label py-1 transition-colors relative focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent-600 rounded-sm',
                       isActive
-                        ? 'text-white bg-white/10 border-b-2 border-secondary'
-                        : 'text-gray-200 hover:text-white hover:bg-white/5'
+                        ? 'text-white'
+                        : 'text-text-on-dark-muted hover:text-white'
                     )
                   }
                 >
-                  {item.label}
+                  {({ isActive }) => (
+                    <>
+                      <span>{item.label}</span>
+                      {isActive && (
+                        <span
+                          className="absolute bottom-[-8px] left-0 right-0 h-[2px] bg-accent-600"
+                          aria-hidden="true"
+                        />
+                      )}
+                    </>
+                  )}
                 </NavLink>
               ))}
             </nav>
 
-            {/* Right: Student Voice CTA & Mobile Hamburger */}
+            {/* Right: Student Voice compact green-outline action */}
             <div className="flex items-center gap-3">
               <Button
                 to="/student-voice"
-                variant="secondary"
+                variant="outline-accent"
                 size="sm"
-                className="hidden sm:inline-flex items-center gap-2 font-bold"
+                className="hidden sm:inline-flex"
               >
-                <MessageSquarePlus className="w-4 h-4" />
-                <span>STUDENT VOICE</span>
+                STUDENT VOICE
               </Button>
 
               <button
                 type="button"
-                className="lg:hidden p-2 rounded-md text-white hover:bg-white/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-secondary"
+                className="lg:hidden p-2.5 rounded-sm text-white hover:bg-white/10 focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent-600 min-h-[44px] min-w-[44px] flex items-center justify-center"
                 onClick={() => setMobileMenuOpen(true)}
                 aria-label="Open navigation menu"
               >

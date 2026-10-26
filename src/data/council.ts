@@ -35,7 +35,7 @@ export const COUNCIL_MEMBERS: CouncilMember[] = [
     photograph: '/assets/members/general-secretary.jpg',
     bio: 'Maintains council documentation, handles official communications, and coordinates council meetings.',
     email: 'gensec.sc@ppg.edu.in',
-    isPlaceholder: true,
+    isPlaceholder: false,
   },
   {
     id: 'cm-4',

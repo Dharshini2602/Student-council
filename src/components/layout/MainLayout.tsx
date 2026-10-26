@@ -13,19 +13,24 @@ export const MainLayout: React.FC = () => {
   }, [pathname]);
 
   return (
-    <div className="flex flex-col min-h-screen bg-light-bg text-body-text selection:bg-primary selection:text-white">
-      {/* Scroll indicator bar at the top */}
+    <div className="flex flex-col min-h-screen bg-surface text-text-base">
+      {/* Skip to Content Accessible Link */}
+      <a href="#main-content" className="skip-to-content font-button">
+        SKIP TO MAIN CONTENT
+      </a>
+
+      {/* Thin fixed top ScrollProgress bar */}
       <ScrollProgress />
 
-      {/* Shared fixed/sticky header */}
+      {/* Header Landmark */}
       <Header />
 
-      {/* Main page content */}
-      <main className="flex-grow">
+      {/* Main Content Landmark */}
+      <main id="main-content" className="flex-grow focus:outline-none" tabIndex={-1}>
         <Outlet />
       </main>
 
-      {/* Shared footer */}
+      {/* Footer Landmark */}
       <Footer />
     </div>
   );

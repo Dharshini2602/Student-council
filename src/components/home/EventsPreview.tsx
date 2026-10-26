@@ -1,5 +1,4 @@
 import React from 'react';
-import { ArrowRight, Calendar } from 'lucide-react';
 import { Container } from '../common/Container';
 import { SectionHeading } from '../common/SectionHeading';
 import { Button } from '../common/Button';
@@ -7,13 +6,13 @@ import { EventCard } from '../events/EventCard';
 import { EVENTS_DATA } from '../../data/events';
 
 export const EventsPreview: React.FC = () => {
-  // Display exactly three upcoming / active event cards as requested
-  const previewEvents = EVENTS_DATA.slice(0, 3);
+  // Display exactly three verified public events
+  const previewEvents = EVENTS_DATA.filter((e) => e.status !== 'draft').slice(0, 3);
 
   return (
-    <div className="py-20 bg-light-bg border-b border-gray-200">
+    <div className="py-16 md:py-20 lg:py-24 bg-white border-b border-border">
       <Container>
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-12 sm:mb-16">
           <SectionHeading
             eyebrow="EVENTS & HAPPENINGS"
             title="CAMPUS LIFE. UNFORGETTABLE MOMENTS."
@@ -24,19 +23,17 @@ export const EventsPreview: React.FC = () => {
           <div className="mt-6 md:mt-0 shrink-0">
             <Button
               to="/events"
-              variant="outline"
+              variant="secondary"
               size="md"
-              className="flex items-center gap-2"
+              withArrow
             >
-              <Calendar className="w-4 h-4" />
-              <span>VIEW ALL EVENTS</span>
-              <ArrowRight className="w-4 h-4" />
+              VIEW ALL EVENTS
             </Button>
           </div>
         </div>
 
-        {/* 3 Event Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+        {/* 3 Columns desktop, 2 tablet, 1 mobile with 24px gap */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {previewEvents.map((event) => (
             <EventCard key={event.id} event={event} />
           ))}

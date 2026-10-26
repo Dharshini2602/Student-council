@@ -1,5 +1,5 @@
 import React from 'react';
-import { Mail, GraduationCap, UserCheck } from 'lucide-react';
+import { Mail, User } from 'lucide-react';
 import { CouncilMember } from '../../types/council';
 
 interface MemberCardProps {
@@ -8,73 +8,64 @@ interface MemberCardProps {
 
 export const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
   return (
-    <div className="group bg-white border border-gray-200 rounded-lg overflow-hidden shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between">
+    <div className="group bg-white border border-border rounded-md overflow-hidden transition-all duration-200 ease-out hover:-translate-y-1 hover:border-primary-600 hover:shadow-2 flex flex-col justify-between">
       <div>
-        {/* Photo Container with fixed aspect ratio */}
-        <div className="relative aspect-[4/4.5] w-full bg-slate-100 overflow-hidden border-b border-gray-100">
+        {/* 4:5 photo with consistent object-position top, grayscale 15% to 0% on hover */}
+        {/* 4:5 photo with consistent object-position top, grayscale 15% to 0% on hover */}
+        <div className="relative aspect-[4/5] w-full bg-primary-100 overflow-hidden border-b border-border">
+          {/* Placeholder State: tinted block with initials icon (background fallback) */}
+          <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center pointer-events-none select-none bg-primary-100 z-0">
+            <div className="w-16 h-16 rounded-full bg-primary-700/10 text-primary-700 flex items-center justify-center mb-2">
+              <User className="w-8 h-8" />
+            </div>
+            <span className="font-display-sm text-primary-700/40 text-2xl">
+              {member.name.split(' ').map((n) => n[0]).slice(0, 2).join('')}
+            </span>
+          </div>
+
           {member.photograph ? (
             <img
               src={member.photograph}
               alt={member.name}
-              className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+              className="relative z-10 w-full h-full object-cover object-top grayscale-[15%] group-hover:grayscale-0 transition-all duration-300"
               onError={(e) => {
-                // If member photo is not yet loaded, show institutional avatar
                 (e.target as HTMLElement).style.display = 'none';
               }}
             />
           ) : null}
 
-          {/* Fallback Graphic */}
-          <div className="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-b from-light-blue to-white p-6 text-center pointer-events-none">
-            <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center text-primary mb-3">
-              <UserCheck className="w-10 h-10" />
-            </div>
-            <span className="text-[11px] font-semibold text-primary uppercase tracking-wider">
-              {member.designation}
-            </span>
-          </div>
-
-          {/* Category / Role Badge */}
-          <div className="absolute top-3 right-3 z-10">
-            <span className="inline-block px-2.5 py-1 rounded bg-navy/90 text-white text-[10px] font-bold tracking-widest uppercase backdrop-blur-sm border border-white/10">
+          {/* Category Chip top-right */}
+          <div className="absolute top-3 right-3 z-20">
+            <span className="font-label text-[10px] bg-primary-700 text-white px-2 py-0.5 rounded-sm shadow-1">
               {member.category}
             </span>
           </div>
-
-          {member.isPlaceholder && (
-            <div className="absolute bottom-2 left-2 z-10">
-              <span className="inline-block px-2 py-0.5 rounded bg-amber-500/90 text-white text-[9px] font-bold tracking-wider uppercase">
-                Official Nominee / Placeholder
-              </span>
-            </div>
-          )}
         </div>
 
-        {/* Member Details */}
-        <div className="p-5 sm:p-6">
-          <div className="mb-2">
-            <span className="text-xs font-bold text-secondary uppercase tracking-widest block mb-1">
-              {member.designation}
-            </span>
-            <h3 className="font-heading text-lg sm:text-xl text-navy uppercase leading-tight group-hover:text-primary transition-colors">
-              {member.name}
-            </h3>
-          </div>
+        {/* Member Details (24px padding) */}
+        <div className="p-6">
+          {/* Designation in label style green */}
+          <span className="font-label text-xs text-accent-700 block mb-1">
+            {member.designation}
+          </span>
 
-          <div className="mt-3 space-y-1.5 text-xs text-muted-text">
-            <div className="flex items-start gap-1.5">
-              <GraduationCap className="w-3.5 h-3.5 text-primary shrink-0 mt-0.5" />
-              <span className="leading-snug">{member.department}</span>
-            </div>
-            {member.year && (
-              <p className="text-[11px] text-gray-500 pl-5">
-                Batch: {member.year}
-              </p>
-            )}
-          </div>
+          {/* Name in display-sm */}
+          <h3 className="font-display-sm text-primary-700 leading-snug group-hover:text-primary-800 transition-colors">
+            {member.name}
+          </h3>
+
+          {/* Department in body-sm muted */}
+          <p className="mt-2 font-body-sm text-text-muted">
+            {member.department}
+          </p>
+          {member.year && (
+            <p className="text-xs text-text-muted mt-0.5 font-medium">
+              {member.year}
+            </p>
+          )}
 
           {member.bio && (
-            <p className="mt-3 pt-3 border-t border-gray-100 text-xs text-gray-600 line-clamp-3 leading-relaxed">
+            <p className="mt-3 pt-3 border-t border-border font-body-sm text-text-muted line-clamp-2">
               {member.bio}
             </p>
           )}
@@ -83,13 +74,13 @@ export const MemberCard: React.FC<MemberCardProps> = ({ member }) => {
 
       {/* Contact Footer */}
       {member.email && (
-        <div className="px-5 py-3.5 bg-gray-50 border-t border-gray-100 flex items-center justify-between text-xs">
-          <span className="text-gray-500 font-medium">Official Contact:</span>
+        <div className="px-6 py-3 bg-surface border-t border-border flex items-center justify-between font-body-sm">
+          <span className="text-xs text-text-muted font-medium">Official Contact:</span>
           <a
             href={`mailto:${member.email}`}
-            className="inline-flex items-center gap-1.5 text-primary hover:text-secondary font-semibold transition-colors truncate max-w-[180px]"
+            className="inline-flex items-center gap-1.5 text-xs text-primary-700 hover:text-accent-700 font-semibold transition-colors truncate max-w-[180px] focus:outline-none focus-visible:outline focus-visible:outline-[2px] focus-visible:outline-accent-600 rounded-sm"
           >
-            <Mail className="w-3.5 h-3.5" />
+            <Mail className="w-3.5 h-3.5 shrink-0" />
             <span className="truncate">{member.email}</span>
           </a>
         </div>

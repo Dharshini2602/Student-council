@@ -13,7 +13,7 @@ export const EVENTS_DATA: Event[] = [
     venue: 'College Main Quadrangle & Open Air Stage',
     image: '/assets/events/pongal.jpg',
     status: 'upcoming',
-    registrationUrl: 'https://forms.google.com/ppgit-pongal-2026',
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc5LM9rNzLYIzT1X6MZlDJyNxnj22alGPjTI4ATwhxXjBI2lQ/viewform?usp=publish-editor',
     isVerified: true,
     coordinator: {
       name: 'Cultural Secretariat, PPGIT SC',
@@ -38,7 +38,7 @@ export const EVENTS_DATA: Event[] = [
     venue: 'Auditorium & Computing Center',
     image: '/assets/events/symposium.jpg',
     status: 'upcoming',
-    registrationUrl: 'https://techsphere.ppgit.ac.in/register',
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc5LM9rNzLYIzT1X6MZlDJyNxnj22alGPjTI4ATwhxXjBI2lQ/viewform?usp=publish-editor',
     isVerified: true,
     coordinator: {
       name: 'Technical Secretariat & IEEE PPGIT',
@@ -63,7 +63,7 @@ export const EVENTS_DATA: Event[] = [
     venue: 'PPG Central Sports Ground & Open Auditorium',
     image: '/assets/events/mass.jpg',
     status: 'upcoming',
-    registrationUrl: 'https://mass2k26.ppgit.ac.in',
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc5LM9rNzLYIzT1X6MZlDJyNxnj22alGPjTI4ATwhxXjBI2lQ/viewform?usp=publish-editor',
     isVerified: true,
     coordinator: {
       name: 'Executive Committee & Cultural Club',
@@ -88,6 +88,7 @@ export const EVENTS_DATA: Event[] = [
     venue: 'Campus Amphitheatre & Lawn',
     image: '/assets/events/moviemania.jpg',
     status: 'upcoming',
+    registrationUrl: 'https://docs.google.com/forms/d/e/1FAIpQLSc5LM9rNzLYIzT1X6MZlDJyNxnj22alGPjTI4ATwhxXjBI2lQ/viewform?usp=publish-editor',
     isVerified: true,
     coordinator: {
       name: 'Student Welfare Cell',

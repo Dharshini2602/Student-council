@@ -49,7 +49,7 @@ export const FeedbackCategories: React.FC<FeedbackCategoriesProps> = ({
   onSelectCategory,
 }) => {
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3.5 mb-8">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 mb-6" role="radiogroup" aria-label="Select Feedback Category">
       {FEEDBACK_CATEGORY_OPTIONS.map((item) => {
         const Icon = item.icon;
         const isSelected = selectedCategory === item.category;
@@ -58,25 +58,28 @@ export const FeedbackCategories: React.FC<FeedbackCategoriesProps> = ({
           <button
             type="button"
             key={item.category}
+            role="radio"
+            aria-checked={isSelected}
             onClick={() => onSelectCategory(item.category)}
-            className={`p-4 rounded-lg text-left transition-all duration-200 border flex items-start gap-3.5 ${
+            className={`p-4 rounded-sm text-left transition-colors border flex items-start gap-3 focus:outline-none focus-visible:outline focus-visible:outline-[3px] focus-visible:outline-accent-600 ${
               isSelected
-                ? 'bg-light-blue/70 border-primary shadow-sm text-navy ring-1 ring-primary'
-                : 'bg-white border-gray-200 hover:border-gray-300 text-gray-700'
+                ? 'bg-primary-100 border-primary-700 text-primary-900 shadow-1'
+                : 'bg-white border-border hover:border-primary-600 text-text-base'
             }`}
           >
             <div
-              className={`p-2 rounded-md shrink-0 ${
-                isSelected ? 'bg-primary text-white' : 'bg-gray-100 text-primary'
+              className={`p-2 rounded-sm shrink-0 ${
+                isSelected ? 'bg-primary-700 text-white' : 'bg-primary-50 text-primary-700'
               }`}
+              aria-hidden="true"
             >
-              <Icon className="w-5 h-5" />
+              <Icon className="w-4 h-4" />
             </div>
             <div>
-              <span className="block text-sm font-bold tracking-wide uppercase text-navy">
+              <span className="block font-label text-xs text-primary-700">
                 {item.category}
               </span>
-              <span className="block text-xs text-muted-text mt-1 leading-snug">
+              <span className="block font-body-sm text-xs text-text-muted mt-1 leading-snug">
                 {item.description}
               </span>
             </div>
