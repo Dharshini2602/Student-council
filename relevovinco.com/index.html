@@ -1,0 +1,3433 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Student Council | PPG Institute of Technology</title>
+    <meta name="description" content="The official website of the PPG Institute of Technology Student Council: upcoming campus events, student suggestions, confidential wellbeing support and the members who represent you.">
+    <link rel="icon" href="favicon.ico" sizes="32x32">
+    <link rel="icon" href="favicon.svg" type="image/svg+xml">
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="canonical" href="https://ppgit.in/">
+    <link rel="alternate" hreflang="en" href="https://ppgit.in/">
+    <link rel="alternate" hreflang="pt-PT" href="https://ppgit.in/">
+    <link rel="alternate" hreflang="x-default" href="https://ppgit.in/">
+    <link rel="preload" href="fonts/gabarito-a94f9001.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" href="fonts/instrumentsans-f587e727.woff2" as="font" type="font/woff2" crossorigin>
+    <link rel="preload" as="script" href="js/gsap.min.js">
+    <link rel="preload" as="script" href="js/ScrollTrigger.min.js">
+    <link rel="preload" as="script" href="js/lenis.min.js">
+    <style data-fonts>
+        @font-face {
+            font-family: "Gabarito";
+            font-style: normal;
+            font-weight: 600 700;
+            font-display: swap;
+            src: url(fonts/gabarito-15088fb3.woff2) format("woff2");
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+        }
+
+        @font-face {
+            font-family: "Gabarito";
+            font-style: normal;
+            font-weight: 600 700;
+            font-display: swap;
+            src: url(fonts/gabarito-a94f9001.woff2) format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+        }
+
+        @font-face {
+            font-family: "Instrument Sans";
+            font-style: normal;
+            font-weight: 400 600;
+            font-stretch: 100%;
+            font-display: swap;
+            src: url(fonts/instrumentsans-40fe78bf.woff2) format("woff2");
+            unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF
+        }
+
+        @font-face {
+            font-family: "Instrument Sans";
+            font-style: normal;
+            font-weight: 400 600;
+            font-stretch: 100%;
+            font-display: swap;
+            src: url(fonts/instrumentsans-f587e727.woff2) format("woff2");
+            unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD
+        }
+    </style>
+    <style data-part="layers">
+        @layer tokens,
+        base,
+        atoms,
+        layout,
+        sections,
+        scenes;
+    </style>
+    <style data-part="tokens">
+        @layer tokens {
+            :root {
+                --color-1: #d4b08f;
+                --color-2: #36261a;
+                --color-3: #f7e8d2;
+                --color-4: #6b4c34;
+                --color-5: #47331f;
+                --color-6: #1f140b;
+                --font-1: "Gabarito", "Gabarito Fallback", "Arial", sans-serif;
+                --font-2: "Instrument Sans", "Instrument Sans Fallback", "Arial", sans-serif;
+                --radius-1: 6px;
+                --radius-2: 50%;
+                --radius-3: clamp(18px, 2.4vw, 34px);
+                --shadow-1: -1px -1px 0 color-mix(in srgb, var(--color-3) 80%, transparent), 1px 1px 0 color-mix(in srgb, var(--color-6) 22%, transparent), 3px 5px 6px color-mix(in srgb, var(--color-6) 20%, transparent), 12px 18px 28px color-mix(in srgb, var(--color-6) 26%, transparent);
+                --shadow-2: inset 4px 6px 10px color-mix(in srgb, var(--color-6) 38%, transparent), inset 1px 1px 2px color-mix(in srgb, var(--color-6) 35%, transparent), inset -1px -1px 0 color-mix(in srgb, var(--color-3) 85%, transparent);
+                --shadow-3: -1px -1px 0 color-mix(in srgb, var(--color-3) 60%, transparent), 1px 2px 0 color-mix(in srgb, var(--color-6) 70%, transparent), 3px 5px 4px color-mix(in srgb, var(--color-6) 55%, transparent), 10px 16px 22px color-mix(in srgb, var(--color-6) 62%, transparent);
+                --shadow-4: 1px 1px 0 color-mix(in srgb, var(--color-3) 90%, transparent), -1px -1px 0 color-mix(in srgb, var(--color-6) 45%, transparent), 0 0 0 color-mix(in srgb, var(--color-6) 30%, transparent), 0 0 0 color-mix(in srgb, var(--color-6) 36%, transparent);
+                --shadow-5: inset 7px 10px 16px color-mix(in srgb, var(--color-6) 72%, transparent), inset 2px 2px 3px color-mix(in srgb, var(--color-6) 55%, transparent), 1px 1px 0 color-mix(in srgb, var(--color-3) 85%, transparent), -1px -1px 0 color-mix(in srgb, var(--color-6) 25%, transparent);
+                --shadow-7: 1px 1px 0 color-mix(in srgb, var(--color-3) 75%, transparent);
+                --shadow-8: 1px -1px 0 color-mix(in srgb, var(--color-3) 60%, transparent), -1px 2px 0 color-mix(in srgb, var(--color-6) 70%, transparent), -3px 5px 4px color-mix(in srgb, var(--color-6) 55%, transparent), -10px 16px 22px color-mix(in srgb, var(--color-6) 62%, transparent);
+                --shadow-9: -1px 1px 0 color-mix(in srgb, var(--color-3) 90%, transparent), 1px -1px 0 color-mix(in srgb, var(--color-6) 45%, transparent), 0 0 0 color-mix(in srgb, var(--color-6) 30%, transparent), 0 0 0 color-mix(in srgb, var(--color-6) 36%, transparent);
+                --shadow-10: -1px -1px 0 color-mix(in srgb, var(--color-3) 90%, transparent), 1px 1px 0 color-mix(in srgb, var(--color-6) 45%, transparent), 3px 4px 3px color-mix(in srgb, var(--color-6) 30%, transparent), 12px 17px 22px color-mix(in srgb, var(--color-6) 36%, transparent);
+                --shadow-12: 0 0 0 color-mix(in srgb, var(--color-3) 80%, transparent), 0 0 0 color-mix(in srgb, var(--color-6) 22%, transparent), 1px 1px 1px color-mix(in srgb, var(--color-6) 20%, transparent), 2px 3px 5px color-mix(in srgb, var(--color-6) 26%, transparent);
+                --shadow-14: 10px 16px 18px color-mix(in srgb, var(--color-6) 32%, transparent);
+                --shadow-15: inset 0 1px 0 color-mix(in srgb, var(--color-3) 75%, transparent), 0 -2px 6px color-mix(in srgb, var(--color-6) 22%, transparent), 0 -16px 40px color-mix(in srgb, var(--color-6) 42%, transparent);
+                --shadow-13: 0 1px 0 color-mix(in srgb, var(--color-3) 70%, transparent), 0 8px 18px color-mix(in srgb, var(--color-6) 28%, transparent);
+                --space-1: clamp(20px, 6.5vw, 96px);
+                --space-2: clamp(96px, 15vh, 180px)
+            }
+        }
+    </style>
+    <style data-part="base">
+        @font-face {
+            font-family: "Gabarito Fallback";
+            src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold");
+            font-weight: 550 799;
+            size-adjust: 90.4%;
+            ascent-override: 104%;
+            descent-override: 28.8%;
+            line-gap-override: 0%
+        }
+
+        @font-face {
+            font-family: "Instrument Sans Fallback";
+            src: local("Arial Bold"), local("Arial-BoldMT"), local("Helvetica Bold");
+            font-weight: 550 799;
+            size-adjust: 98.1%;
+            ascent-override: 98.9%;
+            descent-override: 25.5%;
+            line-gap-override: 0%
+        }
+
+        @font-face {
+            font-family: "Instrument Sans Fallback";
+            src: local("Arial"), local("ArialMT"), local("Helvetica");
+            font-weight: 100 549;
+            size-adjust: 101%;
+            ascent-override: 96%;
+            descent-override: 24.7%;
+            line-gap-override: 0%
+        }
+
+        @layer base {
+            *,
+            *::before,
+            *::after {
+                box-sizing: border-box
+            }
+            html {
+                -webkit-text-size-adjust: 100%;
+                text-size-adjust: 100%
+            }
+            body {
+                margin: 0;
+                min-width: 320px;
+                background-color: var(--color-1);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .09 0 0 0 .5 -.2'/%3E%3C/filter%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .06 18 0 0 0 -12.9'/%3E%3C/filter%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='1' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .86 0 18 0 0 -13.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+                color: var(--color-2);
+                font-family: var(--font-2);
+                font-size: 17px;
+                line-height: 1.55;
+                -webkit-font-smoothing: antialiased
+            }
+            img {
+                display: block;
+                max-width: 100%;
+                height: auto
+            }
+            h1,
+            h2,
+            h3,
+            p,
+            ul,
+            ol,
+            dl,
+            dd,
+            figure,
+            blockquote {
+                margin: 0
+            }
+            ul,
+            ol {
+                padding: 0;
+                list-style: none
+            }
+            a {
+                color: inherit
+            }
+            button,
+            input,
+            textarea,
+            select {
+                font: inherit;
+                color: inherit
+            }
+            :focus-visible {
+                outline: 3px solid var(--color-2);
+                outline-offset: 3px
+            }
+            html.lenis,
+            html.lenis body {
+                height: auto
+            }
+            .lenis:not(.lenis-autoToggle).lenis-stopped {
+                overflow: clip
+            }
+            .lenis.lenis-smooth [data-lenis-prevent] {
+                overscroll-behavior: contain
+            }
+            .lenis.lenis-smooth iframe {
+                pointer-events: none
+            }
+            .lenis.lenis-autoToggle {
+                transition-property: overflow;
+                transition-duration: 1ms;
+                transition-behavior: allow-discrete
+            }
+        }
+    </style>
+    <style data-part="system">
+        @layer atoms {
+            .m-text {
+                font-family: var(--font-2);
+                font-size: 17px;
+                font-weight: 400;
+                line-height: 1.55;
+                letter-spacing: 0;
+                text-transform: none;
+                font-style: normal
+            }
+            .m-text-2 {
+                font-family: var(--font-2);
+                font-size: clamp(18px, 1.45vw, 21px);
+                font-weight: 400;
+                line-height: 1.45;
+                letter-spacing: -.005em;
+                text-transform: none;
+                font-style: normal
+            }
+            .m-text-3 {
+                font-family: var(--font-2);
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 1.35;
+                letter-spacing: .08em;
+                text-transform: uppercase;
+                font-style: normal
+            }
+            .m-title {
+                font-family: var(--font-1);
+                font-size: clamp(22px, 1.9vw, 27px);
+                font-weight: 700;
+                line-height: 1.05;
+                letter-spacing: .02em;
+                text-transform: uppercase;
+                font-style: normal;
+                text-shadow: var(--shadow-7)
+            }
+            .m-cut {
+                font-family: var(--font-1);
+                font-size: clamp(44px, 6vw, 92px);
+                font-weight: 700;
+                line-height: .92;
+                letter-spacing: .01em;
+                text-transform: uppercase;
+                font-style: normal;
+                color: var(--color-4);
+                text-shadow: var(--shadow-4);
+                filter: url(#cut-relief)
+            }
+            .relief-defs {
+                position: absolute;
+                width: 0;
+                height: 0;
+                overflow: hidden
+            }
+            .relief-defs__shade {
+                flood-color: var(--color-6);
+                flood-opacity: .62
+            }
+            .m-raised {
+                font-family: var(--font-1);
+                font-size: clamp(44px, 6vw, 92px);
+                font-weight: 700;
+                line-height: .92;
+                letter-spacing: .01em;
+                text-transform: uppercase;
+                font-style: normal;
+                color: var(--color-1);
+                text-shadow: var(--shadow-3)
+            }
+            .m-board {
+                background-color: var(--color-1);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .09 0 0 0 .5 -.2'/%3E%3C/filter%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .06 18 0 0 0 -12.9'/%3E%3C/filter%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='1' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .86 0 18 0 0 -13.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+                color: var(--color-2)
+            }
+            .m-ply {
+                background-color: var(--color-5);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .09 0 0 0 .5 -.2'/%3E%3C/filter%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .06 18 0 0 0 -12.9'/%3E%3C/filter%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='1' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .86 0 18 0 0 -13.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+                color: var(--color-1);
+                box-shadow: var(--shadow-5);
+                border-radius: var(--radius-1)
+            }
+            .m-surface {
+                background-color: var(--color-1);
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .16 0 0 0 0 .09 0 0 0 .5 -.2'/%3E%3C/filter%3E%3Cfilter id='d'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.5' numOctaves='1' seed='4' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .2 0 0 0 0 .12 0 0 0 0 .06 18 0 0 0 -12.9'/%3E%3C/filter%3E%3Cfilter id='l'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.55' numOctaves='1' seed='9' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 .95 0 0 0 0 .86 0 18 0 0 -13.3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23d)'/%3E%3Crect width='100%25' height='100%25' filter='url(%23l)'/%3E%3C/svg%3E");
+                color: var(--color-2);
+                border-radius: var(--radius-1);
+                box-shadow: var(--shadow-1)
+            }
+            .m-well {
+                border-radius: var(--radius-1);
+                box-shadow: var(--shadow-2)
+            }
+            .m-btn {
+                position: relative;
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                min-height: 52px;
+                padding: 0 26px;
+                border: 0;
+                border-radius: var(--radius-1);
+                background-color: var(--color-1);
+                color: var(--color-2);
+                font-family: var(--font-2);
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 1;
+                letter-spacing: .01em;
+                text-transform: none;
+                font-style: normal;
+                text-decoration: none;
+                box-shadow: var(--shadow-1);
+                cursor: pointer;
+                transition: box-shadow .22s cubic-bezier(.3, .7, .2, 1), transform .22s cubic-bezier(.3, .7, .2, 1)
+            }
+            .m-btn::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                box-shadow: var(--shadow-2);
+                opacity: 0;
+                transition: opacity .22s;
+                pointer-events: none
+            }
+            .m-btn__label {
+                position: relative
+            }
+            .m-btn:active {
+                box-shadow: var(--shadow-12);
+                transform: translate(1px, 2px)
+            }
+            .m-btn:active::after {
+                opacity: 1
+            }
+            @media(hover:hover) {
+                .m-btn:hover {
+                    box-shadow: var(--shadow-12);
+                    transform: translate(1px, 2px)
+                }
+                .m-btn:hover::after {
+                    opacity: 1
+                }
+            }
+            .m-link {
+                color: inherit;
+                text-decoration: none;
+                background-image: linear-gradient(90deg, currentColor 55%, transparent 0);
+                background-size: 7px 1px;
+                background-repeat: repeat-x;
+                background-position: 0 calc(100% - 1px);
+                padding-bottom: 3px;
+                transition: background-size .25s
+            }
+            @media(hover:hover) {
+                .m-link:hover {
+                    background-size: 3px 2px
+                }
+            }
+            .m-link-2 {
+                color: inherit;
+                font-family: var(--font-2);
+                font-size: 15px;
+                font-weight: 600;
+                line-height: 1.2;
+                letter-spacing: .01em;
+                text-transform: none;
+                font-style: normal;
+                text-decoration: none;
+                background-image: linear-gradient(90deg, currentColor 55%, transparent 0);
+                background-size: 7px 1px;
+                background-repeat: repeat-x;
+                background-position: 0 100%;
+                padding: 4px 0 5px;
+                transition: background-size .25s
+            }
+            @media(hover:hover) {
+                .m-link-2:hover {
+                    background-size: 3px 2px
+                }
+            }
+            .m-icon-btn {
+                position: relative;
+                display: inline-grid;
+                place-items: center;
+                width: 46px;
+                height: 46px;
+                padding: 0;
+                border: 0;
+                border-radius: var(--radius-2);
+                background-color: var(--color-1);
+                color: var(--color-2);
+                box-shadow: var(--shadow-1);
+                cursor: pointer;
+                transition: box-shadow .22s
+            }
+            .m-icon-btn::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                box-shadow: var(--shadow-2);
+                opacity: 0;
+                transition: opacity .22s
+            }
+            .m-icon-btn__glyph {
+                position: relative;
+                width: 18px;
+                height: 2px;
+                background: currentColor;
+                transition: transform .22s
+            }
+            .m-icon-btn__glyph::before,
+            .m-icon-btn__glyph::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                background: currentColor;
+                transition: transform .22s
+            }
+            .m-icon-btn__glyph::before {
+                transform: translateY(-6px)
+            }
+            .m-icon-btn__glyph::after {
+                transform: translateY(6px)
+            }
+            .m-icon-btn[aria-expanded=true] .m-icon-btn__glyph {
+                background: transparent
+            }
+            .m-icon-btn[aria-expanded=true] .m-icon-btn__glyph::before {
+                transform: rotate(45deg)
+            }
+            .m-icon-btn[aria-expanded=true] .m-icon-btn__glyph::after {
+                transform: rotate(-45deg)
+            }
+            @media(hover:hover) {
+                .m-icon-btn:hover {
+                    box-shadow: var(--shadow-12)
+                }
+                .m-icon-btn:hover::after {
+                    opacity: 1
+                }
+                .m-icon-btn:hover .m-icon-btn__glyph {
+                    transform: scaleX(.8)
+                }
+            }
+            .m-field {
+                display: grid;
+                gap: 8px
+            }
+            .m-field__label {
+                font-family: var(--font-2);
+                font-size: 13px;
+                font-weight: 600;
+                line-height: 1.35;
+                letter-spacing: .08em;
+                text-transform: uppercase;
+                font-style: normal
+            }
+            .m-field__input {
+                width: 100%;
+                min-height: 54px;
+                padding: 14px 16px;
+                border: 0;
+                border-radius: var(--radius-1);
+                background-color: transparent;
+                color: var(--color-2);
+                font-family: var(--font-2);
+                font-size: 17px;
+                line-height: 1.4;
+                box-shadow: var(--shadow-2);
+                resize: vertical
+            }
+            .m-field__input::placeholder {
+                color: var(--color-2);
+                opacity: .75
+            }
+            .m-field__input:focus-visible {
+                outline: 3px solid var(--color-2);
+                outline-offset: 2px
+            }
+        }
+    </style>
+    <style data-part="layout">
+        @layer layout {
+            .sr-only {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0 0 0 0);
+                white-space: nowrap;
+                border: 0
+            }
+        }
+    </style>
+    <style data-part="section:navigation">
+        @layer sections {
+            #navigation {
+                position: fixed;
+                inset: 0 0 auto;
+                z-index: 50
+            }
+            #navigation .nav__bar {
+                position: relative;
+                z-index: 2;
+                display: flex;
+                align-items: center;
+                gap: 30px;
+                height: 68px;
+                padding: 0 3vw 0 var(--space-1);
+                box-shadow: var(--shadow-13);
+                transition: transform .5s cubic-bezier(.2, .7, .2, 1)
+            }
+            #navigation[data-hidden] .nav__bar {
+                transform: translateY(calc(-100% - 32px))
+            }
+            #navigation .nav__brand {
+                text-decoration: none;
+                color: var(--color-2);
+                margin-right: auto
+            }
+            #navigation .nav__brand .m-title {
+                font-size: 22px
+            }
+            #navigation .nav__links {
+                display: flex;
+                gap: 26px
+            }
+            #navigation .nav__toggle {
+                display: none
+            }
+            #navigation .nav__menu {
+                position: fixed;
+                inset: 0;
+                z-index: 3;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                gap: 28px;
+                padding: 96px var(--space-1) 48px;
+                border-radius: 0;
+                overflow-y: auto
+            }
+            #navigation .nav__menu[hidden] {
+                display: none
+            }
+            #navigation .nav__menu :focus-visible {
+                outline-color: var(--color-1)
+            }
+            #navigation .nav__menu-links {
+                display: grid;
+                gap: 6px
+            }
+            #navigation .nav__menu-links a {
+                font-family: var(--font-1);
+                font-size: 40px;
+                font-weight: 700;
+                line-height: 1.1;
+                letter-spacing: .02em;
+                text-transform: uppercase;
+                color: var(--color-1);
+                text-decoration: none;
+                text-shadow: var(--shadow-3)
+            }
+            #navigation .nav__menu-close {
+                position: absolute;
+                top: 11px;
+                right: 4vw
+            }
+            #navigation .nav__menu-lang {
+                align-self: flex-start;
+                font-size: 15px;
+                font-weight: 600;
+                letter-spacing: .1em;
+                text-transform: uppercase;
+                color: var(--color-1);
+                text-underline-offset: .3em
+            }
+            @media(max-width:900px) {
+                #navigation .nav__bar {
+                    height: 62px;
+                    padding: 0 12px 0 20px;
+                    gap: 14px
+                }
+                #navigation .nav__links,
+                #navigation .nav__cta {
+                    display: none
+                }
+                #navigation .nav__toggle {
+                    display: inline-grid;
+                    width: 42px;
+                    height: 42px
+                }
+            }
+        }
+    </style>
+    <style data-part="section:hero">
+        @layer sections {
+            #hero {
+                --hero-cap: min(16vh, 11.2vw);
+                --hero-room-raised: 58vw;
+                --hero-room-cut: 50vw;
+                position: relative;
+                height: 100svh;
+                min-height: 600px;
+                background-color: var(--color-5)
+            }
+            #hero .hero__flap {
+                position: absolute;
+                inset: 0 0 -1px;
+                overflow: hidden
+            }
+            #hero .hero__light {
+                position: absolute;
+                left: 34%;
+                top: 30%;
+                width: 80vmax;
+                height: 80vmax;
+                margin: -40vmax 0 0 -40vmax;
+                border-radius: var(--radius-2);
+                background: radial-gradient(closest-side, color-mix(in srgb, var(--color-3) 85%, transparent), color-mix(in srgb, var(--color-3) 30%, transparent) 55%, transparent);
+                mix-blend-mode: soft-light;
+                pointer-events: none
+            }
+            #hero .hero__wash {
+                position: absolute;
+                inset: 0;
+                z-index: 3;
+                background-color: var(--color-6);
+                opacity: 0;
+                pointer-events: none
+            }
+            #hero .hero__inner {
+                position: relative;
+                z-index: 1;
+                height: 100%;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(280px, 29vw);
+                grid-template-rows: minmax(0, 1fr) auto;
+                column-gap: 4vw;
+                padding: calc(68px + 6vh) 6vw 7vh var(--space-1)
+            }
+            #hero .hero__title {
+                grid-column: 1 / -1;
+                grid-row: 1 / -1;
+                align-self: start;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin: 0
+            }
+            #hero .hero__line {
+                display: block
+            }
+            #hero .hero__line--raised {
+                margin-left: 23vw
+            }
+            #hero .hero__line--raised+.hero__line--raised {
+                margin-top: 1.4vh
+            }
+            #hero .hero__line--cut:first-of-type,
+            #hero .hero__line--raised+.hero__line--cut {
+                margin-top: 3.4vh
+            }
+            #hero .hero__channel {
+                display: inline-block
+            }
+            #hero .hero__word {
+                display: block;
+                padding: .07em .2em .02em .18em;
+                line-height: .92;
+                font-size: min(var(--hero-cap), calc(var(--hero-room-raised) / (var(--len) * .64)))
+            }
+            #hero .hero__line--cut .hero__word {
+                padding: 0;
+                line-height: .96;
+                font-size: min(var(--hero-cap), calc(var(--hero-room-cut) / (var(--len) * .64)))
+            }
+            #hero .hero__aside {
+                grid-column: 2;
+                grid-row: 2;
+                align-self: end;
+                display: grid;
+                gap: 26px
+            }
+            #hero .hero__actions {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 14px 26px
+            }
+            @media(prefers-reduced-motion:no-preference) {
+                #hero .hero__line--raised {
+                    animation: hero-lift 1s cubic-bezier(.2, .75, .15, 1) backwards
+                }
+                #hero .hero__line--raised+.hero__line--raised {
+                    animation-delay: .08s
+                }
+                #hero .hero__line--cut {
+                    animation: hero-sink 1s cubic-bezier(.2, .75, .15, 1) .14s backwards
+                }
+                #hero .hero__line--cut+.hero__line--cut {
+                    animation-delay: .22s
+                }
+                #hero .hero__aside {
+                    animation: hero-shift .9s cubic-bezier(.2, .75, .15, 1) .28s backwards
+                }
+                #hero .hero__light {
+                    animation: hero-light 16s ease-in-out infinite alternate
+                }
+                #hero .hero__line--raised .hero__word {
+                    animation: hero-sway-raised 16s ease-in-out infinite alternate
+                }
+                #hero .hero__line--cut .hero__word {
+                    animation: hero-sway-cut 16s ease-in-out infinite alternate
+                }
+                #hero[data-paused] .hero__light,
+                #hero[data-paused] .hero__word,
+                #hero[data-sinking] .hero__light,
+                #hero[data-sinking] .hero__word {
+                    animation-play-state: paused
+                }
+            }
+            @keyframes hero-lift {
+                from {
+                    transform: translate(-4px, 16px) scale(.965)
+                }
+            }
+            @keyframes hero-sink {
+                from {
+                    transform: translate(5px, -10px) scale(1.02)
+                }
+            }
+            @keyframes hero-shift {
+                from {
+                    transform: translateY(14px)
+                }
+            }
+            @keyframes hero-light {
+                from {
+                    transform: translate(-18vw, -12vh)
+                }
+                to {
+                    transform: translate(34vw, 16vh)
+                }
+            }
+            @keyframes hero-sway-raised {
+                from {
+                    text-shadow: var(--shadow-3)
+                }
+                to {
+                    text-shadow: var(--shadow-8)
+                }
+            }
+            @keyframes hero-sway-cut {
+                from {
+                    text-shadow: var(--shadow-4)
+                }
+                to {
+                    text-shadow: var(--shadow-9)
+                }
+            }
+            @media(max-width:767px) {
+                #hero {
+                    --hero-cap: 22.5vw;
+                    --hero-room-raised: 74vw;
+                    --hero-room-cut: 86vw;
+                    min-height: 640px
+                }
+                #hero .hero__inner {
+                    grid-template-columns: minmax(0, 1fr);
+                    grid-template-rows: auto minmax(0, 1fr) auto;
+                    padding: calc(62px + 4vh) 20px 5vh
+                }
+                #hero .hero__title {
+                    grid-column: 1;
+                    grid-row: 1
+                }
+                #hero .hero__line--raised {
+                    margin-left: 9vw
+                }
+                #hero .hero__line--cut:first-of-type,
+                #hero .hero__line--raised+.hero__line--cut {
+                    margin-top: 2.4vh
+                }
+                #hero .hero__aside {
+                    grid-column: 1;
+                    grid-row: 3;
+                    gap: 20px
+                }
+                #hero .hero__aside .m-text-2 {
+                    font-size: 17px
+                }
+            }
+        }
+    </style>
+    <style data-part="section:craft">
+        @layer sections {
+            #craft {
+                --craft-cap: min(15.5vh, 10.4vw);
+                --craft-room: 72vw;
+                position: relative;
+                z-index: 1;
+                background-color: var(--color-5)
+            }
+            #craft .craft__stage {
+                position: relative;
+                height: 100svh;
+                min-height: 600px
+            }
+            #craft .craft__flap {
+                position: absolute;
+                inset: -1px 0;
+                overflow: hidden;
+                border-radius: var(--radius-3) var(--radius-3) 0 0;
+                box-shadow: var(--shadow-15);
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(260px, 27vw);
+                grid-template-rows: minmax(0, 1fr) auto;
+                column-gap: 4vw;
+                padding: calc(68px + 4vh) 6vw 8vh var(--space-1)
+            }
+            #craft .craft__statement {
+                position: relative;
+                grid-column: 1 / -1;
+                grid-row: 1;
+                align-self: center;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: .1em
+            }
+            #craft .craft__line {
+                display: block;
+                position: relative;
+                z-index: 1;
+                font-size: min(var(--craft-cap), calc(var(--craft-room) / (var(--len) * .64)));
+                line-height: .96
+            }
+            #craft .craft__line:nth-child(-n+2) {
+                margin-left: 15vw
+            }
+            #craft .craft__roller {
+                display: none
+            }
+            #craft .craft__note {
+                grid-column: 2;
+                grid-row: 2;
+                align-self: end;
+                display: grid;
+                gap: 16px
+            }
+            @media(max-width:767px) {
+                #craft {
+                    --craft-cap: 12.6vw;
+                    --craft-room: 90vw
+                }
+                #craft .craft__flap {
+                    grid-template-columns: minmax(0, 1fr);
+                    grid-template-rows: auto minmax(0, 1fr) auto;
+                    padding: calc(62px + 6vh) 20px 7vh
+                }
+                #craft .craft__statement {
+                    grid-row: 2
+                }
+                #craft .craft__line:nth-child(-n+2) {
+                    margin-left: 4vw
+                }
+                #craft .craft__note {
+                    grid-column: 1;
+                    grid-row: 3
+                }
+            }
+        }
+    </style>
+    <style data-part="section:finishes">
+        @layer sections {
+            #finishes {
+                position: relative;
+                padding: var(--space-2) var(--space-1)
+            }
+            #finishes .finishes__head {
+                display: grid;
+                grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr);
+                gap: 4vw;
+                align-items: end;
+                margin-bottom: 10vh
+            }
+            #finishes .finishes__title {
+                font-size: clamp(44px, 6vw, 92px);
+                max-width: 9ch
+            }
+            #finishes .finishes__grid {
+                display: grid;
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+                gap: 8vh 4vw
+            }
+            #finishes .finishes__swatch {
+                position: relative;
+                aspect-ratio: 1;
+                display: grid;
+                place-items: center;
+                margin-bottom: 26px;
+                overflow: hidden
+            }
+            #finishes .finishes__item .m-title {
+                margin-bottom: 10px
+            }
+            #finishes .finishes__item .m-text {
+                max-width: 34ch
+            }
+            #finishes .finishes__demo {
+                position: relative;
+                display: block
+            }
+            #finishes .finishes__demo--emboss {
+                width: 46%;
+                aspect-ratio: 1;
+                border-radius: var(--radius-2);
+                background-color: var(--color-1);
+                box-shadow: var(--shadow-1)
+            }
+            #finishes .finishes__demo--deboss {
+                width: 46%;
+                aspect-ratio: 1;
+                border-radius: var(--radius-2);
+                box-shadow: var(--shadow-2)
+            }
+            #finishes .finishes__demo--window {
+                width: 52%;
+                aspect-ratio: 1.3;
+                border-radius: var(--radius-1);
+                background-color: var(--color-5);
+                box-shadow: var(--shadow-5)
+            }
+            #finishes .finishes__demo--score {
+                position: absolute;
+                inset: 0;
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                perspective: 900px
+            }
+            #finishes .finishes__demo--score::before {
+                content: "";
+                position: absolute;
+                left: calc(50% - 2px);
+                top: 0;
+                bottom: 0;
+                width: 4px;
+                box-shadow: var(--shadow-2)
+            }
+            #finishes .finishes__demo--score::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 0;
+                bottom: 0;
+                width: 50%;
+                background: linear-gradient(90deg, color-mix(in srgb, var(--color-6) 22%, transparent), color-mix(in srgb, var(--color-6) 6%, transparent))
+            }
+            #finishes .finishes__demo--rib {
+                width: 64%;
+                aspect-ratio: 1;
+                border-radius: var(--radius-1);
+                background-image: repeating-linear-gradient(90deg, color-mix(in srgb, var(--color-3) 80%, transparent) 0 2px, transparent 2px 7px, color-mix(in srgb, var(--color-6) 24%, transparent) 7px 9px, transparent 9px 14px);
+                box-shadow: var(--shadow-2)
+            }
+            #finishes .finishes__demo--burnish {
+                width: 54%;
+                aspect-ratio: 1;
+                border-radius: var(--radius-2);
+                background: radial-gradient(closest-side, color-mix(in srgb, var(--color-4) 85%, var(--color-1)), color-mix(in srgb, var(--color-4) 55%, var(--color-1)) 62%, color-mix(in srgb, var(--color-4) 0%, var(--color-1)))
+            }
+            @media(max-width:767px) {
+                #finishes .finishes__head {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 22px;
+                    margin-bottom: 7vh
+                }
+                #finishes .finishes__grid {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 44px 16px
+                }
+                #finishes .finishes__swatch {
+                    margin-bottom: 16px
+                }
+                #finishes .finishes__item .m-title {
+                    font-size: 19px
+                }
+                #finishes .finishes__item .m-text {
+                    font-size: 15px
+                }
+            }
+        }
+    </style>
+    <style data-part="section:process">
+        @layer sections {
+            #process {
+                position: relative;
+                padding: var(--space-2) 0
+            }
+            #process .process__stage {
+                display: grid;
+                gap: 6vh
+            }
+            #process .process__head {
+                display: grid;
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+                gap: 4vw;
+                align-items: end;
+                padding: 0 var(--space-1)
+            }
+            #process .process__title {
+                font-size: clamp(42px, 5.4vw, 84px)
+            }
+            #process .process__channel {
+                margin: 0 var(--space-1);
+                padding: 28px;
+                border-radius: var(--radius-1)
+            }
+            #process .process__track {
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                gap: 28px
+            }
+            #process .process__steps {
+                display: contents
+            }
+            #process .process__intro,
+            #process .process__end {
+                grid-column: 1 / -1;
+                display: grid;
+                align-content: center;
+                gap: 18px;
+                padding: 12px 8px
+            }
+            #process .process__intro .m-text-2 {
+                max-width: 34ch
+            }
+            #process .process__end .m-title {
+                font-size: clamp(26px, 2.6vw, 40px);
+                max-width: 14ch
+            }
+            #process .process__end :focus-visible {
+                outline-color: var(--color-1)
+            }
+            #process .process__step {
+                display: grid;
+                grid-template-rows: auto auto auto minmax(180px, 1fr);
+                gap: 10px;
+                padding: 26px 26px 22px
+            }
+            #process .process__step .m-text {
+                max-width: 36ch
+            }
+            #process .process__visual {
+                position: relative;
+                display: grid;
+                place-items: center;
+                min-height: 180px;
+                margin-top: 10px;
+                perspective: 800px
+            }
+            #process .process__dieline {
+                width: min(100%, 210px);
+                height: auto;
+                overflow: visible
+            }
+            #process .process__dieline-cut {
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 1.6;
+                stroke-linejoin: round
+            }
+            #process .process__dieline-score {
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 1.2;
+                stroke-dasharray: 4 3.5;
+                opacity: .75
+            }
+            #process .process__seal {
+                position: relative;
+                width: clamp(110px, 11vw, 150px);
+                aspect-ratio: 1;
+                border-radius: var(--radius-2)
+            }
+            #process .process__seal-up,
+            #process .process__seal-down {
+                position: absolute;
+                inset: 0;
+                border-radius: inherit
+            }
+            #process .process__seal-up {
+                background-color: var(--color-1);
+                box-shadow: var(--shadow-1);
+                opacity: 0
+            }
+            #process .process__seal-down {
+                box-shadow: var(--shadow-2)
+            }
+            #process .process__seal-down::after {
+                content: "";
+                position: absolute;
+                inset: 24%;
+                border-radius: inherit;
+                box-shadow: var(--shadow-1)
+            }
+            #process .process__hole {
+                width: clamp(110px, 11vw, 150px);
+                aspect-ratio: 4 / 5;
+                background-color: var(--color-5);
+                box-shadow: var(--shadow-5);
+                border-radius: 999px 999px var(--radius-1) var(--radius-1);
+                clip-path: inset(0 round 999px 999px 6px 6px)
+            }
+            #process .process__tilt {
+                display: block;
+                transform-style: preserve-3d
+            }
+            #process .process__net {
+                display: block;
+                --net-u: clamp(54px, 6vw, 88px);
+                position: relative;
+                width: calc(var(--net-u) * 3);
+                height: calc(var(--net-u) * 3);
+                transform-style: preserve-3d
+            }
+            #process .process__face {
+                position: absolute;
+                width: var(--net-u);
+                height: var(--net-u);
+                background-color: var(--color-1);
+                outline: 1px dashed currentColor;
+                outline-offset: -1px;
+                box-shadow: var(--shadow-12);
+                backface-visibility: visible
+            }
+            #process .process__face--base {
+                left: var(--net-u);
+                top: var(--net-u)
+            }
+            #process .process__face--n {
+                left: var(--net-u);
+                top: 0;
+                transform-origin: 50% 100%
+            }
+            #process .process__face--s {
+                left: var(--net-u);
+                top: calc(var(--net-u) * 2);
+                transform-origin: 50% 0
+            }
+            #process .process__face--w {
+                left: 0;
+                top: var(--net-u);
+                transform-origin: 100% 50%
+            }
+            #process .process__face--e {
+                left: calc(var(--net-u) * 2);
+                top: var(--net-u);
+                transform-origin: 0 50%
+            }
+            @media(max-width:767px) {
+                #process .process__head {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 18px
+                }
+                #process .process__channel {
+                    margin: 0 16px;
+                    padding: 16px
+                }
+                #process .process__track {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 16px
+                }
+                #process .process__step {
+                    padding: 22px 20px 18px
+                }
+            }
+        }
+    </style>
+    <style data-part="section:work">
+        @layer sections {
+            #work {
+                position: relative;
+                padding: var(--space-2) var(--space-1)
+            }
+            #work .work__head {
+                display: grid;
+                grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+                gap: 4vw;
+                align-items: end;
+                margin-bottom: 12vh
+            }
+            #work .work__title {
+                font-size: clamp(42px, 5.4vw, 84px);
+                max-width: 10ch
+            }
+            #work .work__list {
+                display: grid;
+                gap: 16vh
+            }
+            #work .work__item {
+                --work-ratio: 5 / 4;
+                --work-hx: 20%;
+                --work-hy: 25%;
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) minmax(0, .95fr);
+                grid-template-areas: "sleeve tray info";
+                gap: 3vw;
+                align-items: center
+            }
+            #work .work__item:nth-child(even) {
+                grid-template-areas: "info tray sleeve";
+                grid-template-columns: minmax(0, .95fr) minmax(0, 1fr) minmax(0, 1fr)
+            }
+            #work .work__item:nth-child(n+3) {
+                --work-ratio: 4 / 5;
+                --work-hx: 25%;
+                --work-hy: 20%
+            }
+            #work .work__floor {
+                grid-area: sleeve;
+                position: relative;
+                z-index: 0;
+                aspect-ratio: var(--work-ratio)
+            }
+            #work .work__floor::before,
+            #work .work__rim {
+                content: "";
+                position: absolute;
+                left: 21%;
+                top: 16%;
+                width: 58%;
+                height: 50%;
+                pointer-events: none
+            }
+            #work .work__floor::before {
+                background-color: var(--color-5);
+                box-shadow: var(--shadow-5)
+            }
+            #work .work__item:nth-child(even) .work__floor::before,
+            #work .work__item:nth-child(even) .work__rim {
+                left: calc(50% - var(--work-hx));
+                top: calc(42% - var(--work-hy));
+                width: calc(var(--work-hx) * 2);
+                height: calc(var(--work-hy) * 2);
+                border-radius: var(--radius-2)
+            }
+            #work .work__sleeve-wrap {
+                grid-area: sleeve;
+                position: relative;
+                z-index: 2;
+                filter: drop-shadow(var(--shadow-14))
+            }
+            #work .work__sleeve {
+                position: relative;
+                aspect-ratio: var(--work-ratio);
+                border-radius: var(--radius-1);
+                display: grid;
+                align-items: end;
+                padding: 18px 20px;
+                clip-path: polygon(evenodd, 0 0, 100% 0, 100% 100%, 0 100%, 0 0, 21% 16%, 79% 16%, 79% 66%, 21% 66%, 21% 16%)
+            }
+            #work .work__item:nth-child(even) .work__sleeve {
+                clip-path: none;
+                -webkit-mask-image: radial-gradient(ellipse var(--work-hx) var(--work-hy) at 50% 42%, transparent 99%, currentColor 100%);
+                mask-image: radial-gradient(ellipse var(--work-hx) var(--work-hy) at 50% 42%, transparent 99%, currentColor 100%)
+            }
+            #work .work__rim {
+                z-index: 3;
+                box-shadow: var(--shadow-2)
+            }
+            #work .work__client {
+                position: relative
+            }
+            #work .work__tray {
+                grid-area: tray;
+                position: relative;
+                z-index: 1;
+                aspect-ratio: var(--work-ratio);
+                border-radius: var(--radius-1);
+                overflow: hidden
+            }
+            #work .work__tray img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover
+            }
+            #work .work__info {
+                grid-area: info;
+                display: grid;
+                gap: 14px;
+                align-content: center
+            }
+            #work .work__info .m-text {
+                max-width: 38ch
+            }
+            #work .work__specs {
+                display: grid;
+                gap: 8px;
+                margin-top: 8px
+            }
+            #work .work__specs div {
+                display: grid;
+                grid-template-columns: 9ch minmax(0, 1fr);
+                gap: 12px;
+                padding-top: 8px;
+                border-top: 1px dashed currentColor
+            }
+            #work .work__specs dd {
+                font-size: 15px
+            }
+            @media(max-width:767px) {
+                #work .work__head {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 18px;
+                    margin-bottom: 8vh
+                }
+                #work .work__list {
+                    gap: 11vh
+                }
+                #work .work__item,
+                #work .work__item:nth-child(n) {
+                    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                    grid-template-areas: "sleeve tray" "info info";
+                    gap: 18px 12px;
+                    --work-ratio: 3 / 4;
+                    --work-hx: 25%;
+                    --work-hy: 18.75%
+                }
+                #work .work__item:nth-child(even) {
+                    grid-template-areas: "tray sleeve" "info info"
+                }
+                #work .work__sleeve {
+                    padding: 12px
+                }
+                #work .work__sleeve .m-title {
+                    font-size: 15px
+                }
+            }
+        }
+    </style>
+    <style data-part="section:studio">
+        @layer sections {
+            #studio {
+                position: relative;
+                padding: 4vh 1.6vw
+            }
+            #studio .studio__tray {
+                padding: var(--space-2) var(--space-1);
+                display: grid;
+                grid-template-columns: repeat(12, minmax(0, 1fr));
+                column-gap: 2.4vw;
+                row-gap: 9vh
+            }
+            #studio :focus-visible {
+                outline-color: var(--color-1)
+            }
+            #studio .studio__title {
+                grid-column: 1 / 8;
+                font-size: clamp(44px, 6vw, 96px);
+                max-width: 9ch
+            }
+            #studio .studio__lead {
+                grid-column: 8 / 13;
+                align-self: end
+            }
+            #studio .studio__photo {
+                position: relative;
+                margin: 0;
+                border-radius: var(--radius-1);
+                overflow: hidden
+            }
+            #studio .studio__photo::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                box-shadow: var(--shadow-5);
+                pointer-events: none
+            }
+            #studio .studio__photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover
+            }
+            #studio .studio__photo--bench {
+                grid-column: 1 / 8;
+                aspect-ratio: 3 / 2
+            }
+            #studio .studio__story {
+                grid-column: 9 / 13;
+                align-self: center;
+                display: grid;
+                gap: 18px
+            }
+            #studio .studio__quote {
+                grid-column: 1 / 8;
+                grid-row: 3;
+                align-self: center;
+                margin: 0;
+                display: grid;
+                gap: 22px
+            }
+            #studio .studio__quote p {
+                font-size: clamp(26px, 2.8vw, 42px);
+                line-height: 1.12;
+                max-width: 22ch
+            }
+            #studio .studio__photo--type {
+                grid-column: 9 / 13;
+                grid-row: 3;
+                aspect-ratio: 4 / 5
+            }
+            @media(max-width:767px) {
+                #studio {
+                    padding: 2vh 8px
+                }
+                #studio .studio__tray {
+                    grid-template-columns: minmax(0, 1fr);
+                    row-gap: 40px;
+                    padding: 72px 20px
+                }
+                #studio .studio__title,
+                #studio .studio__lead,
+                #studio .studio__photo--bench,
+                #studio .studio__story,
+                #studio .studio__quote,
+                #studio .studio__photo--type {
+                    grid-column: 1;
+                    grid-row: auto
+                }
+                #studio .studio__photo--type {
+                    aspect-ratio: 3 / 2
+                }
+            }
+        }
+    </style>
+    <style data-part="section:materials">
+        @layer sections {
+            #materials {
+                position: relative;
+                z-index: 2;
+                padding: var(--space-2) var(--space-1)
+            }
+            #materials .materials__head {
+                display: grid;
+                grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+                gap: 3vh 4vw;
+                align-items: end;
+                margin-bottom: 11vh
+            }
+            #materials .materials__title {
+                font-size: clamp(42px, 5.4vw, 84px);
+                max-width: 9ch
+            }
+            #materials .materials__photo {
+                position: relative;
+                grid-column: 2;
+                grid-row: 1 / 3;
+                margin: 0;
+                aspect-ratio: 3 / 2;
+                border-radius: var(--radius-1);
+                overflow: hidden
+            }
+            #materials .materials__photo::after {
+                content: "";
+                position: absolute;
+                inset: 0;
+                border-radius: inherit;
+                box-shadow: var(--shadow-2);
+                pointer-events: none
+            }
+            #materials .materials__photo img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover
+            }
+            #materials .materials__head .m-text-2 {
+                max-width: 36ch
+            }
+            #materials .materials__list {
+                display: grid
+            }
+            #materials .materials__item {
+                display: grid;
+                grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr) minmax(0, 1.4fr);
+                gap: 3vw;
+                align-items: center;
+                padding: 5vh 0;
+                position: relative
+            }
+            #materials .materials__crease {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                height: 3px;
+                box-shadow: var(--shadow-2)
+            }
+            #materials .materials__section {
+                position: relative;
+                display: grid;
+                gap: 12px;
+                padding: 4px 0
+            }
+            #materials .materials__ply {
+                display: block;
+                height: 10px;
+                border-radius: 2px;
+                background-color: var(--color-1);
+                box-shadow: var(--shadow-1)
+            }
+            #materials .materials__ply--thick {
+                height: 16px
+            }
+            #materials .materials__ply--flute,
+            #materials .materials__ply--flute-b {
+                height: 22px;
+                background-color: var(--color-4);
+                box-shadow: none;
+                -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='22' viewBox='0 0 24 22'%3E%3Cpath d='M0 20 Q6 -2 12 11 T24 2' fill='none' stroke='currentColor' stroke-width='2.2'/%3E%3C/svg%3E");
+                mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='22' viewBox='0 0 24 22'%3E%3Cpath d='M0 20 Q6 -2 12 11 T24 2' fill='none' stroke='currentColor' stroke-width='2.2'/%3E%3C/svg%3E");
+                -webkit-mask-size: 24px 100%;
+                mask-size: 24px 100%
+            }
+            #materials .materials__ply--flute-b {
+                height: 36px;
+                -webkit-mask-size: 40px 100%;
+                mask-size: 40px 100%
+            }
+            #materials .materials__ply--comb {
+                height: 64px;
+                background-color: transparent;
+                box-shadow: none;
+                background-image: repeating-linear-gradient(90deg, var(--color-4) 0 2px, transparent 2px 22px)
+            }
+            #materials .materials__name {
+                display: grid;
+                gap: 6px
+            }
+            #materials .materials__specs {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 16px 3vw
+            }
+            #materials .materials__specs div {
+                display: grid;
+                gap: 4px
+            }
+            #materials .materials__specs dd {
+                font-size: 15px;
+                line-height: 1.45
+            }
+            #materials .materials__punch {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 4vw;
+                align-items: center;
+                margin-top: 12vh
+            }
+            #materials .materials__punch-text {
+                display: grid;
+                gap: 14px;
+                max-width: 40ch
+            }
+            #materials .materials__die {
+                position: relative;
+                width: clamp(200px, min(40vmin, 25vw), 360px);
+                aspect-ratio: 1;
+                margin-right: 8vw
+            }
+            #materials .materials__hole,
+            #materials .materials__disc {
+                position: absolute;
+                inset: 0;
+                border-radius: var(--radius-2)
+            }
+            #materials .materials__hole {
+                background-color: var(--color-5);
+                box-shadow: var(--shadow-5)
+            }
+            #materials .materials__disc {
+                z-index: 1;
+                box-shadow: var(--shadow-12)
+            }
+            #materials .materials__disc::after {
+                content: "";
+                position: absolute;
+                inset: 30%;
+                border-radius: inherit;
+                box-shadow: var(--shadow-2)
+            }
+            @media(max-width:767px) {
+                #materials .materials__head {
+                    grid-template-columns: minmax(0, 1fr);
+                    margin-bottom: 7vh
+                }
+                #materials .materials__photo {
+                    grid-column: 1;
+                    grid-row: auto
+                }
+                #materials .materials__item {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 18px;
+                    padding: 36px 0
+                }
+                #materials .materials__punch {
+                    grid-template-columns: minmax(0, 1fr);
+                    justify-items: center;
+                    margin-top: 8vh
+                }
+                #materials .materials__die {
+                    width: 62vw;
+                    margin-right: 0
+                }
+            }
+        }
+    </style>
+    <style data-part="section:kit">
+        @layer sections {
+            #kit {
+                position: relative;
+                z-index: 1;
+                padding: var(--space-2) var(--space-1);
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+                gap: 4vw;
+                align-items: start
+            }
+            #kit .kit__lid {
+                display: grid;
+                justify-items: center;
+                text-align: center;
+                gap: 18px;
+                padding: 7vh 4vw 8vh
+            }
+            #kit .kit__socket {
+                width: calc(clamp(200px, min(40vmin, 25vw), 360px) + 12px);
+                aspect-ratio: 1;
+                border-radius: var(--radius-2);
+                margin-bottom: 3vh
+            }
+            #kit .kit__name {
+                font-size: clamp(40px, 4.6vw, 72px)
+            }
+            #kit .kit__lid .m-text {
+                max-width: 34ch
+            }
+            #kit .kit__lid .m-text,
+            #kit .kit__lid .m-text-2 {
+                text-wrap: balance
+            }
+            #kit .kit__slip {
+                display: grid;
+                gap: 4vh;
+                padding: 6vh 3.4vw 6vh
+            }
+            #kit .kit__title {
+                font-size: clamp(40px, 4.4vw, 68px);
+                max-width: 10ch
+            }
+            #kit .kit__rows {
+                display: grid
+            }
+            #kit .kit__row {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 8px 3vw;
+                padding: 26px 0;
+                border-top: 1px dashed currentColor
+            }
+            #kit .kit__row .m-text {
+                grid-column: 1;
+                max-width: 40ch
+            }
+            #kit .kit__price {
+                grid-column: 2;
+                grid-row: 1 / 3;
+                align-self: start;
+                font-size: clamp(28px, 2.6vw, 38px);
+                line-height: 1;
+                white-space: nowrap;
+                text-align: right
+            }
+            #kit .kit__unit {
+                display: block;
+                margin-top: 8px;
+                text-shadow: none
+            }
+            #kit .kit__actions {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 14px 26px
+            }
+            @media(max-width:767px) {
+                #kit {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 40px
+                }
+                #kit .kit__lid {
+                    padding: 44px 20px
+                }
+                #kit .kit__socket {
+                    width: calc(62vw + 12px)
+                }
+                #kit .kit__slip {
+                    padding: 36px 20px
+                }
+                #kit .kit__row {
+                    grid-template-columns: minmax(0, 1fr)
+                }
+                #kit .kit__price {
+                    grid-column: 1;
+                    grid-row: auto;
+                    text-align: left
+                }
+            }
+        }
+    </style>
+    <style data-part="section:faq">
+        @layer sections {
+            #faq {
+                position: relative;
+                padding: var(--space-2) var(--space-1);
+                display: grid;
+                grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+                gap: 4vw;
+                align-items: start
+            }
+            #faq .faq__head {
+                display: grid;
+                gap: 22px
+            }
+            #faq .faq__title {
+                font-size: clamp(42px, 5vw, 80px);
+                max-width: 8ch
+            }
+            #faq .faq__head .m-text {
+                max-width: 30ch
+            }
+            #faq .faq__list {
+                display: grid
+            }
+            #faq .faq__item {
+                position: relative
+            }
+            #faq .faq__crease {
+                position: absolute;
+                left: 0;
+                right: 0;
+                top: 0;
+                height: 3px;
+                box-shadow: var(--shadow-2)
+            }
+            #faq .faq__item:last-child {
+                padding-bottom: 3px
+            }
+            #faq .faq__item:last-child::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                height: 3px;
+                box-shadow: var(--shadow-2)
+            }
+            #faq .faq__summary {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) auto;
+                gap: 24px;
+                align-items: center;
+                padding: 28px 0;
+                cursor: pointer;
+                list-style: none
+            }
+            #faq .faq__summary::-webkit-details-marker {
+                display: none
+            }
+            #faq .faq__summary:focus-visible {
+                outline-offset: 4px
+            }
+            #faq .faq__mark {
+                position: relative;
+                width: 38px;
+                height: 38px;
+                border-radius: var(--radius-2);
+                box-shadow: var(--shadow-1);
+                transition: box-shadow .25s
+            }
+            #faq .faq__mark::before,
+            #faq .faq__mark::after {
+                content: "";
+                position: absolute;
+                left: 50%;
+                top: 50%;
+                width: 14px;
+                height: 2px;
+                margin: -1px 0 0 -7px;
+                background: currentColor;
+                transition: transform .3s cubic-bezier(.3, .7, .2, 1)
+            }
+            #faq .faq__mark::after {
+                transform: rotate(90deg)
+            }
+            #faq .faq__details[open] .faq__mark {
+                box-shadow: var(--shadow-2)
+            }
+            #faq .faq__details[open] .faq__mark::after {
+                transform: rotate(0deg)
+            }
+            #faq .faq__answer {
+                padding: 0 64px 30px 0;
+                max-width: 62ch
+            }
+            @media(max-width:767px) {
+                #faq {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 36px
+                }
+                #faq .faq__summary {
+                    padding: 22px 0;
+                    gap: 16px
+                }
+                #faq .faq__summary .m-title {
+                    font-size: 19px
+                }
+                #faq .faq__answer {
+                    padding-right: 0
+                }
+            }
+        }
+    </style>
+    <style data-part="section:contact">
+        @layer sections {
+            #contact {
+                position: relative;
+                overflow: clip;
+                padding: var(--space-2) var(--space-1);
+                --contact-cap: min(15vh, 10.5vw);
+                --contact-room: 76vw
+            }
+            #contact .contact__light {
+                position: absolute;
+                left: 50%;
+                top: 36%;
+                width: 64vmax;
+                height: 64vmax;
+                margin-left: -32vmax;
+                margin-top: -32vmax;
+                border-radius: var(--radius-2);
+                background: radial-gradient(closest-side, color-mix(in srgb, var(--color-3) 80%, transparent), color-mix(in srgb, var(--color-3) 25%, transparent) 55%, transparent);
+                mix-blend-mode: soft-light;
+                pointer-events: none
+            }
+            #contact .contact__title {
+                position: relative;
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                margin-bottom: 11vh
+            }
+            #contact .contact__line--raised {
+                margin-left: 12vw
+            }
+            #contact .contact__line--cut {
+                margin-top: 2vh
+            }
+            #contact .contact__channel {
+                display: inline-block
+            }
+            #contact .contact__word {
+                display: block;
+                padding: .07em .2em .02em .18em;
+                line-height: .92;
+                font-size: min(var(--contact-cap), calc(var(--contact-room) / (var(--len) * .64)))
+            }
+            #contact .contact__line--cut .contact__word {
+                padding: 0;
+                line-height: .96;
+                font-size: min(var(--contact-cap), calc(86vw / (var(--len) * .64)))
+            }
+            #contact .contact__body {
+                position: relative;
+                display: grid;
+                grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+                gap: 6vw;
+                align-items: start
+            }
+            #contact .contact__form {
+                display: grid;
+                grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+                gap: 22px
+            }
+            #contact .contact__form .m-text-2 {
+                grid-column: 1 / -1;
+                max-width: 40ch;
+                margin-bottom: 8px
+            }
+            #contact .contact__wide {
+                grid-column: 1 / -1
+            }
+            #contact .contact__form textarea {
+                min-height: 150px
+            }
+            #contact .contact__form .m-btn {
+                justify-self: start
+            }
+            #contact .contact__details {
+                display: grid;
+                gap: 26px;
+                padding-top: 6px
+            }
+            #contact .contact__details div {
+                display: grid;
+                gap: 6px
+            }
+            #contact .contact__details address {
+                font-style: normal
+            }
+            @media(max-width:767px) {
+                #contact {
+                    --contact-cap: 17vw;
+                    --contact-room: 88vw
+                }
+                #contact .contact__line--raised {
+                    margin-left: 0
+                }
+                #contact .contact__body {
+                    grid-template-columns: minmax(0, 1fr);
+                    gap: 52px
+                }
+                #contact .contact__form {
+                    grid-template-columns: minmax(0, 1fr)
+                }
+            }
+        }
+    </style>
+    <style data-part="section:footer">
+        @layer sections {
+            #footer {
+                position: relative;
+                padding: 0 1.6vw 1.6vw
+            }
+            #footer .footer__tray {
+                display: grid;
+                gap: 7vh;
+                padding: var(--space-2) var(--space-1) 34px
+            }
+            #footer :focus-visible {
+                outline-color: var(--color-1)
+            }
+            #footer .footer__mark {
+                font-size: min(19vw, calc(86vw / (var(--len) * .64)));
+                line-height: .9
+            }
+            #footer .footer__crease {
+                display: block;
+                height: 3px;
+                border-radius: 2px;
+                box-shadow: var(--shadow-5)
+            }
+            #footer .footer__cols {
+                display: grid;
+                grid-template-columns: repeat(4, minmax(0, 1fr));
+                gap: 4vw
+            }
+            #footer .footer__col {
+                display: grid;
+                align-content: start;
+                gap: 12px
+            }
+            #footer .footer__col ul {
+                display: grid;
+                gap: 4px
+            }
+            #footer .footer__col .m-text {
+                max-width: 28ch
+            }
+            #footer .footer__legal {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-between;
+                gap: 12px 24px
+            }
+            @media(max-width:767px) {
+                #footer {
+                    padding: 0 8px 8px
+                }
+                #footer .footer__tray {
+                    padding: 72px 20px 28px;
+                    gap: 44px
+                }
+                #footer .footer__cols {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                    gap: 36px 20px
+                }
+            }
+        }
+    </style>
+    <style data-part="scene-style:craft">
+        @layer scenes {
+            @media(prefers-reduced-motion: no-preference) {
+                #craft[data-press] {
+                    height:250svh
+                }
+                #craft[data-press] .craft__stage {
+                    position: sticky;
+                    top: 0
+                }
+                #craft[data-press] .craft__line {
+                    text-shadow: var(--shadow-10)
+                }
+                #craft[data-press] .craft__line[data-pressed="0"] {
+                    filter: none;
+                    -webkit-mask-image: linear-gradient(90deg, rgb(0 0 0 / calc(var(--a, .4) + (1 - var(--a, .4)) * var(--lit, 0))), rgb(0 0 0 / calc(var(--b, .5) + (1 - var(--b, .5)) * var(--lit, 0))));
+                    mask-image: linear-gradient(90deg, rgb(0 0 0 / calc(var(--a, .4) + (1 - var(--a, .4)) * var(--lit, 0))), rgb(0 0 0 / calc(var(--b, .5) + (1 - var(--b, .5)) * var(--lit, 0))))
+                }
+                #craft[data-press] .craft__roller {
+                    display: block;
+                    position: absolute;
+                    z-index: 2;
+                    left: -2vw;
+                    right: -2vw;
+                    top: 0;
+                    height: 3px;
+                    pointer-events: none;
+                    background: linear-gradient(180deg, color-mix(in srgb, var(--color-6) 55%, transparent) 0 50%, color-mix(in srgb, var(--color-3) 85%, transparent) 50% 100%);
+                    -webkit-mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent);
+                    mask-image: linear-gradient(90deg, transparent, #000 12%, #000 88%, transparent)
+                }
+            }
+        }
+    </style>
+    <style data-part="scene-style:process">
+        @layer scenes {
+            @media(prefers-reduced-motion: no-preference) {
+                #process[data-track] {
+                    height:calc(100svh + var(--process-distance, 150vw));
+                    padding: 0
+                }
+                #process[data-track] .process__stage {
+                    position: sticky;
+                    top: 0;
+                    height: 100svh;
+                    grid-template-rows: auto minmax(0, 1fr);
+                    gap: 4vh;
+                    padding: calc(68px + 5vh) 0 6vh
+                }
+                #process[data-track] .process__channel {
+                    overflow: hidden;
+                    padding: 0
+                }
+                #process[data-track] .process__track {
+                    display: flex;
+                    align-items: stretch;
+                    gap: 3vw;
+                    width: max-content;
+                    height: 100%;
+                    padding: 4vh 4vw
+                }
+                #process[data-track] .process__intro {
+                    width: 38vw;
+                    padding: 0 2vw 0 1vw
+                }
+                #process[data-track] .process__step {
+                    width: 33vw
+                }
+                #process[data-track] .process__end {
+                    width: 30vw;
+                    padding: 0 1vw
+                }
+            }
+            @media(prefers-reduced-motion:no-preference)and (max-width:767px) {
+                #process[data-track] .process__stage {
+                    padding: calc(62px + 3vh) 0 4vh;
+                    gap: 3vh
+                }
+                #process[data-track] .process__track {
+                    gap: 4vw;
+                    padding: 3vh 4vw
+                }
+                #process[data-track] .process__intro {
+                    width: 74vw
+                }
+                #process[data-track] .process__step {
+                    width: 78vw
+                }
+                #process[data-track] .process__end {
+                    width: 56vw
+                }
+                #process[data-track] .process__step .m-text {
+                    font-size: 15px
+                }
+                #process[data-track] .process__visual {
+                    min-height: 130px
+                }
+            }
+        }
+    </style>
+</head>
+
+<body> <svg class="relief-defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="cut-relief" x="-4%" y="-6%" width="108%" height="112%" color-interpolation-filters="sRGB"><feComponentTransfer in="SourceAlpha" result="outside"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer><feOffset in="outside" dx="3.5" dy="4.5" result="shifted"/><feGaussianBlur in="shifted" stdDeviation="2" result="soft"/><feFlood class="relief-defs__shade" result="shade"/><feComposite in="shade" in2="soft" operator="in" result="cast"/><feComposite in="cast" in2="SourceAlpha" operator="in" result="inner"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="inner"/></feMerge></filter></svg>
+    <header id="navigation" data-section="navigation">
+        <div class="nav__bar m-board"> <a class="nav__brand" href="#hero" aria-label="Student Council, back to the top"><span class="m-title">Student Council.</span></a>
+            <nav aria-label="Main">
+                <ul class="nav__links">
+                    <li><a class="m-link-2" href="#finishes">Upcoming</a></li>
+                    <li><a class="m-link-2" href="#process">Steps</a></li>
+                    <li><a class="m-link-2" href="#work">Events</a></li>
+                    <li><a class="m-link-2" href="#materials">Members</a></li>
+                    <li><a class="m-link-2" href="#contact">Contact</a></li>
+                    <li><a class="m-link-2" href="pt/" hreflang="pt-PT" lang="pt-PT" aria-label="Student login">Login</a></li>
+                </ul>
+            </nav> <a class="m-btn nav__cta" href="#kit"><span class="m-btn__label">Student Login</span></a> <button class="m-icon-btn nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open the menu"><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>            </div>
+        <div class="nav__menu m-ply" id="menu" data-page-overlay data-lenis-prevent hidden> <button class="m-icon-btn nav__menu-close" type="button" aria-expanded="true" aria-controls="menu" aria-label="Close the menu"><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>
+            <nav aria-label="Menu">
+                <ul class="nav__menu-links">
+                    <li><a href="#finishes">Upcoming</a></li>
+                    <li><a href="#process">Steps</a></li>
+                    <li><a href="#work">Events</a></li>
+                    <li><a href="#materials">Members</a></li>
+                    <li><a href="#kit">Student Login</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav> <a class="nav__menu-lang" href="pt/" hreflang="pt-PT" lang="pt-PT">Login</a> </div>
+    </header>
+    <main>
+        <section id="hero" data-section="hero" aria-labelledby="hero-title">
+            <div class="hero__flap m-board"> <span class="hero__light" aria-hidden="true"></span>
+                <div class="hero__inner">
+                    <h1 class="hero__title" id="hero-title"> <span class="hero__line hero__line--raised"><span class="hero__channel m-ply"><span class="hero__word m-raised" style="--len:5">Bring</span></span>
+                        </span> <span class="hero__line hero__line--raised"><span class="hero__channel m-ply"><span class="hero__word m-raised" style="--len:4">your</span></span>
+                        </span> <span class="hero__line hero__line--cut"><span class="hero__word m-cut" style="--len:5">ideas</span></span> <span class="hero__line hero__line--cut"><span class="hero__word m-cut" style="--len:3">in.</span></span>
+                    </h1>
+                    <div class="hero__aside">
+                        <p class="m-text-2">The Student Council of PPG Institute of Technology organises campus events, listens to every student suggestion and supports student wellbeing all year round.</p>
+                        <div class="hero__actions"> <a class="m-btn" href="#kit"><span class="m-btn__label">Student Login</span></a> <a class="m-link-2" href="#work">See our events</a> </div>
+                    </div>
+                </div> <span class="hero__wash" aria-hidden="true"></span> </div>
+        </section>
+        <section id="craft" data-section="craft" aria-labelledby="craft-title">
+            <div class="craft__stage">
+                <div class="craft__flap m-board">
+                    <h2 class="craft__statement" id="craft-title"> <span class="craft__line m-cut" style="--len:10">We gather.</span> <span class="craft__line m-cut" style="--len:11">Your ideas.</span> <span class="craft__line m-cut" style="--len:8">We care.</span> <span class="craft__line m-cut"
+                            style="--len:6">Always</span> <span class="craft__roller" aria-hidden="true"></span> </h2>
+                    <div class="craft__note">
+                        <p class="m-text-2">We are the students who plan campus events, carry your ideas to the college and make sure every student voice is heard.</p>
+                        <p class="m-text">We listen to every student, and your mental health matters to us. What you share with us stays private.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="finishes" data-section="finishes" aria-labelledby="finishes-title">
+            <div class="finishes__head">
+                <h2 class="finishes__title m-cut" id="finishes-title" data-motion="emboss">Six things you can do here</h2>
+                <p class="m-text-2">Every card below is one tap away. Log in with your college mail, share what is on your mind, and see what your council is planning next.</p>
+            </div>
+            <ul class="finishes__grid" data-items=":scope > .finishes__item">
+                <li class="finishes__item">
+                    <div class="finishes__swatch m-surface" aria-hidden="true"><span class="finishes__demo finishes__demo--emboss"></span></div>
+                    <h3 class="m-title">Upcoming Events</h3>
+                    <p class="m-text">What is coming next on campus, with dates, venues and sign-ups in one place.</p>
+                </li>
+                <li class="finishes__item">
+                    <div class="finishes__swatch m-surface" aria-hidden="true"><span class="finishes__demo finishes__demo--deboss"></span></div>
+                    <h3 class="m-title">Student Suggestions</h3>
+                    <p class="m-text">Share an idea to improve campus life. We read every one and always reply.</p>
+                </li>
+                <li class="finishes__item">
+                    <div class="finishes__swatch m-surface" aria-hidden="true"><span class="finishes__demo finishes__demo--window"></span></div>
+                    <h3 class="m-title">Mental Health Matters</h3>
+                    <p class="m-text">Your mental health matters to us. Whatever you share will stay confidential.</p>
+                </li>
+                <li class="finishes__item">
+                    <div class="finishes__swatch m-surface" aria-hidden="true"><span class="finishes__demo finishes__demo--score"></span></div>
+                    <h3 class="m-title">Our Members</h3>
+                    <p class="m-text">Meet the students who represent you and run the council this year.</p>
+                </li>
+                <li class="finishes__item">
+                    <div class="finishes__swatch m-surface" aria-hidden="true"><span class="finishes__demo finishes__demo--rib"></span></div>
+                    <h3 class="m-title">Student Login</h3>
+                    <p class="m-text">Access is restricted to college mail only (@ppg.edu.in). Log in to begin.</p>
+                </li>
+                <li class="finishes__item">
+                    <div class="finishes__swatch m-surface" aria-hidden="true"><span class="finishes__demo finishes__demo--burnish"></span></div>
+                    <h3 class="m-title">Events Completed</h3>
+                    <p class="m-text">See what we have already celebrated together this academic year.</p>
+                </li>
+            </ul>
+        </section>
+        <section id="process" data-section="process" aria-labelledby="process-title">
+            <div class="process__stage">
+                <div class="process__head">
+                    <h2 class="process__title m-cut" id="process-title">How it works, step by step</h2>
+                    <p class="m-text-2">Log in, share what matters and follow what happens next. Four simple steps, one clear promise.</p>
+                </div>
+                <div class="process__channel m-ply">
+                    <div class="process__track">
+                        <div class="process__intro">
+                            <p class="m-text-2">Every idea and every message starts with you. Here is exactly what happens after you log in and tap send.</p>
+                            <p class="m-text">A reply in a week, a plan soon after.</p>
+                        </div>
+                        <ol class="process__steps" data-items=":scope > .process__step" data-fixed="4">
+                            <li class="process__step m-surface"> <span class="m-text-3">Step 1</span>
+                                <h3 class="m-title">Login</h3>
+                                <p class="m-text">Sign in with your college mail ID (@ppg.edu.in). Your student account keeps every message private.</p>
+                                <div class="process__visual" aria-hidden="true"> <svg class="process__dieline" viewBox="0 0 172 160"> <path class="process__dieline-cut" pathLength="1" d="M20 50 H56 V30 Q56 22 64 22 H84 Q92 22 92 30 V50 H128 L134 36 H158 L164 50 V110 L158 124 H134 L128 110 H92 V130 Q92 138 84 138 H64 Q56 138 56 130 V110 H20 V106 L8 102 V58 L20 54 Z"/> <path class="process__dieline-score" d="M20 50 V110 M56 50 V110 M92 50 V110 M128 50 V110 M56 50 H92 M128 50 H164 M56 110 H92 M128 110 H164"/> </svg>                                    </div>
+                            </li>
+                            <li class="process__step m-surface"> <span class="m-text-3">Step 2</span>
+                                <h3 class="m-title">Share</h3>
+                                <p class="m-text">Post a suggestion or ask for support. Tell us as much or as little as you like.</p>
+                                <div class="process__visual" aria-hidden="true"> <span class="process__seal"><span class="process__seal-down"></span><span class="process__seal-up"></span></span>
+                                </div>
+                            </li>
+                            <li class="process__step m-surface"> <span class="m-text-3">Step 3</span>
+                                <h3 class="m-title">Review</h3>
+                                <p class="m-text">The council team reads every message and discusses it at our next meeting.</p>
+                                <div class="process__visual" aria-hidden="true"> <span class="process__hole"></span> </div>
+                            </li>
+                            <li class="process__step m-surface"> <span class="m-text-3">Step 4</span>
+                                <h3 class="m-title">Action</h3>
+                                <p class="m-text">We act on it, follow up with you and update everyone on what changed.</p>
+                                <div class="process__visual" aria-hidden="true"> <span class="process__tilt"><span class="process__net"> <span class="process__face process__face--base"></span> <span class="process__face process__face--n"></span> <span class="process__face process__face--e"></span>
+                                    <span
+                                        class="process__face process__face--s"></span> <span class="process__face process__face--w"></span> </span>
+                                        </span>
+                                </div>
+                            </li>
+                        </ol>
+                        <div class="process__end">
+                            <p class="m-title">A first reply usually lands within a week.</p> <a class="m-link-2" href="#kit">Start with login</a> </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="work" data-section="work" aria-labelledby="work-title">
+            <div class="work__head">
+                <h2 class="work__title m-cut" id="work-title">Events we have completed</h2>
+                <p class="m-text-2">Four recent celebrations, and every one matters. Onam 2025 and Teacher's Day 2K26 are part of our story too.</p>
+            </div>
+            <ol class="work__list" data-items=":scope > .work__item">
+                <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
+                    <div class="work__sleeve-wrap" aria-hidden="true">
+                        <div class="work__sleeve m-surface"><span class="work__client m-title">Pongal</span></div> <span class="work__rim"></span> </div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/DWd1pMUE75l/embed/?autoplay=1&muted=1" title="Pongal 2K26 celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__info">
+                        <h3 class="m-title">Pongal 2K26</h3>
+                        <p class="m-text">A harvest celebration with kolam, sweets and music. Students shared the traditions that make our campus feel like home.</p>
+                        <dl class="work__specs">
+                            <div><dt class="m-text-3">Date</dt>
+                                <dd class="m-text">[EVENT DATE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Type</dt>
+                                <dd class="m-text">[EVENT TYPE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Venue</dt>
+                                <dd class="m-text">[VENUE]</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </li>
+                <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
+                    <div class="work__sleeve-wrap" aria-hidden="true">
+                        <div class="work__sleeve m-surface"><span class="work__client m-title">Mass 2K26</span></div> <span class="work__rim"></span> </div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/Dd87NKRzsSq/embed/?autoplay=1&muted=1" title="Mass 2K26 celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__info">
+                        <h3 class="m-title">Mass 2K26</h3>
+                        <p class="m-text">A calm, joyful campus Mass that brought students, staff and families together for a morning of reflection.</p>
+                        <dl class="work__specs">
+                            <div><dt class="m-text-3">Date</dt>
+                                <dd class="m-text">[EVENT DATE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Type</dt>
+                                <dd class="m-text">[EVENT TYPE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Venue</dt>
+                                <dd class="m-text">[VENUE]</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </li>
+                <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
+                    <div class="work__sleeve-wrap" aria-hidden="true">
+                        <div class="work__sleeve m-surface"><span class="work__client m-title">Movie</span></div> <span class="work__rim"></span> </div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/DeRgVvWT9wn/embed/?autoplay=1&muted=1" title="Movie Mania celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__info">
+                        <h3 class="m-title">Movie Mania</h3>
+                        <p class="m-text">A big-screen movie night with popcorn, friends and a campus full of laughter under the open stars.</p>
+                        <dl class="work__specs">
+                            <div><dt class="m-text-3">Date</dt>
+                                <dd class="m-text">[EVENT DATE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Type</dt>
+                                <dd class="m-text">[EVENT TYPE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Venue</dt>
+                                <dd class="m-text">[VENUE]</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </li>
+                <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
+                    <div class="work__sleeve-wrap" aria-hidden="true">
+                        <div class="work__sleeve m-surface"><span class="work__client m-title">Symposium</span></div> <span class="work__rim"></span> </div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/DcfgGwSTf9D/embed/?autoplay=1&muted=1" title="Symposium 26 reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__info">
+                        <h3 class="m-title">Symposium 26</h3>
+                        <p class="m-text">A day of talks, ideas and student presentations that showed how much our campus truly has to say.</p>
+                        <dl class="work__specs">
+                            <div><dt class="m-text-3">Date</dt>
+                                <dd class="m-text">[EVENT DATE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Type</dt>
+                                <dd class="m-text">[EVENT TYPE]</dd>
+                            </div>
+                            <div><dt class="m-text-3">Venue</dt>
+                                <dd class="m-text">[VENUE]</dd>
+                            </div>
+                        </dl>
+                    </div>
+                </li>
+            </ol>
+        </section>
+        <section id="studio" data-section="studio" aria-labelledby="studio-title">
+            <div class="studio__tray m-ply">
+                <h2 class="studio__title m-raised" id="studio-title" data-motion="emboss">About the Student Council</h2>
+                <p class="studio__lead m-text-2">A team of elected students, one shared table and a promise to show up for every voice on campus.</p>
+                <figure class="studio__photo studio__photo--bench"><img style="background:#40260c" src="img/student-council-collaboration-vector.svg" width="1000" height="667" alt="Geometric vector art of PPGIT Student Council collaborating on campus initiatives" loading="lazy" decoding="async"></figure>
+                <div
+                    class="studio__story">
+                    <p class="m-text">The PPG Institute of Technology Student Council was formed in 2026 to give students a clear, friendly place to share ideas and shape campus life.</p>
+                    <p class="m-text">We organise events, represent you with the college and support student wellbeing. Every choice starts with what students need.</p>
+            </div>
+            <blockquote class="studio__quote">
+                <p class="m-title" data-motion="emboss">We are here to listen first, then act. Every student should feel heard, supported and at home.</p>
+                <footer class="m-text-3">[PRESIDENT NAME], President, Student Council</footer>
+            </blockquote>
+            <figure class="studio__photo studio__photo--type"><img src="img/campus-culture-vector.svg" width="700" height="467" alt="Geometric vector art celebrating campus culture, arts and events at PPGIT" loading="lazy" decoding="async" style="background:#c0a68c;object-position: 40% 50%"></figure>
+            </div>
+        </section>
+        <section id="materials" data-section="materials" aria-labelledby="materials-title">
+            <div class="materials__head">
+                <h2 class="materials__title m-cut" id="materials-title">Meet the council</h2>
+                <figure class="materials__photo"><img style="background:#404026" src="img/student-wellbeing-vector.svg" width="800" height="534" alt="Geometric vector art of student wellbeing, community and peer support at PPGIT" loading="lazy" decoding="async"></figure>
+                <p class="m-text-2">Five students, one team. Each role carries a different job, and together we make sure every voice on campus is heard.</p>
+            </div>
+            <ol class="materials__list" data-items=":scope > .materials__item">
+                <li class="materials__item"> <span class="materials__crease" data-motion="crease" aria-hidden="true"></span> <span class="materials__section" aria-hidden="true"><span class="materials__ply"></span><span class="materials__ply"></span></span>
+                    <div class="materials__name">
+                        <h3 class="m-title">President</h3>
+                        <p class="m-text-3">[MEMBER NAME]</p>
+                    </div>
+                    <dl class="materials__specs">
+                        <div><dt class="m-text-3">Department / Year</dt>
+                            <dd class="m-text">[DEPARTMENT], 2026</dd>
+                        </div>
+                        <div><dt class="m-text-3">Responsibility</dt>
+                            <dd class="m-text">Leads the team and student voice</dd>
+                        </div>
+                    </dl>
+                </li>
+                <li class="materials__item"> <span class="materials__crease" data-motion="crease" aria-hidden="true"></span> <span class="materials__section" aria-hidden="true"><span class="materials__ply materials__ply--thick"></span><span class="materials__ply materials__ply--thick"></span>
+                    <span
+                        class="materials__ply materials__ply--thick"></span>
+                        </span>
+                        <div class="materials__name">
+                            <h3 class="m-title">Vice President</h3>
+                            <p class="m-text-3">[MEMBER NAME]</p>
+                        </div>
+                        <dl class="materials__specs">
+                            <div><dt class="m-text-3">Department / Year</dt>
+                                <dd class="m-text">[DEPARTMENT], 2026</dd>
+                            </div>
+                            <div><dt class="m-text-3">Responsibility</dt>
+                                <dd class="m-text">Supports the team and steps in</dd>
+                            </div>
+                        </dl>
+                </li>
+                <li class="materials__item"> <span class="materials__crease" data-motion="crease" aria-hidden="true"></span> <span class="materials__section" aria-hidden="true"><span class="materials__ply"></span><span class="materials__ply materials__ply--flute"></span><span class="materials__ply"></span></span>
+                    <div class="materials__name">
+                        <h3 class="m-title">Secretary</h3>
+                        <p class="m-text-3">[MEMBER NAME]</p>
+                    </div>
+                    <dl class="materials__specs">
+                        <div><dt class="m-text-3">Department / Year</dt>
+                            <dd class="m-text">[DEPARTMENT], 2026</dd>
+                        </div>
+                        <div><dt class="m-text-3">Responsibility</dt>
+                            <dd class="m-text">Keeps records and meeting notes</dd>
+                        </div>
+                    </dl>
+                </li>
+                <li class="materials__item"> <span class="materials__crease" data-motion="crease" aria-hidden="true"></span> <span class="materials__section" aria-hidden="true"><span class="materials__ply"></span><span class="materials__ply materials__ply--flute-b"></span><span class="materials__ply"></span></span>
+                    <div class="materials__name">
+                        <h3 class="m-title">Treasurer</h3>
+                        <p class="m-text-3">[MEMBER NAME]</p>
+                    </div>
+                    <dl class="materials__specs">
+                        <div><dt class="m-text-3">Department / Year</dt>
+                            <dd class="m-text">[DEPARTMENT], 2026</dd>
+                        </div>
+                        <div><dt class="m-text-3">Responsibility</dt>
+                            <dd class="m-text">Manages the council budget</dd>
+                        </div>
+                    </dl>
+                </li>
+                <li class="materials__item"> <span class="materials__crease" data-motion="crease" aria-hidden="true"></span> <span class="materials__section" aria-hidden="true"><span class="materials__ply"></span><span class="materials__ply materials__ply--comb"></span><span class="materials__ply"></span></span>
+                    <div class="materials__name">
+                        <h3 class="m-title">Event Coordinator</h3>
+                        <p class="m-text-3">[MEMBER NAME]</p>
+                    </div>
+                    <dl class="materials__specs">
+                        <div><dt class="m-text-3">Department / Year</dt>
+                            <dd class="m-text">[DEPARTMENT], 2026</dd>
+                        </div>
+                        <div><dt class="m-text-3">Responsibility</dt>
+                            <dd class="m-text">Plans and runs campus events</dd>
+                        </div>
+                    </dl>
+                </li>
+            </ol>
+            <div class="materials__punch">
+                <div class="materials__punch-text">
+                    <h3 class="m-title">A student login, made for you</h3>
+                    <p class="m-text">Login is available only with your college mail ID ending in @ppg.edu.in. Use it to see events, send suggestions and ask for support.</p>
+                </div>
+                <div class="materials__die" aria-hidden="true"> <span class="materials__hole"></span> <span class="materials__disc m-board"></span> </div>
+            </div>
+        </section>
+        <section id="kit" data-section="kit" aria-labelledby="kit-title">
+            <div class="kit__lid m-surface"> <span class="kit__socket m-well" aria-hidden="true"></span>
+                <p class="kit__name m-cut">Login here</p>
+                <p class="m-text-2">Log in any time with your college mail ID.</p>
+                <p class="m-text">Inside: a place for your suggestions, a calendar of upcoming events and private wellbeing support, all in one place.</p>
+            </div>
+            <div class="kit__slip m-surface">
+                <h2 class="kit__title m-cut" id="kit-title">Get involved</h2>
+                <ol class="kit__rows" data-items=":scope > .kit__row">
+                    <li class="kit__row">
+                        <h3 class="m-title">Share a Suggestion</h3>
+                        <p class="m-text">Tell us what would make campus life better. Every idea gets read.</p>
+                        <p class="kit__price m-cut" data-motion="press">Free<span class="kit__unit m-text-3">for every student</span></p>
+                    </li>
+                    <li class="kit__row">
+                        <h3 class="m-title">Mental Health Support</h3>
+                        <p class="m-text">Your mental health matters to us. It will stay confidential.</p>
+                        <p class="kit__price m-cut" data-motion="press">Private<span class="kit__unit m-text-3">stays confidential</span></p>
+                    </li>
+                    <li class="kit__row">
+                        <h3 class="m-title">Upcoming Events</h3>
+                        <p class="m-text">See what is next on campus, sign up for the events you love and invite a friend.</p>
+                        <p class="kit__price m-cut" data-motion="press">Open<span class="kit__unit m-text-3">to all students</span></p>
+                    </li>
+                </ol>
+                <div class="kit__actions"> <a class="m-btn" href="#contact"><span class="m-btn__label">Login to suggest</span></a> <a class="m-link-2" href="#contact">Talk to us</a> </div>
+            </div>
+        </section>
+        <section id="faq" data-section="faq" aria-labelledby="faq-title">
+            <div class="faq__head">
+                <h2 class="faq__title m-cut" id="faq-title" data-motion="emboss">Before you ask</h2>
+                <p class="m-text">The questions we hear most from students. If yours is not here, write to us and we will help.</p>
+            </div>
+            <div class="faq__list" data-items=":scope > .faq__item">
+                <div class="faq__item"> <span class="faq__crease" data-motion="crease" aria-hidden="true"></span>
+                    <details class="faq__details">
+                        <summary class="faq__summary"><span class="m-title">Who can log in?</span><span class="faq__mark" aria-hidden="true"></span></summary>
+                        <p class="faq__answer m-text">Only students with a valid college mail ID ending in @ppg.edu.in can log in. Use that address to enter, and please never share your password or login details with anyone.</p>
+                    </details>
+                </div>
+                <div class="faq__item"> <span class="faq__crease" data-motion="crease" aria-hidden="true"></span>
+                    <details class="faq__details">
+                        <summary class="faq__summary"><span class="m-title">Is my mental-health message really confidential?</span><span class="faq__mark" aria-hidden="true"></span></summary>
+                        <p class="faq__answer m-text">Yes. Your message goes only to the council team and stays private. We listen first and never share your details without permission.</p>
+                    </details>
+                </div>
+                <div class="faq__item"> <span class="faq__crease" data-motion="crease" aria-hidden="true"></span>
+                    <details class="faq__details">
+                        <summary class="faq__summary"><span class="m-title">How do I send a suggestion?</span><span class="faq__mark" aria-hidden="true"></span></summary>
+                        <p class="faq__answer m-text">Log in with your college mail, open Student Suggestions and write your idea. You can send it with your name or anonymously, and we read every one.</p>
+                    </details>
+                </div>
+                <div class="faq__item"> <span class="faq__crease" data-motion="crease" aria-hidden="true"></span>
+                    <details class="faq__details">
+                        <summary class="faq__summary"><span class="m-title">How can I join the Student Council?</span><span class="faq__mark" aria-hidden="true"></span></summary>
+                        <p class="faq__answer m-text">Watch the Upcoming section for our yearly intake. Applications usually open before the new term, and every student is welcome to apply.</p>
+                    </details>
+                </div>
+                <div class="faq__item"> <span class="faq__crease" data-motion="crease" aria-hidden="true"></span>
+                    <details class="faq__details">
+                        <summary class="faq__summary"><span class="m-title">Where can I see upcoming and past events?</span><span class="faq__mark" aria-hidden="true"></span></summary>
+                        <p class="faq__answer m-text">The Upcoming section lists what is next, and Events holds our past celebrations. If you need help finding one, contact us.</p>
+                    </details>
+                </div>
+            </div>
+        </section>
+        <section id="contact" data-section="contact" aria-labelledby="contact-title"> <span class="contact__light" aria-hidden="true"></span>
+            <h2 class="contact__title" id="contact-title"> <span class="contact__line contact__line--raised"><span class="contact__channel m-ply"><span class="contact__word m-raised" style="--len:11">Let's talk.</span></span>
+                </span> <span class="contact__line contact__line--cut"><span class="contact__word m-cut" style="--len:10">We listen.</span></span>
+            </h2>
+            <div class="contact__body">
+                <form class="contact__form" action="#contact" data-mailto="[COUNCIL EMAIL]">
+                    <p class="m-text-2">Tell us what is on your mind. We reply within two working days, and every message is read by a real student.</p> <label class="m-field"><span class="m-field__label">Your name</span><input class="m-field__input" name="name" type="text" autocomplete="name" required></label>                    <label class="m-field"><span class="m-field__label">College email (@ppg.edu.in)</span><input class="m-field__input" name="email" type="email" autocomplete="email" required></label> <label class="m-field contact__wide"><span class="m-field__label">Your suggestion or message</span><textarea class="m-field__input" name="brief" rows="5" placeholder="Your idea, event question or message for the council"></textarea></label>                    <button class="m-btn" type="submit"><span class="m-btn__label">Send message</span></button> </form>
+                <div class="contact__details">
+                    <div><span class="m-text-3">Write</span><a class="m-link-2" href="mailto:[COUNCIL EMAIL]">[COUNCIL EMAIL]</a></div>
+                    <div><span class="m-text-3">Call</span><a class="m-link-2" href="tel:[PHONE]">[PHONE]</a></div>
+                    <div><span class="m-text-3">Visit</span><address class="m-text">PPG Institute of Technology<br>Rathnagiri Road, Viswasapuram, Saravanampatti, Coimbatore, Tamil Nadu 641035</address></div>
+                    <div><span class="m-text-3">Open</span>
+                        <p class="m-text">Monday to Friday, [COLLEGE HOURS]</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer id="footer" data-section="footer">
+        <div class="footer__tray m-ply">
+            <p class="footer__mark m-raised" style="--len:16" data-motion="rake">Student Council.</p> <span class="footer__crease" data-motion="crease" aria-hidden="true"></span>
+            <div class="footer__cols">
+                <div class="footer__col" data-motion="emboss">
+                    <p class="m-text-3">About</p>
+                    <p class="m-text">Student Council of PPG Institute of Technology. Events, ideas and support by students, for students.</p>
+                </div>
+                <nav class="footer__col" aria-label="Footer" data-motion="emboss">
+                    <p class="m-text-3">Pages</p>
+                    <ul>
+                        <li><a class="m-link-2" href="#finishes">Upcoming</a></li>
+                        <li><a class="m-link-2" href="#process">Steps</a></li>
+                        <li><a class="m-link-2" href="#work">Events</a></li>
+                        <li><a class="m-link-2" href="#kit">Login</a></li>
+                    </ul>
+                </nav>
+                <div class="footer__col" data-motion="emboss">
+                    <p class="m-text-3">Contact</p>
+                    <ul>
+                        <li><a class="m-link-2" href="mailto:[COUNCIL EMAIL]">[COUNCIL EMAIL]</a></li>
+                        <li><a class="m-link-2" href="tel:[PHONE]">[PHONE]</a></li>
+                    </ul>
+                </div>
+                <div class="footer__col" data-motion="emboss">
+                    <p class="m-text-3">Visit</p>
+                    <p class="m-text">PPG Institute of Technology<br>Rathnagiri Road, Viswasapuram, Saravanampatti, Coimbatore, Tamil Nadu 641035</p>
+                </div>
+            </div>
+            <div class="footer__legal">
+                <p class="m-text">© 2026 Student Council, PPG Institute of Technology.</p> <a class="m-link-2" href="#hero">Back to the top</a> </div>
+        </div>
+    </footer>
+    <script src="js/gsap.min.js"></script>
+    <script src="js/ScrollTrigger.min.js"></script>
+    <script src="js/lenis.min.js"></script>
+    <script data-part="motion-queue">
+        (() => {
+            "use strict";
+            const fonts = document.fonts ? document.fonts.ready : Promise.resolve();
+            const parsed = document.readyState === "loading" ? new Promise(resolve => document.addEventListener("DOMContentLoaded", resolve, {
+                once: true
+            })) : Promise.resolve();
+            const ready = () => Promise.all([fonts, parsed]).then(() => firsts);
+            const nextTask = () => window.scheduler ?.yield ?.() ?? new Promise(resolve => setTimeout(resolve));
+            const refresh = () => {
+                if (typeof window.refreshScroll === "function") return window.refreshScroll();
+                window.ScrollTrigger ?.sort();
+                window.ScrollTrigger ?.refresh()
+            };
+            const run = (setup, name) => {
+                for (const trigger of window.ScrollTrigger ?.getAll() || [])
+                    if (!trigger.end && window.ScrollTrigger.getAll().includes(trigger)) trigger.refresh(0, 1);
+                const context = window.gsap.context(() => {});
+                const log = new MutationObserver(() => {});
+                log.observe(document.documentElement, {
+                    attributes: true,
+                    attributeOldValue: true,
+                    subtree: true
+                });
+                let failure = null,
+                    records;
+                try {
+                    context.add(() => {
+                        try {
+                            setup()
+                        } catch (error) {
+                            failure = error
+                        }
+                    })
+                } finally {
+                    records = log.takeRecords();
+                    log.disconnect()
+                }
+                if (!failure) return true;
+                try {
+                    context.revert()
+                } catch (error) {
+                    console.error(name, "revert failed", error)
+                }
+                for (const {
+                        target,
+                        attributeName,
+                        oldValue
+                    } of records.reverse()) {
+                    const now = target.getAttribute(attributeName);
+                    if (oldValue == null) {
+                        if (now != null) target.removeAttribute(attributeName)
+                    } else if (now !== oldValue) target.setAttribute(attributeName, oldValue)
+                }
+                console.error(name, failure);
+                return false
+            };
+            let firsts = Promise.resolve(),
+                tail = null,
+                pending = 0,
+                lazy = null,
+                building = 0;
+            window.queueMotion = (setup, {
+                first = false,
+                near,
+                id
+            } = {}) => {
+                if (!window.gsap || typeof setup !== "function") return;
+                const name = id || document.currentScript ?.getAttribute("data-part") || "motion";
+                if (near instanceof Element && window.IntersectionObserver) {
+                    const watch = new IntersectionObserver(entries => {
+                        if (!entries.some(entry => entry.isIntersecting)) return;
+                        watch.disconnect();
+                        building++;
+                        lazy = (lazy || ready()).then(nextTask).then(() => run(setup, name)).finally(() => {
+                            if (!--building) refresh()
+                        })
+                    }, {
+                        rootMargin: "100% 0px"
+                    });
+                    watch.observe(near);
+                    return
+                }
+                if (first) firsts = firsts.then(() => fonts).then(() => {
+                    if (!run(setup, name)) refresh()
+                });
+                else {
+                    pending++;
+                    tail = (tail || ready()).then(nextTask).then(() => run(setup, name)).finally(() => {
+                        if (!--pending) refresh()
+                    })
+                }
+                window.motionReady = Promise.all([firsts, tail])
+            };
+            window.adjacent = (a, b) => {
+                const order = [...document.querySelectorAll("[data-section]")].filter(section => section.getAttribute("data-section") !== "navigation").map(section => section.id);
+                return order.indexOf(a) >= 0 && order[order.indexOf(a) + 1] === b
+            }
+        })();
+    </script>
+    <script data-part="page-init">
+        gsap.registerPlugin(ScrollTrigger);
+
+        function refreshScroll() {
+            ScrollTrigger.sort();
+            ScrollTrigger.refresh()
+        }
+        gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+            const nav = document.getElementById("navigation");
+            const offset = nav ? -nav.querySelector(".nav__bar").offsetHeight : 0;
+            const lenis = window.lenis = new Lenis({
+                lerp: .085,
+                wheelMultiplier: .9,
+                anchors: {
+                    offset
+                }
+            });
+            const tick = time => lenis.raf(time * 1e3);
+            lenis.on("scroll", ScrollTrigger.update);
+            gsap.ticker.add(tick);
+            gsap.ticker.lagSmoothing(0);
+            return () => {
+                gsap.ticker.remove(tick);
+                gsap.ticker.lagSmoothing(500, 33);
+                lenis.destroy();
+                window.lenis = null
+            }
+        });
+    </script>
+    <script data-part="motion">
+        const relief = {
+            recipe(element, token, prop = "textShadow") {
+                const before = element.style[prop];
+                element.style[prop] = `var(${token})`;
+                const value = getComputedStyle(element)[prop];
+                element.style[prop] = before;
+                return value
+            },
+            flat(value) {
+                return value.replace(/-?\d*\.?\d+px/g, "0px")
+            },
+            mirror(value) {
+                return value.replace(/(-?\d*\.?\d+)px\s+(-?\d*\.?\d+)px/g, (match, x, y) => `${-parseFloat(x)}px ${y}px`)
+            },
+            prop(element) {
+                const style = getComputedStyle(element);
+                if (style.textShadow !== "none") return "textShadow";
+                if (style.boxShadow !== "none") return "boxShadow";
+                return null
+            }
+        };
+        const effects = {
+            emboss(element, vars = {}) {
+                const prop = relief.prop(element);
+                const from = {
+                        x: 3,
+                        y: 8
+                    },
+                    to = {
+                        x: 0,
+                        y: 0,
+                        duration: 1.1,
+                        ease: "power3.out"
+                    };
+                if (prop) {
+                    const rest = getComputedStyle(element)[prop];
+                    from[prop] = relief.flat(rest);
+                    to[prop] = rest
+                }
+                return gsap.timeline(vars).fromTo(element, from, to)
+            },
+            crease(element, vars = {}) {
+                return gsap.timeline(vars).fromTo(element, {
+                    scaleX: 0,
+                    transformOrigin: "0% 50%"
+                }, {
+                    scaleX: 1,
+                    duration: 1.3,
+                    ease: "power2.inOut"
+                })
+            },
+            press(element, vars = {}) {
+                const rest = getComputedStyle(element).textShadow;
+                return gsap.timeline(vars).fromTo(element, {
+                    textShadow: relief.recipe(element, "--shadow-10"),
+                    scale: 1.035,
+                    y: -3,
+                    transformOrigin: "0% 60%"
+                }, {
+                    textShadow: rest,
+                    scale: 1,
+                    y: 0,
+                    ease: "none",
+                    duration: 1
+                })
+            },
+            rake(element, vars = {}) {
+                const rest = getComputedStyle(element).textShadow;
+                return gsap.timeline(vars).fromTo(element, {
+                    textShadow: relief.mirror(rest)
+                }, {
+                    textShadow: rest,
+                    ease: "none",
+                    duration: 1
+                })
+            }
+        };
+        const effectTriggers = {
+            emboss: {
+                start: "top 88%",
+                once: true
+            },
+            crease: {
+                start: "top 92%",
+                once: true
+            },
+            press: {
+                start: "top 92%",
+                end: "top 48%",
+                scrub: true
+            },
+            rake: {
+                start: "top bottom",
+                end: "top 30%",
+                scrub: true
+            }
+        };
+        document.querySelectorAll("[data-section]").forEach(section => {
+            Object.keys(effectTriggers).forEach(name => {
+                const elements = section.querySelectorAll(`[data-motion~="${name}"]`);
+                if (!elements.length) return;
+                const id = `effect:${name}:${section.id}`;
+                queueMotion(() => gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+                    elements.forEach((element, index) => ScrollTrigger.create({
+                        id: `${id}:${index}`,
+                        trigger: element,
+                        ...effectTriggers[name],
+                        animation: effects[name](element)
+                    }))
+                }), {
+                    first: section.getBoundingClientRect().top < innerHeight,
+                    id
+                })
+            })
+        });
+    </script>
+    <script data-part="scene:hero" data-scene-sections="hero">
+        queueMotion(() => {
+            gsap.matchMedia().add({
+                wide: "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+                narrow: "(max-width: 767.98px) and (prefers-reduced-motion: no-preference)"
+            }, context => {
+                if (!adjacent("hero", "craft")) return;
+                const hero = document.getElementById("hero");
+                const flap = hero.querySelector(".hero__flap");
+                const wash = hero.querySelector(".hero__wash");
+                const depth = context.conditions.narrow ? .9 : .86;
+                gsap.set(flap, {
+                    willChange: "transform"
+                });
+                gsap.timeline({
+                    scrollTrigger: {
+                        id: "hero:exit",
+                        trigger: hero,
+                        start: "bottom bottom",
+                        end: "bottom top",
+                        scrub: true,
+                        invalidateOnRefresh: true,
+                        onUpdate: self => hero.toggleAttribute("data-sinking", self.progress > 0)
+                    }
+                }).fromTo(flap, {
+                    y: 0,
+                    scale: 1,
+                    transformOrigin: "50% 40%"
+                }, {
+                    y: () => window.innerHeight,
+                    scale: depth,
+                    ease: "none"
+                }, 0).fromTo(wash, {
+                    opacity: 0
+                }, {
+                    opacity: .42,
+                    ease: "none"
+                }, 0);
+                return () => hero.removeAttribute("data-sinking")
+            })
+        }, {
+            first: true,
+            id: "scene:hero"
+        });
+    </script>
+    <script data-part="scene:craft" data-scene-sections="craft">
+        queueMotion(() => {
+            gsap.matchMedia().add({
+                wide: "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+                narrow: "(max-width: 767.98px) and (prefers-reduced-motion: no-preference)"
+            }, context => {
+                const craft = document.getElementById("craft");
+                const flap = craft.querySelector(".craft__flap");
+                const statement = craft.querySelector(".craft__statement");
+                const roller = craft.querySelector(".craft__roller");
+                const lines = [...statement.querySelectorAll(".craft__line")];
+                const rest = lines.map(line => getComputedStyle(line).textShadow);
+                craft.setAttribute("data-press", "");
+                lines.forEach(line => line.setAttribute("data-pressed", "0"));
+                const fade = [
+                    [.45, 1],
+                    [.4, .8],
+                    [.35, .5],
+                    [.2, .45]
+                ];
+                lines.forEach((line, index) => {
+                    const [left, right] = fade[Math.min(index, fade.length - 1)];
+                    line.style.setProperty("--a", left);
+                    line.style.setProperty("--b", right)
+                });
+                if (adjacent("hero", "craft")) {
+                    const width = context.conditions.narrow ? .92 : .94;
+                    gsap.set(flap, {
+                        willChange: "transform"
+                    });
+                    gsap.timeline({
+                        scrollTrigger: {
+                            id: "craft:entry",
+                            trigger: craft,
+                            start: "top bottom",
+                            end: "top top",
+                            scrub: true
+                        }
+                    }).fromTo(flap, {
+                        scale: width,
+                        transformOrigin: "50% 0%"
+                    }, {
+                        scale: 1,
+                        ease: "none"
+                    }, 0)
+                }
+                const pad = .7,
+                    span = lines.length + pad * 2;
+                const lineHeight = () => statement.offsetHeight / lines.length;
+                const press = gsap.timeline({
+                    defaults: {
+                        ease: "none"
+                    },
+                    scrollTrigger: {
+                        id: "craft:press",
+                        trigger: craft,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: true,
+                        invalidateOnRefresh: true
+                    }
+                });
+                press.fromTo(roller, {
+                    y: () => -roller.offsetHeight / 2 - lineHeight() * pad
+                }, {
+                    y: () => statement.offsetHeight + lineHeight() * pad - roller.offsetHeight / 2,
+                    duration: 1
+                }, 0).fromTo(roller, {
+                    autoAlpha: 0
+                }, {
+                    autoAlpha: 1,
+                    duration: .06
+                }, 0).to(roller, {
+                    autoAlpha: 0,
+                    duration: .06
+                }, .94);
+                lines.forEach((line, index) => {
+                    const at = (pad + index + .5) / span;
+                    press.fromTo(line, {
+                        textShadow: relief.flat(rest[index])
+                    }, {
+                        textShadow: rest[index],
+                        duration: .09
+                    }, at - .045).fromTo(line, {
+                        "--lit": 0
+                    }, {
+                        "--lit": 1,
+                        duration: .045
+                    }, at - .045).set(line, {
+                        attr: {
+                            "data-pressed": 1
+                        }
+                    }, at)
+                });
+                return () => {
+                    craft.removeAttribute("data-press");
+                    lines.forEach(line => line.removeAttribute("data-pressed"))
+                }
+            })
+        }, {
+            first: true,
+            id: "scene:craft"
+        });
+    </script>
+    <script data-part="scene:finishes" data-scene-sections="finishes">
+        queueMotion(() => {
+            gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+                const section = document.getElementById("finishes");
+                const grid = section.querySelector(".finishes__grid");
+                const swatches = [...grid.querySelectorAll(".finishes__swatch")];
+                const turns = [-9, 6, -3, 8, -6, 4, -2, 7];
+                const pile = () => {
+                    const box = grid.getBoundingClientRect();
+                    const first = swatches[0].getBoundingClientRect();
+                    return {
+                        x: box.left + box.width / 2,
+                        y: first.top + first.height / 2
+                    }
+                };
+                const offset = (swatch, axis) => {
+                    const point = pile();
+                    const box = swatch.getBoundingClientRect();
+                    const current = gsap.getProperty(swatch, axis);
+                    return axis === "x" ? point.x - (box.left + box.width / 2 - current) : point.y - (box.top + box.height / 2 - current)
+                };
+                const deal = gsap.timeline({
+                    scrollTrigger: {
+                        id: "finishes",
+                        trigger: grid,
+                        start: "top 85%",
+                        end: "top 15%",
+                        scrub: true,
+                        invalidateOnRefresh: true
+                    }
+                });
+                swatches.forEach((swatch, index) => {
+                    deal.fromTo(swatch, {
+                        x: () => offset(swatch, "x"),
+                        y: () => offset(swatch, "y"),
+                        rotation: turns[index % turns.length],
+                        scale: .82,
+                        zIndex: swatches.length - index
+                    }, {
+                        x: 0,
+                        y: 0,
+                        rotation: 0,
+                        scale: 1,
+                        ease: "power2.inOut",
+                        duration: .6
+                    }, index * .08)
+                })
+            })
+        }, {
+            id: "scene:finishes"
+        });
+    </script>
+    <script data-part="scene:process" data-scene-sections="process">
+        queueMotion(() => {
+            gsap.matchMedia().add({
+                wide: "(min-width: 768px) and (prefers-reduced-motion: no-preference)",
+                narrow: "(max-width: 767.98px) and (prefers-reduced-motion: no-preference)"
+            }, context => {
+                const section = document.getElementById("process");
+                const channel = section.querySelector(".process__channel");
+                const track = section.querySelector(".process__track");
+                const [draw, press, cut, fold] = section.querySelectorAll(".process__step");
+                section.setAttribute("data-track", "");
+                const distance = () => Math.max(0, track.scrollWidth - channel.clientWidth);
+                const measure = () => section.style.setProperty("--process-distance", `${distance()}px`);
+                measure();
+                ScrollTrigger.addEventListener("refreshInit", measure);
+                const travel = gsap.to(track, {
+                    x: () => -distance(),
+                    ease: "none",
+                    scrollTrigger: {
+                        id: "process",
+                        trigger: section,
+                        start: "top top",
+                        end: "bottom bottom",
+                        scrub: true,
+                        invalidateOnRefresh: true
+                    }
+                });
+                const station = (step, id, start = "center 82%", end = "center 46%") => ({
+                    id: `process:${id}`,
+                    trigger: step,
+                    containerAnimation: travel,
+                    start,
+                    end,
+                    scrub: true
+                });
+                if (draw) {
+                    gsap.timeline({
+                        scrollTrigger: station(draw, "dieline")
+                    }).fromTo(draw.querySelector(".process__dieline-cut"), {
+                        strokeDasharray: 1,
+                        strokeDashoffset: 1
+                    }, {
+                        strokeDashoffset: 0,
+                        ease: "none",
+                        duration: 1
+                    }, 0).fromTo(draw.querySelector(".process__dieline-score"), {
+                        opacity: 0
+                    }, {
+                        opacity: .75,
+                        ease: "none",
+                        duration: .35
+                    }, .65)
+                }
+                if (press) {
+                    gsap.timeline({
+                        scrollTrigger: station(press, "press")
+                    }).fromTo(press.querySelector(".process__seal"), {
+                        scale: 1.08
+                    }, {
+                        scale: 1,
+                        ease: "power2.in",
+                        duration: 1
+                    }, 0).fromTo(press.querySelector(".process__seal-up"), {
+                        opacity: 1
+                    }, {
+                        opacity: 0,
+                        ease: "none",
+                        duration: .45
+                    }, .55).fromTo(press.querySelector(".process__seal-down"), {
+                        opacity: 0
+                    }, {
+                        opacity: 1,
+                        ease: "none",
+                        duration: .45
+                    }, .55)
+                }
+                if (cut) {
+                    gsap.timeline({
+                        scrollTrigger: station(cut, "cut")
+                    }).fromTo(cut.querySelector(".process__hole"), {
+                        clipPath: "inset(50% 50% 50% 50% round 999px 999px 6px 6px)"
+                    }, {
+                        clipPath: "inset(0% 0% 0% 0% round 999px 999px 6px 6px)",
+                        ease: "power2.out",
+                        duration: 1
+                    }, 0)
+                }
+                if (fold) {
+                    const tilt = fold.querySelector(".process__tilt");
+                    const net = fold.querySelector(".process__net");
+                    const face = name => fold.querySelector(`.process__face--${name}`);
+                    gsap.timeline({
+                        defaults: {
+                            ease: "power1.inOut",
+                            duration: 1
+                        },
+                        scrollTrigger: context.conditions.narrow ? station(fold, "fold", "center 60%", "center 28%") : station(fold, "fold", "center 74%", "center 45%")
+                    }).fromTo(tilt, {
+                        rotationX: 0,
+                        scale: 1
+                    }, {
+                        rotationX: 52,
+                        scale: 1.2
+                    }, 0).fromTo(net, {
+                        rotation: 0
+                    }, {
+                        rotation: -40
+                    }, 0).fromTo(face("n"), {
+                        rotationX: 0,
+                        filter: "brightness(1)"
+                    }, {
+                        rotationX: -90,
+                        filter: "brightness(.78)"
+                    }, 0).fromTo(face("s"), {
+                        rotationX: 0,
+                        filter: "brightness(1)"
+                    }, {
+                        rotationX: 90,
+                        filter: "brightness(.95)"
+                    }, 0).fromTo(face("w"), {
+                        rotationY: 0,
+                        filter: "brightness(1)"
+                    }, {
+                        rotationY: 90,
+                        filter: "brightness(.84)"
+                    }, 0).fromTo(face("e"), {
+                        rotationY: 0,
+                        filter: "brightness(1)"
+                    }, {
+                        rotationY: -90,
+                        filter: "brightness(.92)"
+                    }, 0)
+                }
+                return () => {
+                    ScrollTrigger.removeEventListener("refreshInit", measure);
+                    section.removeAttribute("data-track");
+                    section.style.removeProperty("--process-distance")
+                }
+            })
+        }, {
+            id: "scene:process"
+        });
+    </script>
+    <script data-part="scene:work" data-scene-sections="work">
+        queueMotion(() => {
+            gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+                const section = document.getElementById("work");
+                section.querySelectorAll(".work__item").forEach((item, index) => {
+                    const sleeve = item.querySelector(".work__sleeve-wrap");
+                    const tray = item.querySelector(".work__tray");
+                    const photo = tray.querySelector("img");
+                    const offset = axis => () => {
+                        const from = sleeve.getBoundingClientRect(),
+                            to = tray.getBoundingClientRect();
+                        const current = gsap.getProperty(tray, axis);
+                        return axis === "x" ? from.left - (to.left - current) : from.top - (to.top - current)
+                    };
+                    gsap.timeline({
+                        scrollTrigger: {
+                            id: `work:${index+1}`,
+                            trigger: item,
+                            start: "top 85%",
+                            end: "center 50%",
+                            scrub: true,
+                            invalidateOnRefresh: true
+                        }
+                    }).fromTo(tray, {
+                        x: offset("x"),
+                        y: offset("y")
+                    }, {
+                        x: 0,
+                        y: 0,
+                        ease: "power2.inOut",
+                        duration: 1
+                    }, 0).fromTo(photo, {
+                        scale: 1.14
+                    }, {
+                        scale: 1,
+                        ease: "none",
+                        duration: 1
+                    }, 0)
+                })
+            })
+        }, {
+            id: "scene:work"
+        });
+    </script>
+    <script data-part="scene:materials" data-scene-sections="materials">
+        queueMotion(() => {
+            gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+                const section = document.getElementById("materials");
+                section.querySelectorAll(".materials__item").forEach((item, index) => {
+                    const drawing = item.querySelector(".materials__section");
+                    const plies = [...drawing.querySelectorAll(".materials__ply")];
+                    const middle = (plies.length - 1) / 2;
+                    const gap = () => parseFloat(getComputedStyle(drawing).rowGap) || 0;
+                    gsap.timeline({
+                        scrollTrigger: {
+                            id: `materials:${index+1}`,
+                            trigger: item,
+                            start: "top 88%",
+                            end: "center 52%",
+                            scrub: true,
+                            invalidateOnRefresh: true
+                        }
+                    }).fromTo(plies, {
+                        y: i => (middle - i) * gap()
+                    }, {
+                        y: 0,
+                        ease: "power2.inOut",
+                        duration: 1
+                    }, 0)
+                });
+                if (adjacent("materials", "kit")) {
+                    const disc = section.querySelector(".materials__disc");
+                    const socket = document.querySelector("#kit .kit__socket");
+                    const lid = socket.closest(".kit__lid");
+                    const flush = getComputedStyle(disc).boxShadow;
+                    const raised = relief.recipe(disc, "--shadow-1", "boxShadow");
+                    const centre = (element, own) => {
+                        const box = element.getBoundingClientRect();
+                        return {
+                            x: box.left + box.width / 2 - own.x,
+                            y: box.top + box.height / 2 - own.y
+                        }
+                    };
+                    const travel = axis => () => {
+                        const from = centre(disc, {
+                            x: gsap.getProperty(disc, "x"),
+                            y: gsap.getProperty(disc, "y")
+                        });
+                        const to = centre(socket, {
+                            x: gsap.getProperty(lid, "x"),
+                            y: gsap.getProperty(lid, "y")
+                        });
+                        return to[axis] - from[axis]
+                    };
+                    gsap.timeline({
+                        scrollTrigger: {
+                            id: "materials:exit",
+                            trigger: section,
+                            start: "bottom bottom",
+                            end: "bottom 20%",
+                            scrub: true,
+                            invalidateOnRefresh: true
+                        }
+                    }).fromTo(disc, {
+                        scale: 1,
+                        boxShadow: flush
+                    }, {
+                        scale: 1.08,
+                        boxShadow: raised,
+                        duration: .2,
+                        ease: "power2.out"
+                    }, 0).fromTo(disc, {
+                        x: 0
+                    }, {
+                        x: travel("x"),
+                        duration: .7,
+                        ease: "power1.inOut"
+                    }, .2).fromTo(disc, {
+                        y: 0
+                    }, {
+                        y: travel("y"),
+                        duration: .7,
+                        ease: "power2.in"
+                    }, .2).to(disc, {
+                        scale: 1,
+                        boxShadow: flush,
+                        duration: .1,
+                        ease: "power2.in"
+                    }, .9)
+                }
+            })
+        }, {
+            id: "scene:materials"
+        });
+    </script>
+    <script data-part="scene:kit" data-scene-sections="kit">
+        queueMotion(() => {
+            gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+                if (!adjacent("materials", "kit")) return;
+                const kit = document.getElementById("kit");
+                const lid = kit.querySelector(".kit__lid");
+                const rest = getComputedStyle(lid).boxShadow;
+                gsap.timeline({
+                    scrollTrigger: {
+                        id: "kit:entry",
+                        trigger: kit,
+                        start: "top bottom",
+                        end: "top 20%",
+                        scrub: true,
+                        invalidateOnRefresh: true
+                    }
+                }).fromTo(lid, {
+                    y: () => innerHeight * .14,
+                    boxShadow: relief.recipe(lid, "--shadow-12", "boxShadow")
+                }, {
+                    y: 0,
+                    boxShadow: rest,
+                    ease: "power1.out",
+                    duration: 1
+                }, 0)
+            })
+        }, {
+            id: "scene:kit"
+        });
+    </script>
+    <script data-part="scene:contact" data-scene-sections="contact">
+        queueMotion(() => {
+            gsap.matchMedia().add("(prefers-reduced-motion: no-preference)", () => {
+                const section = document.getElementById("contact");
+                const light = section.querySelector(".contact__light");
+                const sun = gsap.timeline({
+                    defaults: {
+                        ease: "none",
+                        duration: 1
+                    },
+                    scrollTrigger: {
+                        id: "contact",
+                        trigger: section,
+                        start: "top bottom",
+                        end: "top 10%",
+                        scrub: true,
+                        invalidateOnRefresh: true
+                    }
+                });
+                sun.fromTo(light, {
+                    x: () => innerWidth * .55
+                }, {
+                    x: 0
+                }, 0);
+                section.querySelectorAll(".contact__word").forEach(word => sun.add(effects.rake(word), 0));
+                section.querySelectorAll(".m-field__input").forEach(well => {
+                    const rest = getComputedStyle(well).boxShadow;
+                    sun.fromTo(well, {
+                        boxShadow: relief.mirror(rest)
+                    }, {
+                        boxShadow: rest
+                    }, 0)
+                })
+            })
+        }, {
+            id: "scene:contact"
+        });
+    </script>
+    <script data-part="section-script:hero">
+        (() => {
+            const hero = document.getElementById("hero");
+            if (!hero || !("IntersectionObserver" in window)) return;
+            new IntersectionObserver(([entry]) => hero.toggleAttribute("data-paused", !entry.isIntersecting)).observe(hero)
+        })();
+    </script>
+    <script data-part="section-script:navigation">
+        (() => {
+            const nav = document.getElementById("navigation");
+            const bar = nav.querySelector(".nav__bar");
+            const menu = nav.querySelector("#menu");
+            const toggle = nav.querySelector(".nav__toggle");
+            const close = nav.querySelector(".nav__menu-close");
+            let last = scrollY;
+            addEventListener("scroll", () => {
+                const y = scrollY,
+                    delta = y - last;
+                last = y;
+                if (!menu.hidden) return;
+                if (delta > 0 && y > bar.offsetHeight * 2) nav.setAttribute("data-hidden", "");
+                else if (delta < 0) nav.removeAttribute("data-hidden")
+            }, {
+                passive: true
+            });
+            nav.addEventListener("focusin", () => nav.removeAttribute("data-hidden"));
+            const setMenu = open => {
+                menu.hidden = !open;
+                toggle.setAttribute("aria-expanded", String(open));
+                if (open) {
+                    window.lenis ?.stop();
+                    close.focus()
+                } else {
+                    window.lenis ?.start();
+                    toggle.focus()
+                }
+            };
+            toggle.addEventListener("click", () => setMenu(true));
+            close.addEventListener("click", () => setMenu(false));
+            menu.addEventListener("click", event => {
+                if (event.target.closest("a")) {
+                    menu.hidden = true;
+                    toggle.setAttribute("aria-expanded", "false");
+                    window.lenis ?.start()
+                }
+            });
+            addEventListener("keydown", event => {
+                if (event.key === "Escape" && !menu.hidden) setMenu(false)
+            })
+        })();
+    </script>
+    <script data-part="section-script:contact">
+        (() => {
+            const form = document.querySelector("#contact .contact__form");
+            if (!form) return;
+            form.addEventListener("submit", event => {
+                event.preventDefault();
+                const lines = [...form.querySelectorAll(".m-field")].map(field => {
+                    const input = field.querySelector(".m-field__input");
+                    const label = field.querySelector(".m-field__label");
+                    return input && input.value.trim() ? (label ? label.textContent.trim() + ": " : "") + input.value.trim() : ""
+                }).filter(Boolean);
+                const name = form.elements.name && form.elements.name.value.trim() || "";
+                const subject = (document.documentElement.lang.startsWith("pt") ? "Briefing" : "Brief") + (name ? " — " + name : "");
+                location.href = "mailto:" + form.dataset.mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n\n"))
+            })
+        })();
+    </script>
+    <script type="module" src="https://static.cloudflareinsights.com/beacon.min.js/vce701823e78c4301a35b7e07294d87301792088814092" integrity="sha512-UKNk8GbxkABxKcXYuLkO16EleLGUkcvJWtpSNmExE0Too3ZaFAxTscNWEc1OdAv5/BikHawapSCaiD2XCmp+Bw==" data-cf-beacon='{"version":"2024.11.0","token":"597df61d24a84269b925e6d26ceb1700","r":1,"spa":2}'
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
