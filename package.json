@@ -1,0 +1,11 @@
+{
+  "name": "student-council",
+  "version": "1.0.0",
+  "private": true,
+  "description": "PPG Institute of Technology - Student Council Website",
+  "scripts": {
+    "dev": "npx live-server --port=3000 --no-browser",
+    "preview": "npx serve -l 3000 -n",
+    "start": "npx serve -l 3000 -n"
+  }
+}
