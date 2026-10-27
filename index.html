@@ -1707,6 +1707,96 @@
                 align-items: center;
                 gap: 14px 26px
             }
+            #kit .login-form {
+                display: grid;
+                gap: 14px;
+                max-width: 430px
+            }
+            #kit .login-form__label {
+                display: grid;
+                gap: 7px;
+                font-family: var(--font-1);
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .06em;
+                text-transform: uppercase
+            }
+            #kit .login-form__input {
+                width: 100%;
+                border: 1px solid currentColor;
+                border-radius: var(--radius-1);
+                background: transparent;
+                color: inherit;
+                padding: 13px 15px;
+                font: inherit;
+                font-size: 16px;
+                outline-offset: 3px
+            }
+            #kit .login-form__status {
+                min-height: 1.4em;
+                font-size: 14px
+            }
+            #kit .login-form__status[data-state="error"] {
+                color: #a52d20
+            }
+            #kit .login-form__google {
+                width: 100%
+            }
+            #kit .login-form__divider {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: currentColor;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: .08em
+            }
+            #kit .login-form__divider::before,
+            #kit .login-form__divider::after {
+                content: "";
+                height: 1px;
+                flex: 1;
+                border-top: 1px dashed currentColor
+            }
+            #login-modal[hidden] {
+                display: none
+            }
+            #login-modal {
+                position: fixed;
+                inset: 0;
+                z-index: 20;
+                display: grid;
+                place-items: center;
+                padding: 24px
+            }
+            .login-modal__backdrop {
+                position: absolute;
+                inset: 0;
+                background: rgb(30 24 18 / 62%);
+                backdrop-filter: blur(5px)
+            }
+            .login-modal__panel {
+                position: relative;
+                width: min(100%, 480px);
+                display: grid;
+                gap: 20px;
+                padding: 34px;
+                background: var(--color-5);
+                color: var(--color-1);
+                box-shadow: var(--shadow-2)
+            }
+            .login-modal__close {
+                position: absolute;
+                top: 12px;
+                right: 12px
+            }
+            .login-modal__title {
+                margin: 0;
+                font-size: clamp(32px, 5vw, 52px)
+            }
+            .login-modal__google {
+                width: 100%
+            }
             @media(max-width:767px) {
                 #kit {
                     grid-template-columns: minmax(0, 1fr);
@@ -2124,6 +2214,7 @@
                     <li><a class="m-link-2" href="#work">Events</a></li>
                     <li><a class="m-link-2" href="#materials">Members</a></li>
                     <li><a class="m-link-2" href="#contact">Contact</a></li>
+                    <li><a class="m-link-2 login-trigger" href="#login-modal">Student Login</a></li>
                 </ul>
             </nav> <button class="m-icon-btn nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open the menu"><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>            </div>
         <div class="nav__menu m-ply" id="menu" data-page-overlay data-lenis-prevent hidden> <button class="m-icon-btn nav__menu-close" type="button" aria-expanded="true" aria-controls="menu" aria-label="Close the menu"><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>
@@ -2134,9 +2225,20 @@
                     <li><a href="#work">Events</a></li>
                     <li><a href="#materials">Members</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a class="login-trigger" href="#login-modal">Student Login</a></li>
                 </ul>
             </nav> </div>
     </header>
+    <div id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-modal-title" hidden>
+        <div class="login-modal__backdrop" data-login-close></div>
+        <section class="login-modal__panel">
+            <button class="m-icon-btn login-modal__close" type="button" aria-label="Close login" data-login-close><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>
+            <h2 class="login-modal__title m-cut" id="login-modal-title">Student Login</h2>
+            <p class="m-text">Sign in with your PPGIT Google account to continue.</p>
+            <button class="m-btn login-modal__google" id="login-modal-google" type="button"><span class="m-btn__label">Continue with Google</span></button>
+            <p class="login-form__status m-text" id="login-modal-status" role="status" aria-live="polite"></p>
+        </section>
+    </div>
     <main>
         <section id="hero" data-section="hero" aria-labelledby="hero-title">
             <div class="hero__flap m-board"> <span class="hero__light" aria-hidden="true"></span>
@@ -2458,7 +2560,21 @@
                         <p class="kit__price m-cut" data-motion="press">Open<span class="kit__unit m-text-3">to all students</span></p>
                     </li>
                 </ol>
-                <div class="kit__actions"> <a class="m-btn" href="#contact"><span class="m-btn__label">Login to suggest</span></a> <a class="m-link-2" href="#contact">Talk to us</a> </div>
+                <form class="login-form" id="login-form">
+                    <label class="login-form__label" for="login-email">College email
+                        <input class="login-form__input" id="login-email" name="email" type="email" autocomplete="email" placeholder="you@ppg.edu.in" required>
+                    </label>
+                    <label class="login-form__label" for="login-password">Password
+                        <input class="login-form__input" id="login-password" name="password" type="password" autocomplete="current-password" required>
+                    </label>
+                    <div class="kit__actions">
+                        <button class="m-btn" type="submit"><span class="m-btn__label">Log in</span></button>
+                        <a class="m-link-2" href="#contact">Need help?</a>
+                    </div>
+                    <div class="login-form__divider" aria-hidden="true">or</div>
+                    <button class="m-btn login-form__google" id="google-login" type="button"><span class="m-btn__label">Continue with Google</span></button>
+                    <p class="login-form__status m-text" id="login-status" role="status" aria-live="polite"></p>
+                </form>
             </div>
         </section>
         <section id="faq" data-section="faq" aria-labelledby="faq-title">
@@ -3360,6 +3476,21 @@
             const menu = nav.querySelector("#menu");
             const toggle = nav.querySelector(".nav__toggle");
             const close = nav.querySelector(".nav__menu-close");
+            const loginModal = document.getElementById("login-modal");
+            const loginTriggers = nav.querySelectorAll(".login-trigger");
+            const closeLoginModal = () => {
+                loginModal.hidden = true;
+                document.body.style.overflow = "";
+            };
+            const openLoginModal = event => {
+                event.preventDefault();
+                if (!menu.hidden) setMenu(false);
+                loginModal.hidden = false;
+                document.body.style.overflow = "hidden";
+                loginModal.querySelector("[data-login-close]")?.focus();
+            };
+            loginTriggers.forEach(trigger => trigger.addEventListener("click", openLoginModal));
+            loginModal.querySelectorAll("[data-login-close]").forEach(control => control.addEventListener("click", closeLoginModal));
             let last = scrollY;
             addEventListener("scroll", () => {
                 const y = scrollY,
@@ -3393,7 +3524,8 @@
                 }
             });
             addEventListener("keydown", event => {
-                if (event.key === "Escape" && !menu.hidden) setMenu(false)
+                if (event.key === "Escape" && !menu.hidden) setMenu(false);
+                else if (event.key === "Escape" && !loginModal.hidden) closeLoginModal()
             })
         })();
     </script>
@@ -3413,6 +3545,97 @@
                 location.href = "mailto:" + form.dataset.mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n\n"))
             })
         })();
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+        import { getAuth, GoogleAuthProvider, signInWithEmailAndPassword, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3UvL9_bL1joyY09THsLaCmyMGfGwv60M",
+            authDomain: "student-council-4d8d2.firebaseapp.com",
+            projectId: "student-council-4d8d2",
+            storageBucket: "student-council-4d8d2.firebasestorage.app",
+            messagingSenderId: "676953287723",
+            appId: "1:676953287723:web:51c76c0cdbc8714c47ce6e",
+            measurementId: "G-300CYPSQ0E"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        getAnalytics(app);
+        const auth = getAuth(app);
+        const form = document.getElementById("login-form");
+        const status = document.getElementById("login-status");
+        const googleButton = document.getElementById("google-login");
+        const loginModal = document.getElementById("login-modal");
+        const modalGoogleButton = document.getElementById("login-modal-google");
+        const modalStatus = document.getElementById("login-modal-status");
+        const googleProvider = new GoogleAuthProvider();
+        googleProvider.setCustomParameters({ prompt: "select_account" });
+
+        const setStatus = (target, message, isError = false) => {
+            target.textContent = message;
+            if (isError) target.dataset.state = "error";
+            else target.removeAttribute("data-state");
+        };
+
+        form?.addEventListener("submit", async event => {
+            event.preventDefault();
+            const email = form.elements.email.value.trim().toLowerCase();
+            const password = form.elements.password.value;
+
+            setStatus(status, "");
+
+            if (!email.endsWith("@ppg.edu.in")) {
+                setStatus(status, "Use your college email ending in @ppg.edu.in.", true);
+                return;
+            }
+
+            const submitButton = form.querySelector("button[type=submit]");
+            submitButton.disabled = true;
+            setStatus(status, "Signing you in...");
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                setStatus(status, "You are signed in. Welcome back.");
+            } catch (error) {
+                setStatus(status, error?.code === "auth/invalid-credential" ? "Email or password is incorrect." : "We could not sign you in. Please try again.", true);
+            } finally {
+                submitButton.disabled = false;
+            }
+        });
+
+        const signInWithGoogle = async (button, target) => {
+            button.disabled = true;
+            setStatus(target, "Opening Google sign-in...");
+
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                const email = result.user.email?.toLowerCase() || "";
+
+                if (!email.endsWith("@ppg.edu.in")) {
+                    await signOut(auth);
+                    setStatus(target, "Use a Google account ending in @ppg.edu.in.", true);
+                    return;
+                }
+
+                setStatus(target, "You are signed in with Google. Welcome back.");
+                if (target === modalStatus) {
+                    setTimeout(() => {
+                        loginModal.hidden = true;
+                        document.body.style.overflow = "";
+                    }, 700);
+                }
+            } catch (error) {
+                const message = error?.code === "auth/popup-closed-by-user" ? "Google sign-in was cancelled." : error?.code === "auth/unauthorized-domain" ? "Add localhost to Firebase Authentication authorized domains." : "Google sign-in failed. Please try again.";
+                setStatus(target, message, true);
+            } finally {
+                button.disabled = false;
+            }
+        };
+
+        googleButton?.addEventListener("click", () => signInWithGoogle(googleButton, status));
+        modalGoogleButton?.addEventListener("click", () => signInWithGoogle(modalGoogleButton, modalStatus));
     </script>
 </body>
 
