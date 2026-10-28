@@ -1,0 +1,3 @@
+# Public single-page site: everything is meant to be indexed.
+User-agent: *
+Allow: /
