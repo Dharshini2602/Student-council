@@ -2803,7 +2803,7 @@
                 </div>
             </div>
             <div class="footer__legal">
-                <p class="m-text">© 2026 Student Council, PPG Institute of Technology.</p> <a class="m-link-2" href="#hero">Back to the top</a> </div>
+                <p class="m-text">© <span data-current-year>2026</span> Student Council, PPG Institute of Technology.</p> <a class="m-link-2" href="#hero">Back to the top</a> </div>
         </div>
     </footer>
     <script src="js/gsap.min.js"></script>
@@ -3748,6 +3748,14 @@
                 const subject = "Student Council Message" + (name ? " — " + name : "");
                 setStatus("Opening your email app with the message ready to send.", "success");
                 location.href = "mailto:" + form.dataset.mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n\n"))
+            })
+        })();
+    </script>
+    <script data-part="section-script:footer">
+        (() => {
+            const year = new Date().getFullYear();
+            document.querySelectorAll("[data-current-year]").forEach(node => {
+                node.textContent = String(year)
             })
         })();
     </script>
