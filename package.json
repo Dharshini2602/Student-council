@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "npx live-server --port=3000 --no-browser",
     "preview": "npx serve -l 3000 -n",
-    "start": "npx serve -l 3000 -n"
+    "start": "npx serve -l 3000 -n",
+    "check": "node scripts/check-site.mjs"
   },
   "dependencies": {
     "firebase": "^13.1.0"
