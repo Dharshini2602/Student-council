@@ -184,6 +184,25 @@
                 outline: 3px solid var(--color-2);
                 outline-offset: 3px
             }
+            .skip-link {
+                position: fixed;
+                top: -100px;
+                left: 16px;
+                z-index: 999;
+                padding: 12px 20px;
+                border-radius: var(--radius-1);
+                background: var(--color-2);
+                color: var(--color-3);
+                font-family: var(--font-1);
+                font-size: 15px;
+                font-weight: 600;
+                text-decoration: none;
+                box-shadow: var(--shadow-1)
+            }
+            .skip-link:focus-visible {
+                top: 16px;
+                outline-color: var(--color-3)
+            }
             html.lenis,
             html.lenis body {
                 height: auto
@@ -2290,7 +2309,7 @@
     </script>
 </head>
 
-<body> <svg class="relief-defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="cut-relief" x="-4%" y="-6%" width="108%" height="112%" color-interpolation-filters="sRGB"><feComponentTransfer in="SourceAlpha" result="outside"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer><feOffset in="outside" dx="3.5" dy="4.5" result="shifted"/><feGaussianBlur in="shifted" stdDeviation="2" result="soft"/><feFlood class="relief-defs__shade" result="shade"/><feComposite in="shade" in2="soft" operator="in" result="cast"/><feComposite in="cast" in2="SourceAlpha" operator="in" result="inner"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="inner"/></feMerge></filter></svg>
+<body> <a class="skip-link" href="#main">Skip to main content</a> <svg class="relief-defs" width="0" height="0" aria-hidden="true" focusable="false"><filter id="cut-relief" x="-4%" y="-6%" width="108%" height="112%" color-interpolation-filters="sRGB"><feComponentTransfer in="SourceAlpha" result="outside"><feFuncA type="table" tableValues="1 0"/></feComponentTransfer><feOffset in="outside" dx="3.5" dy="4.5" result="shifted"/><feGaussianBlur in="shifted" stdDeviation="2" result="soft"/><feFlood class="relief-defs__shade" result="shade"/><feComposite in="shade" in2="soft" operator="in" result="cast"/><feComposite in="cast" in2="SourceAlpha" operator="in" result="inner"/><feMerge><feMergeNode in="SourceGraphic"/><feMergeNode in="inner"/></feMerge></filter></svg>
     <header id="navigation" data-section="navigation">
         <div class="nav__bar m-board"> <a class="nav__brand" href="#hero" aria-label="Student Council, back to the top"><span class="m-title">Student Council.</span></a>
             <nav aria-label="Main">
@@ -2336,7 +2355,7 @@
             </div>
         </section>
     </div>
-    <main>
+    <main id="main">
         <section id="hero" data-section="hero" aria-labelledby="hero-title">
             <div class="hero__flap m-board"> <span class="hero__light" aria-hidden="true"></span>
                 <div class="hero__inner">
