@@ -1707,6 +1707,148 @@
                 align-items: center;
                 gap: 14px 26px
             }
+            #kit .login-form {
+                display: grid;
+                gap: 14px;
+                max-width: 430px
+            }
+            #kit .login-form__label {
+                display: grid;
+                gap: 7px;
+                font-family: var(--font-1);
+                font-size: 13px;
+                font-weight: 600;
+                letter-spacing: .06em;
+                text-transform: uppercase
+            }
+            #kit .login-form__input {
+                width: 100%;
+                border: 1px solid currentColor;
+                border-radius: var(--radius-1);
+                background: transparent;
+                color: inherit;
+                padding: 13px 15px;
+                font: inherit;
+                font-size: 16px;
+                outline-offset: 3px
+            }
+            .login-form__status {
+                min-height: 1.4em;
+                font-size: 14px
+            }
+            .login-form__status[data-state="error"] {
+                color: #a52d20
+            }
+            .login-form__status[data-state="success"] {
+                color: #2f6b2a
+            }
+            #login-modal .login-form__status[data-state="error"] {
+                color: #ffb4a8
+            }
+            #login-modal .login-form__status[data-state="success"] {
+                color: #b9e6a7
+            }
+            #kit .login-form__google {
+                width: 100%
+            }
+            #kit .login-form__link {
+                background: none;
+                border: 0;
+                padding: 0;
+                font: inherit;
+                color: inherit;
+                text-decoration: underline;
+                text-underline-offset: 3px;
+                cursor: pointer
+            }
+            #kit .login-form__link:disabled {
+                cursor: progress;
+                opacity: .6
+            }
+            #kit .login-account {
+                display: grid;
+                gap: 14px;
+                max-width: 430px
+            }
+            #kit .login-account strong,
+            .login-modal__body strong {
+                overflow-wrap: anywhere
+            }
+            .login-form[hidden],
+            .login-account[hidden],
+            .login-modal__body[hidden] {
+                display: none !important
+            }
+            #kit .login-form__divider {
+                display: flex;
+                align-items: center;
+                gap: 12px;
+                color: currentColor;
+                font-size: 13px;
+                text-transform: uppercase;
+                letter-spacing: .08em
+            }
+            #kit .login-form__divider::before,
+            #kit .login-form__divider::after {
+                content: "";
+                height: 1px;
+                flex: 1;
+                border-top: 1px dashed currentColor
+            }
+            #login-modal[hidden] {
+                display: none
+            }
+            #login-modal {
+                position: fixed;
+                inset: 0;
+                z-index: 20;
+                display: grid;
+                place-items: center;
+                padding: 24px
+            }
+            .login-modal__backdrop {
+                position: absolute;
+                inset: 0;
+                background: rgb(30 24 18 / 62%);
+                backdrop-filter: blur(5px)
+            }
+            .login-modal__panel {
+                position: relative;
+                width: min(100%, 480px);
+                max-height: min(90vh, 720px);
+                overflow-y: auto;
+                display: grid;
+                gap: 20px;
+                padding: 34px;
+                background: var(--color-5);
+                color: var(--color-1);
+                box-shadow: var(--shadow-2)
+            }
+            .login-modal__body {
+                display: grid;
+                gap: 20px
+            }
+            .login-modal__body .m-text {
+                margin: 0
+            }
+            .login-modal__actions {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                gap: 14px 26px
+            }
+            .login-modal__close {
+                position: absolute;
+                top: 12px;
+                right: 12px
+            }
+            .login-modal__title {
+                margin: 0;
+                font-size: clamp(32px, 5vw, 52px)
+            }
+            .login-modal__google {
+                width: 100%
+            }
             @media(max-width:767px) {
                 #kit {
                     grid-template-columns: minmax(0, 1fr);
@@ -2124,6 +2266,7 @@
                     <li><a class="m-link-2" href="#work">Events</a></li>
                     <li><a class="m-link-2" href="#materials">Members</a></li>
                     <li><a class="m-link-2" href="#contact">Contact</a></li>
+                    <li><a class="m-link-2 login-trigger" href="#login-modal">Student Login</a></li>
                 </ul>
             </nav> <button class="m-icon-btn nav__toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="Open the menu"><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>            </div>
         <div class="nav__menu m-ply" id="menu" data-page-overlay data-lenis-prevent hidden> <button class="m-icon-btn nav__menu-close" type="button" aria-expanded="true" aria-controls="menu" aria-label="Close the menu"><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>
@@ -2134,9 +2277,31 @@
                     <li><a href="#work">Events</a></li>
                     <li><a href="#materials">Members</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a class="login-trigger" href="#login-modal">Student Login</a></li>
                 </ul>
             </nav> </div>
     </header>
+    <div id="login-modal" role="dialog" aria-modal="true" aria-labelledby="login-modal-title" hidden>
+        <div class="login-modal__backdrop" data-login-close></div>
+        <section class="login-modal__panel" tabindex="-1">
+            <button class="m-icon-btn login-modal__close" type="button" aria-label="Close login" data-login-close><span class="m-icon-btn__glyph" aria-hidden="true"></span></button>
+            <h2 class="login-modal__title m-cut" id="login-modal-title">Student Login</h2>
+            <div class="login-modal__body" data-auth-signed-out>
+                <p class="m-text">Sign in with your PPGIT Google account to continue.</p>
+                <button class="m-btn login-modal__google" id="login-modal-google" type="button"><span class="m-btn__label">Continue with Google</span></button>
+                <p class="login-form__status m-text" id="login-modal-status" role="status" aria-live="polite"></p>
+                <div class="login-modal__actions">
+                    <button class="m-btn" id="login-modal-email" type="button"><span class="m-btn__label">Use email and password</span></button>
+                </div>
+            </div>
+            <div class="login-modal__body" data-auth-signed-in hidden>
+                <p class="m-text">You are signed in as <strong data-auth-email></strong>.</p>
+                <div class="login-modal__actions">
+                    <button class="m-btn" type="button" data-auth-signout><span class="m-btn__label">Sign out</span></button>
+                </div>
+            </div>
+        </section>
+    </div>
     <main>
         <section id="hero" data-section="hero" aria-labelledby="hero-title">
             <div class="hero__flap m-board"> <span class="hero__light" aria-hidden="true"></span>
@@ -2255,7 +2420,7 @@
                 <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
                     <div class="work__sleeve-wrap" aria-hidden="true">
                         <div class="work__sleeve m-surface"><span class="work__client m-title">Pongal</span></div> <span class="work__rim"></span> </div>
-                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/DWd1pMUE75l/embed/?autoplay=1&muted=1" title="Pongal 2K26 celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><iframe src="https://www.instagram.com/reel/DWd1pMUE75l/embed/?autoplay=1&muted=1" title="Pongal 2K26 celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
                     <div class="work__info">
                         <h3 class="m-title">Pongal 2K26</h3>
                         <p class="m-text">A harvest celebration with kolam, sweets and music. Students shared the traditions that make our campus feel like home.</p>
@@ -2275,7 +2440,7 @@
                 <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
                     <div class="work__sleeve-wrap" aria-hidden="true">
                         <div class="work__sleeve m-surface"><span class="work__client m-title">Mass 2K26</span></div> <span class="work__rim"></span> </div>
-                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/Dd87NKRzsSq/embed/?autoplay=1&muted=1" title="Mass 2K26 celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><iframe src="https://www.instagram.com/reel/Dd87NKRzsSq/embed/?autoplay=1&muted=1" title="Mass 2K26 celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
                     <div class="work__info">
                         <h3 class="m-title">Mass 2K26</h3>
                         <p class="m-text">A calm, joyful campus Mass that brought students, staff and families together for a morning of reflection.</p>
@@ -2295,7 +2460,7 @@
                 <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
                     <div class="work__sleeve-wrap" aria-hidden="true">
                         <div class="work__sleeve m-surface"><span class="work__client m-title">Movie</span></div> <span class="work__rim"></span> </div>
-                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/DeRgVvWT9wn/embed/?autoplay=1&muted=1" title="Movie Mania celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><iframe src="https://www.instagram.com/reel/DeRgVvWT9wn/embed/?autoplay=1&muted=1" title="Movie Mania celebration reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
                     <div class="work__info">
                         <h3 class="m-title">Movie Mania</h3>
                         <p class="m-text">A big-screen movie night with popcorn, friends and a campus full of laughter under the open stars.</p>
@@ -2315,7 +2480,7 @@
                 <li class="work__item"> <span class="work__floor" aria-hidden="true"></span>
                     <div class="work__sleeve-wrap" aria-hidden="true">
                         <div class="work__sleeve m-surface"><span class="work__client m-title">Symposium</span></div> <span class="work__rim"></span> </div>
-                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><img src="" alt="" aria-hidden="true" style="position:absolute;width:0;height:0;opacity:0;pointer-events:none" decoding="async"><iframe src="https://www.instagram.com/reel/DcfgGwSTf9D/embed/?autoplay=1&muted=1" title="Symposium 26 reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
+                    <div class="work__tray m-well" style="position:relative;overflow:hidden"><iframe src="https://www.instagram.com/reel/DcfgGwSTf9D/embed/?autoplay=1&muted=1" title="Symposium 26 reel" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture" loading="lazy" style="position:absolute;top:0;left:0;width:100%;height:100%;border:0;display:block;"></iframe></div>
                     <div class="work__info">
                         <h3 class="m-title">Symposium 26</h3>
                         <p class="m-text">A day of talks, ideas and student presentations that showed how much our campus truly has to say.</p>
@@ -2458,7 +2623,28 @@
                         <p class="kit__price m-cut" data-motion="press">Open<span class="kit__unit m-text-3">to all students</span></p>
                     </li>
                 </ol>
-                <div class="kit__actions"> <a class="m-btn" href="#contact"><span class="m-btn__label">Login to suggest</span></a> <a class="m-link-2" href="#contact">Talk to us</a> </div>
+                <form class="login-form" id="login-form" data-auth-signed-out>
+                    <label class="login-form__label" for="login-email">College email
+                        <input class="login-form__input" id="login-email" name="email" type="email" autocomplete="email" placeholder="you@ppg.edu.in" required>
+                    </label>
+                    <label class="login-form__label" for="login-password">Password
+                        <input class="login-form__input" id="login-password" name="password" type="password" autocomplete="current-password" required>
+                    </label>
+                    <div class="kit__actions">
+                        <button class="m-btn" type="submit"><span class="m-btn__label">Log in</span></button>
+                        <button class="m-link-2 login-form__link" id="login-reset" type="button">Forgot password?</button>
+                    </div>
+                    <div class="login-form__divider" aria-hidden="true">or</div>
+                    <button class="m-btn login-form__google" id="google-login" type="button"><span class="m-btn__label">Continue with Google</span></button>
+                    <p class="login-form__status m-text" id="login-status" role="status" aria-live="polite"></p>
+                </form>
+                <div class="login-account" data-auth-signed-in hidden>
+                    <p class="m-text">You are signed in as <strong data-auth-email></strong>.</p>
+                    <div class="kit__actions">
+                        <button class="m-btn" type="button" data-auth-signout><span class="m-btn__label">Sign out</span></button>
+                        <a class="m-link-2" href="#contact">Need help?</a>
+                    </div>
+                </div>
             </div>
         </section>
         <section id="faq" data-section="faq" aria-labelledby="faq-title">
@@ -3157,7 +3343,7 @@
                         const current = gsap.getProperty(tray, axis);
                         return axis === "x" ? from.left - (to.left - current) : from.top - (to.top - current)
                     };
-                    gsap.timeline({
+                    const timeline = gsap.timeline({
                         scrollTrigger: {
                             id: `work:${index+1}`,
                             trigger: item,
@@ -3174,7 +3360,8 @@
                         y: 0,
                         ease: "power2.inOut",
                         duration: 1
-                    }, 0).fromTo(photo, {
+                    }, 0);
+                    if (photo) timeline.fromTo(photo, {
                         scale: 1.14
                     }, {
                         scale: 1,
@@ -3193,7 +3380,10 @@
                 const section = document.getElementById("materials");
                 section.querySelectorAll(".materials__item").forEach((item, index) => {
                     const drawing = item.querySelector(".materials__section");
+                    if (!drawing) return;
                     const plies = [...drawing.querySelectorAll(".materials__ply")];
+                    // The member cards use photos instead of stacked plies; skip the ply animation when absent.
+                    if (!plies.length) return;
                     const middle = (plies.length - 1) / 2;
                     const gap = () => parseFloat(getComputedStyle(drawing).rowGap) || 0;
                     gsap.timeline({
@@ -3360,6 +3550,44 @@
             const menu = nav.querySelector("#menu");
             const toggle = nav.querySelector(".nav__toggle");
             const close = nav.querySelector(".nav__menu-close");
+            const loginModal = document.getElementById("login-modal");
+            const loginTriggers = nav.querySelectorAll(".login-trigger");
+            let loginReturnFocus = null;
+            const closeLoginModal = (restoreFocus = true) => {
+                if (loginModal.hidden) return;
+                loginModal.hidden = true;
+                document.body.style.overflow = "";
+                window.lenis ?.start();
+                if (restoreFocus && loginReturnFocus && loginReturnFocus.offsetParent !== null) loginReturnFocus.focus();
+                else if (restoreFocus) toggle.focus();
+                loginReturnFocus = null
+            };
+            const openLoginModal = event => {
+                event.preventDefault();
+                if (!menu.hidden) setMenu(false);
+                loginReturnFocus = event.currentTarget;
+                loginModal.hidden = false;
+                document.body.style.overflow = "hidden";
+                window.lenis ?.stop();
+                loginModal.querySelector(".login-modal__close")?.focus()
+            };
+            loginTriggers.forEach(trigger => trigger.addEventListener("click", openLoginModal));
+            loginModal.querySelectorAll("[data-login-close]").forEach(control => control.addEventListener("click", () => closeLoginModal()));
+            loginModal.addEventListener("keydown", event => {
+                if (event.key !== "Tab") return;
+                const focusable = [...loginModal.querySelectorAll("a[href], button:not([disabled]), input:not([disabled]), [tabindex]:not([tabindex=\"-1\"])")].filter(element => element.offsetParent !== null);
+                if (!focusable.length) return;
+                const first = focusable[0];
+                const last = focusable[focusable.length - 1];
+                if (event.shiftKey && document.activeElement === first) {
+                    event.preventDefault();
+                    last.focus()
+                } else if (!event.shiftKey && document.activeElement === last) {
+                    event.preventDefault();
+                    first.focus()
+                }
+            });
+            addEventListener("login:close", () => closeLoginModal());
             let last = scrollY;
             addEventListener("scroll", () => {
                 const y = scrollY,
@@ -3393,7 +3621,12 @@
                 }
             });
             addEventListener("keydown", event => {
-                if (event.key === "Escape" && !menu.hidden) setMenu(false)
+                if (event.key !== "Escape") return;
+                if (!loginModal.hidden) {
+                    closeLoginModal();
+                    return
+                }
+                if (!menu.hidden) setMenu(false)
             })
         })();
     </script>
@@ -3413,6 +3646,276 @@
                 location.href = "mailto:" + form.dataset.mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n\n"))
             })
         })();
+    </script>
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-app.js";
+        import { getAnalytics, isSupported as analyticsIsSupported } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-analytics.js";
+        import {
+            getAuth,
+            GoogleAuthProvider,
+            getRedirectResult,
+            onAuthStateChanged,
+            sendPasswordResetEmail,
+            signInWithEmailAndPassword,
+            signInWithPopup,
+            signInWithRedirect,
+            signOut
+        } from "https://www.gstatic.com/firebasejs/10.14.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "AIzaSyA3UvL9_bL1joyY09THsLaCmyMGfGwv60M",
+            authDomain: "student-council-4d8d2.firebaseapp.com",
+            projectId: "student-council-4d8d2",
+            storageBucket: "student-council-4d8d2.firebasestorage.app",
+            messagingSenderId: "676953287723",
+            appId: "1:676953287723:web:51c76c0cdbc8714c47ce6e",
+            measurementId: "G-300CYPSQ0E"
+        };
+
+        const COLLEGE_DOMAIN = "@ppg.edu.in";
+
+        const isCollegeEmail = email => {
+            const value = String(email || "").trim().toLowerCase();
+            return value.length > COLLEGE_DOMAIN.length && value.endsWith(COLLEGE_DOMAIN)
+        };
+
+        const authErrorMessage = error => {
+            switch (error?.code) {
+                case "auth/invalid-credential":
+                case "auth/wrong-password":
+                case "auth/user-not-found":
+                    return "Email or password is incorrect.";
+                case "auth/invalid-email":
+                    return "Enter a valid email address.";
+                case "auth/missing-password":
+                    return "Enter your password.";
+                case "auth/user-disabled":
+                    return "This account has been disabled. Contact the student council.";
+                case "auth/too-many-requests":
+                    return "Too many attempts. Wait a few minutes and try again.";
+                case "auth/network-request-failed":
+                    return "Network error. Check your connection and try again.";
+                case "auth/operation-not-allowed":
+                    return "This sign-in method is not enabled for the Firebase project.";
+                case "auth/unauthorized-domain":
+                    return `Google sign-in is not authorized for ${location.hostname}. Add this domain in Firebase Authentication > Settings > Authorized domains.`;
+                case "auth/popup-blocked":
+                    return "Your browser blocked the sign-in popup. Allow popups and try again.";
+                case "auth/popup-closed-by-user":
+                case "auth/cancelled-popup-request":
+                    return "Google sign-in was cancelled.";
+                case "auth/account-exists-with-different-credential":
+                    return "This email already uses a different sign-in method. Use that method or reset your password.";
+                case "auth/web-storage-unsupported":
+                    return "Your browser is blocking storage. Enable cookies and site data, then try again.";
+                case "auth/invalid-api-key":
+                case "auth/api-key-not-valid":
+                    return "Firebase is not configured correctly (invalid API key).";
+                case "auth/configuration-not-found":
+                    return "Firebase Authentication is not set up for this project.";
+                default:
+                    return "We could not sign you in. Please try again."
+            }
+        };
+
+        const passwordResetErrorMessage = error => {
+            switch (error?.code) {
+                case "auth/user-not-found":
+                    return "No account was found for that email. Contact the student council if you need one.";
+                case "auth/too-many-requests":
+                    return "Too many reset emails requested. Wait a few minutes and try again.";
+                default:
+                    return authErrorMessage(error)
+            }
+        };
+
+        const app = initializeApp(firebaseConfig);
+
+        // Analytics is optional: an unsupported browser or blocked storage must never break sign-in.
+        analyticsIsSupported()
+            .then(supported => {
+                if (!supported) return;
+                try {
+                    getAnalytics(app)
+                } catch {
+                    // Ignore analytics failures.
+                }
+            })
+            .catch(() => {});
+
+        const auth = getAuth(app);
+        const form = document.getElementById("login-form");
+        const status = document.getElementById("login-status");
+        const googleButton = document.getElementById("google-login");
+        const resetButton = document.getElementById("login-reset");
+        const loginModal = document.getElementById("login-modal");
+        const modalGoogleButton = document.getElementById("login-modal-google");
+        const modalEmailButton = document.getElementById("login-modal-email");
+        const modalStatus = document.getElementById("login-modal-status");
+        const signedOutViews = document.querySelectorAll("[data-auth-signed-out]");
+        const signedInViews = document.querySelectorAll("[data-auth-signed-in]");
+        const emailLabels = document.querySelectorAll("[data-auth-email]");
+        const signOutButtons = document.querySelectorAll("[data-auth-signout]");
+        const googleProvider = new GoogleAuthProvider();
+        googleProvider.setCustomParameters({ prompt: "select_account" });
+
+        const setStatus = (target, message, state = "info") => {
+            if (!target) return;
+            target.textContent = message;
+            if (state === "error") target.dataset.state = "error";
+            else if (state === "success") target.dataset.state = "success";
+            else target.removeAttribute("data-state")
+        };
+
+        const currentStatusTarget = () => loginModal.hidden ? status : modalStatus;
+
+        const updateAuthUI = user => {
+            const signedIn = Boolean(user);
+            signedOutViews.forEach(view => { view.hidden = signedIn });
+            signedInViews.forEach(view => { view.hidden = !signedIn });
+            emailLabels.forEach(label => { label.textContent = user?.email || "" })
+        };
+
+        const closeLoginModal = () => window.dispatchEvent(new Event("login:close"));
+
+        const finishGoogleSignIn = async (result, target) => {
+            const email = result?.user?.email?.toLowerCase() || "";
+            if (!isCollegeEmail(email)) {
+                await signOut(auth);
+                setStatus(target, `Use a Google account ending in ${COLLEGE_DOMAIN}.`, "error");
+                return
+            }
+            setStatus(target, "You are signed in with Google. Welcome back.", "success");
+            closeLoginModal()
+        };
+
+        const signInWithGoogle = async (button, target) => {
+            if (!button || button.disabled) return;
+            button.disabled = true;
+            setStatus(target, "Opening Google sign-in...");
+
+            try {
+                const result = await signInWithPopup(auth, googleProvider);
+                await finishGoogleSignIn(result, target)
+            } catch (error) {
+                const popupFallback = ["auth/popup-blocked", "auth/operation-not-supported-in-this-environment", "auth/web-storage-unsupported"].includes(error?.code);
+                if (popupFallback) {
+                    try {
+                        await signInWithRedirect(auth, googleProvider);
+                        return
+                    } catch (redirectError) {
+                        setStatus(target, authErrorMessage(redirectError), "error");
+                        return
+                    }
+                }
+                setStatus(target, authErrorMessage(error), "error")
+            } finally {
+                button.disabled = false
+            }
+        };
+
+        form?.addEventListener("submit", async event => {
+            event.preventDefault();
+            if (form.dataset.busy === "true") return;
+
+            const email = form.elements.email.value.trim().toLowerCase();
+            const password = form.elements.password.value;
+
+            setStatus(status, "");
+
+            if (!isCollegeEmail(email)) {
+                setStatus(status, `Use your college email ending in ${COLLEGE_DOMAIN}.`, "error");
+                form.elements.email.focus();
+                return
+            }
+
+            if (!password) {
+                setStatus(status, "Enter your password.", "error");
+                form.elements.password.focus();
+                return
+            }
+
+            const submitButton = form.querySelector("button[type=submit]");
+            form.dataset.busy = "true";
+            submitButton.disabled = true;
+            if (resetButton) resetButton.disabled = true;
+            setStatus(status, "Signing you in...");
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                setStatus(status, "Welcome back! You are signed in.", "success");
+                form.reset()
+            } catch (error) {
+                setStatus(status, authErrorMessage(error), "error")
+            } finally {
+                form.dataset.busy = "false";
+                submitButton.disabled = false;
+                if (resetButton) resetButton.disabled = false
+            }
+        });
+
+        resetButton?.addEventListener("click", async () => {
+            const email = form.elements.email.value.trim().toLowerCase();
+
+            if (!isCollegeEmail(email)) {
+                setStatus(status, `Enter your college email ending in ${COLLEGE_DOMAIN} first.`, "error");
+                form.elements.email.focus();
+                return
+            }
+
+            resetButton.disabled = true;
+            setStatus(status, "Sending password reset email...");
+
+            try {
+                await sendPasswordResetEmail(auth, email);
+                setStatus(status, `Password reset email sent to ${email}. Check your inbox and spam folder.`, "success")
+            } catch (error) {
+                setStatus(status, passwordResetErrorMessage(error), "error")
+            } finally {
+                resetButton.disabled = false
+            }
+        });
+
+        getRedirectResult(auth)
+            .then(result => {
+                if (result?.user) return finishGoogleSignIn(result, currentStatusTarget())
+            })
+            .catch(error => {
+                setStatus(currentStatusTarget(), authErrorMessage(error), "error")
+            });
+
+        onAuthStateChanged(auth, user => {
+            updateAuthUI(user);
+            if (user && !isCollegeEmail(user.email)) {
+                setStatus(currentStatusTarget(), `Use a Google account ending in ${COLLEGE_DOMAIN}.`, "error");
+                signOut(auth).catch(() => {})
+            }
+        });
+
+        signOutButtons.forEach(button => {
+            button.addEventListener("click", async () => {
+                button.disabled = true;
+                try {
+                    await signOut(auth);
+                    setStatus(status, "You have been signed out.");
+                    setStatus(modalStatus, "You have been signed out.")
+                } catch (error) {
+                    setStatus(currentStatusTarget(), authErrorMessage(error), "error")
+                } finally {
+                    button.disabled = false
+                }
+            })
+        });
+
+        modalEmailButton?.addEventListener("click", () => {
+            closeLoginModal();
+            if (window.lenis) window.lenis.scrollTo("#kit");
+            else document.getElementById("kit")?.scrollIntoView({ behavior: "smooth", block: "center" });
+            setTimeout(() => document.getElementById("login-email")?.focus({ preventScroll: true }), 350)
+        });
+
+        googleButton?.addEventListener("click", () => signInWithGoogle(googleButton, status));
+        modalGoogleButton?.addEventListener("click", () => signInWithGoogle(modalGoogleButton, modalStatus));
     </script>
 </body>
 
