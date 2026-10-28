@@ -509,6 +509,9 @@
                 outline: 3px solid var(--color-2);
                 outline-offset: 2px
             }
+            .m-field__input[aria-invalid="true"] {
+                box-shadow: inset 0 0 0 2px #a52d20, var(--shadow-2)
+            }
         }
     </style>
     <style data-part="layout">
@@ -2083,6 +2086,9 @@
             #contact .contact__form .m-btn {
                 justify-self: start
             }
+            #contact .contact__form #contact-status {
+                grid-column: 1 / -1
+            }
             #contact .contact__details {
                 display: grid;
                 gap: 26px;
@@ -2743,8 +2749,8 @@
                 </span> <span class="contact__line contact__line--cut"><span class="contact__word m-cut" style="--len:10">We listen.</span></span>
             </h2>
             <div class="contact__body">
-                <form class="contact__form" action="#contact" data-mailto="studentcouncil@ppg.edu.in">
-                    <p class="m-text-2">Tell us what is on your mind. We reply within two working days, and every message is read by a real student.</p> <label class="m-field"><span class="m-field__label">Your name</span><input class="m-field__input" name="name" type="text" autocomplete="name" required></label>                    <label class="m-field"><span class="m-field__label">College email (@ppg.edu.in)</span><input class="m-field__input" name="email" type="email" autocomplete="email" required></label> <label class="m-field contact__wide"><span class="m-field__label">Your suggestion or message</span><textarea class="m-field__input" name="brief" rows="5" placeholder="Your idea, event question or message for the council"></textarea></label>                    <button class="m-btn" type="submit"><span class="m-btn__label">Send message</span></button> </form>
+                <form class="contact__form" action="#contact" data-mailto="studentcouncil@ppg.edu.in" aria-describedby="contact-status">
+                    <p class="m-text-2">Tell us what is on your mind. We reply within two working days, and every message is read by a real student.</p> <label class="m-field"><span class="m-field__label">Your name</span><input class="m-field__input" name="name" type="text" autocomplete="name" required></label>                    <label class="m-field"><span class="m-field__label">College email (@ppg.edu.in)</span><input class="m-field__input" name="email" type="email" autocomplete="email" required></label> <label class="m-field contact__wide"><span class="m-field__label">Your suggestion or message</span><textarea class="m-field__input" name="brief" rows="5" placeholder="Your idea, event question or message for the council" required minlength="5"></textarea></label>                    <button class="m-btn" type="submit"><span class="m-btn__label">Send message</span></button> <p class="login-form__status m-text" id="contact-status" role="status" aria-live="polite"></p> </form>
                 <div class="contact__details">
                     <div><span class="m-text-3">Write</span><a class="m-link-2" href="mailto:studentcouncil@ppg.edu.in">studentcouncil@ppg.edu.in</a></div>
                     <div><span class="m-text-3">Call</span><a class="m-link-2" href="tel:+919047777277">+91 90477 77277</a></div>
@@ -3687,8 +3693,41 @@
         (() => {
             const form = document.querySelector("#contact .contact__form");
             if (!form) return;
+            const status = document.getElementById("contact-status");
+            const emailField = form.elements.email;
+            const messageField = form.elements.brief;
+            const COLLEGE_DOMAIN = "@ppg.edu.in";
+            const setStatus = (message, state) => {
+                if (!status) return;
+                status.textContent = message;
+                if (state) status.dataset.state = state;
+                else status.removeAttribute("data-state")
+            };
+            const setInvalid = (field, invalid) => {
+                if (invalid) field.setAttribute("aria-invalid", "true");
+                else field.removeAttribute("aria-invalid")
+            };
+            form.addEventListener("input", event => {
+                if (!event.target.classList.contains("m-field__input")) return;
+                setInvalid(event.target, false);
+                setStatus("")
+            });
             form.addEventListener("submit", event => {
                 event.preventDefault();
+                const email = emailField.value.trim().toLowerCase();
+                const message = messageField.value.trim();
+                if (email.length <= COLLEGE_DOMAIN.length || !email.endsWith(COLLEGE_DOMAIN)) {
+                    setInvalid(emailField, true);
+                    setStatus(`Use your college email ending in ${COLLEGE_DOMAIN}.`, "error");
+                    emailField.focus();
+                    return
+                }
+                if (!message) {
+                    setInvalid(messageField, true);
+                    setStatus("Write a message before sending.", "error");
+                    messageField.focus();
+                    return
+                }
                 const lines = [...form.querySelectorAll(".m-field")].map(field => {
                     const input = field.querySelector(".m-field__input");
                     const label = field.querySelector(".m-field__label");
@@ -3696,6 +3735,7 @@
                 }).filter(Boolean);
                 const name = form.elements.name && form.elements.name.value.trim() || "";
                 const subject = "Student Council Message" + (name ? " — " + name : "");
+                setStatus("Opening your email app with the message ready to send.", "success");
                 location.href = "mailto:" + form.dataset.mailto + "?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(lines.join("\n\n"))
             })
         })();
